@@ -1,0 +1,226 @@
+{
+  "about": "한입씩 안전 정보의 출처 목록. checkedAt은 한입씩이 원문을 확인한 날. verified=false는 원문 본문을 열어 확인하지 못한 출처로, 앱 안내의 근거로 쓰지 않는다.",
+  "sources": {
+    "NHS_FIRST_FOODS": {
+      "org": "NHS (영국 국민보건서비스)",
+      "title": "Your baby's first solid foods",
+      "year": 2026,
+      "url": "https://www.nhs.uk/baby/weaning-and-feeding/babys-first-solid-foods/",
+      "checkedAt": "2026-10-18",
+      "verified": true,
+      "keyPoints": [
+        "약 6개월 무렵, 세 가지 신호가 함께 보이면 고형식을 시작한다: 앉은 자세에서 머리를 안정적으로 가눔 / 눈·손·입을 협응해 음식을 집어 입에 넣음 / 음식을 뱉지 않고 삼킴",
+        "주먹 빨기, 밤에 더 자주 깨기, 수유를 더 원하는 것은 준비 신호가 아닐 수 있다",
+        "미숙아는 시작 시기를 의료진에게 문의한다",
+        "이 시기에도 에너지와 영양의 대부분은 모유나 분유에서 얻는다",
+        "처음에는 몇 숟가락이나 몇 조각 정도의 적은 양부터",
+        "새 음식이나 질감은 10번 이상 시도해야 받아들일 수 있다",
+        "다룰 수 있게 되면 곱게 간 것에서 으깬 것·덩어리·핑거푸드로 넘어간다",
+        "7~9개월: 하루 3끼로 점차 늘리고, 으깬 것·덩어리·핑거푸드를 늘린다. 고기, 생선, 철분 강화 시리얼, 진녹색 채소, 콩·렌틸 같은 철분 식품을 포함한다. 소금과 설탕은 넣지 않는다",
+        "10~12개월: 하루 3끼, 다양한 맛과 질감, 작은 조각을 집어 먹고 컵을 쓴다"
+      ],
+      "note": "NHS 페이지 마지막 검토일 2026-02-19"
+    },
+    "NHS_OVER_12": {
+      "org": "NHS Best Start in Life",
+      "title": "1 year and beyond",
+      "year": null,
+      "url": "https://www.nhs.uk/best-start-in-life/baby/weaning/what-to-feed-your-baby/over-12-months/",
+      "checkedAt": "2026-10-18",
+      "verified": true,
+      "keyPoints": [
+        "하루 3끼와 건강한 간식 최대 2번",
+        "가족과 함께 먹되 양은 적게, 작게 잘라서",
+        "채소는 필요하면 부드럽게 익히고, 과일은 씨·단단한 껍질 제거, 생선은 가시 제거",
+        "주된 음료는 우유나 물. 음식과 조리 물에 소금·설탕을 넣지 않는다"
+      ]
+    },
+    "NHS_STORAGE": {
+      "org": "NHS Best Start in Life",
+      "title": "Storing and reheating baby food",
+      "year": null,
+      "url": "https://www.nhs.uk/best-start-in-life/baby/weaning/safe-weaning/storing-and-reheating-food/",
+      "checkedAt": "2026-10-18",
+      "verified": true,
+      "keyPoints": [
+        "조리한 음식은 가능하면 1~2시간 안에 식혀 냉장 또는 냉동, 냉장은 2일 안에 사용",
+        "밥은 1시간 안에 식혀 바로 냉장·냉동, 냉장한 밥은 24시간 안에",
+        "해동은 상온이 아닌 냉장고나 전자레인지 해동 기능으로, 해동 후 24시간 안에",
+        "속까지 김이 날 정도로 데운 뒤 식혀서 주고, 전자레인지는 저어서 뜨거운 곳을 없앤다",
+        "조리한 음식은 한 번만 다시 데운다. 먹다 남은 것은 버린다",
+        "차갑게 보관하지 않은 음식은 최대 4시간 안에"
+      ],
+      "note": "냉동 보관 기간은 이 페이지에 없음"
+    },
+    "NHS_ALLERGY": {
+      "org": "NHS Start for Life",
+      "title": "Food allergies (weaning)",
+      "year": null,
+      "url": "https://www.nhs.uk/start-for-life/baby/weaning/safe-weaning/food-allergies/",
+      "checkedAt": "2026-10-18",
+      "verified": true,
+      "keyPoints": [
+        "약 6개월부터 알레르기 식품을 한 번에 하나씩, 아주 적은 양으로",
+        "대상: 우유(요리·혼합), 달걀, 글루텐 곡류, 견과·땅콩(으깨거나 갈아서), 씨앗(으깨거나 갈아서), 대두, 생선, 조개·갑각류(날것·덜 익힌 것 제외)",
+        "땅콩·달걀을 6~12개월 이후로 미루면 알레르기 위험이 커질 수 있다",
+        "먹을 수 있게 된 식품은 평소 식단에 계속 포함",
+        "진단된 식품 알레르기·습진이나 가족력이 있으면 먼저 의료진과 상의",
+        "심한 반응(아나필락시스)은 즉시 응급"
+      ]
+    },
+    "NHS_AVOID": {
+      "org": "NHS",
+      "title": "Foods to avoid giving babies and young children",
+      "year": null,
+      "url": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/",
+      "checkedAt": "2026-10-18",
+      "verified": true,
+      "keyPoints": ["소금, 설탕(4세 이하), 꿀(1세 미만), 통견과(5세 미만), 날 조개류, 상어·황새치·청새치(16세 미만), 쌀음료(5세 미만) 등"]
+    },
+    "ASCIA_2026": {
+      "org": "ASCIA (호주 임상면역알레르기학회)",
+      "title": "2026 ASCIA Guideline: Infant Feeding for Food Allergy Prevention",
+      "year": 2026,
+      "url": "https://www.allergy.org.au/hp/papers/infant-feeding-and-allergy-prevention",
+      "checkedAt": "2026-10-18",
+      "verified": true,
+      "keyPoints": [
+        "발달 준비 신호가 보이면 고형식 시작, 보통 6개월 무렵이고 4개월 전에는 시작하지 않는다",
+        "잘 익힌 달걀, 나이에 맞는 형태의 땅콩(부드러운 땅콩버터·곱게 간 땅콩·땅콩가루)을 준비되는 대로 곧 포함",
+        "흔한 알레르기 식품은 첫해(12개월 전)에 도입. 한 끼에 새 알레르기 식품은 하나만",
+        "반응이 없으면 최소 주 1회 계속 제공",
+        "음식을 피부에 문질러 알레르기를 확인하지 않는다",
+        "다시 먹었을 때 전신 증상이 나타나면, 다시 시도하기 전에 전문의 조언을 받는다",
+        "통견과처럼 단단한 음식은 피한다"
+      ]
+    },
+    "NIAID_2017": {
+      "org": "NIAID (미국 국립알레르기감염병연구소) 전문가 패널",
+      "title": "Addendum guidelines for the prevention of peanut allergy in the United States",
+      "year": 2017,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5217343/",
+      "checkedAt": "2026-10-18",
+      "verified": true,
+      "keyPoints": [
+        "지침 1: 심한 습진이나 달걀 알레르기(또는 둘 다)가 있는 영아는 4~6개월에 땅콩 도입을 권하되, 전문가 평가(검사)를 먼저 받는다",
+        "지침 2: 경도~중등도 습진은 6개월 무렵 도입, 집에서 시작 가능",
+        "지침 3: 습진·식품 알레르기가 없으면 다른 고형식과 함께 자유롭게 도입",
+        "정기 섭취량으로 주당 땅콩 단백질 약 6~7g을 3회 이상 나누어 제시 (앱은 이 수치로 양을 정하지 않는다)",
+        "통견과는 5세 미만 금지, 숟가락으로 떠 먹이거나 덩어리째 주는 땅콩버터는 4세 미만 금지"
+      ],
+      "note": "Togias A, et al. World Allergy Organ J. 2017;10(1):1"
+    },
+    "CDC_SOLIDS": {
+      "org": "CDC (미국 질병통제예방센터)",
+      "title": "When, What, and How to Introduce Solid Foods",
+      "year": null,
+      "url": "https://www.cdc.gov/infant-toddler-nutrition/foods-and-drinks/when-what-and-how-to-introduce-solid-foods.html",
+      "checkedAt": "2026-10-18",
+      "verified": true,
+      "keyPoints": [
+        "처음에는 단일 재료 음식을 한 번에 하나씩",
+        "새 음식 사이 3~5일 간격",
+        "알레르기 가능 식품은 다른 음식과 함께 도입",
+        "심한 습진이나 달걀 알레르기가 있으면 땅콩 도입 시기와 방법을 의료진과 상의"
+      ]
+    },
+    "CDC_CHOKING": {
+      "org": "CDC",
+      "title": "Choking Hazards",
+      "year": null,
+      "url": "https://www.cdc.gov/infant-toddler-nutrition/foods-and-drinks/choking-hazards.html",
+      "checkedAt": "2026-10-18",
+      "verified": true,
+      "keyPoints": ["발달에 맞는 모양·크기·질감으로 조리", "작고 끈적하거나 단단한 음식은 피함", "앉아서 먹기"]
+    },
+    "KDCA_INFANT": {
+      "org": "질병관리청 국가건강정보포털",
+      "title": "식이영양(영유아)",
+      "year": 2026,
+      "url": "https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=5212",
+      "checkedAt": "2026-10-18",
+      "verified": true,
+      "keyPoints": [
+        "특별한 이유 없이 알레르기 유발 가능 식품을 늦게 먹일 필요는 없다",
+        "이미 음식 반응이 있었거나, 심한 아토피 피부염, 강한 가족력이 있으면 새 식품 도입 전 의료진 상담",
+        "꿀은 1세 미만 금지, 생우유는 12개월 전 주된 음료로 쓰지 않음"
+      ],
+      "note": "페이지 업데이트 2026-07-07"
+    },
+    "KDCA_WEANING": {
+      "org": "질병관리청 국가건강정보포털",
+      "title": "이유기보충식(이유식)",
+      "year": 2026,
+      "url": "https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=5470",
+      "checkedAt": "2026-10-18",
+      "verified": true,
+      "keyPoints": [
+        "모유 수유 아기는 생후 6개월 이후, 분유 수유 아기는 4~6개월에 시작",
+        "첫 이유식으로 쌀 미음 권장",
+        "새 음식 시작 후 약 3~7일 관찰",
+        "알레르기를 우려해 미리 음식을 제한하는 것은 권장되지 않음",
+        "설탕·단 음료·커피·차를 피하고, 땅콩·포도알·익히지 않은 당근 같은 고형식은 피함"
+      ],
+      "note": "페이지 업데이트 2026-05-12"
+    },
+    "MFDS_STORAGE_TIME": {
+      "org": "식품의약품안전처 식품안전나라",
+      "title": "식품의 보관 온도와 식중독 위험구간",
+      "year": null,
+      "url": "https://www.foodsafetykorea.go.kr/portal/board/boardDetail.do?menu_no=3120&bbs_no=bbs001&ntctxt_no=21793&menu_grp=MENU_NEW01",
+      "checkedAt": "2026-10-19",
+      "verified": true,
+      "keyPoints": [
+        "5℃ 이하 냉장 시 식품별 최대 냉장보관 기간: 익히지 않은 육류 및 어패류 1~2일, 조리된 육류 및 어패류 3~5일, 스프·국 3~4일, 햄·베이컨 5~7일, 요구르트 7~14일, 크림치즈 2주, 달걀 3~5주, 버터 1~3개월",
+        "식중독균이 빠르게 늘어나는 위험구간은 5~60℃"
+      ],
+      "note": "채소, 두부, 우유, 밥은 표에 없음"
+    },
+    "MFDS_FRIDGE_TIPS": {
+      "org": "식품의약품안전처 식품안전나라",
+      "title": "냉장고 칸별·식재료별 보관 요령 (추천 콘텐츠)",
+      "year": null,
+      "url": "https://www.foodsafetykorea.go.kr/portal/board/boardDetail.do?menu_no=8083&menu_grp=MENU_NEW05&ntctxt_no=1090466&bbs_no=hpikbbs001",
+      "checkedAt": "2026-10-19",
+      "verified": true,
+      "keyPoints": [
+        "육류·어패류: 금방 먹을 것은 신선실 밀폐용기, 오래 둘 것은 밀봉 후 냉동실 하단",
+        "어류: 손질 후 위생팩 보관",
+        "달걀: 문쪽에는 금방 먹을 것만",
+        "채소·과일: 씻어서 밀폐용기 보관. 채소·커팅과일은 구입 후 바로 먹고, 어려우면 표면 물기를 없애고 밀폐용기에 담아 냉장",
+        "유제품: 사계절 주의 식품",
+        "냉동실 안쪽은 가장 오래 보관할 식품, 문쪽은 온도 변화가 큼"
+      ]
+    },
+    "WHO_2023": {
+      "org": "WHO (세계보건기구)",
+      "title": "WHO Guideline for complementary feeding of infants and young children 6–23 months of age",
+      "year": 2023,
+      "url": "https://www.who.int/publications/i/item/9789240081864",
+      "checkedAt": "2026-10-18",
+      "verified": false,
+      "keyPoints": [],
+      "note": "발행일(2023-10-16)과 다루는 주제만 확인. 권고 본문(PDF)을 열지 못해 근거로 쓰지 않음"
+    },
+    "AAP_2019": {
+      "org": "AAP (미국소아과학회)",
+      "title": "The Effects of Early Nutritional Interventions on the Development of Atopic Disease (Clinical Report)",
+      "year": 2019,
+      "url": "https://publications.aap.org/pediatrics/article/143/4/e20190281/37202/",
+      "checkedAt": "2026-10-18",
+      "verified": false,
+      "keyPoints": [],
+      "note": "접속 차단(HTTP 403)으로 원문 미확인. 근거로 쓰지 않음"
+    },
+    "KR_SOCIETY": {
+      "org": "국내 소아청소년과·소아알레르기 학회",
+      "title": "영아 알레르기 식품 도입 공식 권고문",
+      "year": null,
+      "url": "",
+      "checkedAt": "2026-10-18",
+      "verified": false,
+      "keyPoints": [],
+      "note": "검색으로 공식 권고문을 찾지 못함. 감수 의사에게 확인 요청"
+    }
+  }
+}

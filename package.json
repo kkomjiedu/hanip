@@ -1,0 +1,16 @@
+{
+  "name": "hanip",
+  "private": true,
+  "version": "0.2.0",
+  "description": "한입씩: 이유식부터 온 가족 식탁까지",
+  "type": "module",
+  "scripts": {
+    "data": "node scripts/build-data.mjs",
+    "typecheck": "tsc -p tsconfig.json",
+    "build:app": "node scripts/build-app.mjs",
+    "build": "npm run data && npm run typecheck && npm run build:app"
+  },
+  "devDependencies": {
+    "typescript": "5.6.3"
+  }
+}

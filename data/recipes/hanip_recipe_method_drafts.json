@@ -1,0 +1,16 @@
+{
+  "about": "레시피별 토핑식·혼합식 조리법 초안. 계량·조리 시간·보관 기간은 넣지 않는다. 전문가 검수 전에는 status가 pending_review이고 앱에 노출되지 않는다. 검수가 끝난 조리법만 status를 expert_reviewed로 바꾸고 reviewedBy, reviewedAt, sourceReferences를 채운다.",
+  "drafts": {
+    "HN-017": {
+      "note": "사용자 기획서의 예시 조리 흐름 (소고기 애호박 이유식)",
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": ["쌀죽 베이스를 조리해요", "소고기를 충분히 익혀 토핑으로 준비해요", "애호박을 부드럽게 익혀 토핑으로 준비해요", "아기에게 맞는 질감으로 차려 줘요"]
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": ["쌀, 소고기, 애호박을 함께 조리해요", "충분히 익힌 뒤 아기에게 맞는 질감으로 조절해요"]
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T14:39:51.680Z",
+  "generated_at": "2026-10-18T15:05:31.493Z",
   "ingredients": {
     "file_csv": "data/ingredients/hanip_ingredient_guide_30.csv",
     "file_json": "data/ingredients/hanip_ingredient_guide_30.json",
@@ -133,6 +133,12 @@
       "아보카도",
       "딸기"
     ]
+  },
+  "content": {
+    "errors": [],
+    "methods_total": 230,
+    "methods_with_drafts": 1,
+    "methods_expert_reviewed": 0
   },
   "recipes_original_lint_errors": [
     {

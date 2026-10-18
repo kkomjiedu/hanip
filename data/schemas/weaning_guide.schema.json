@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hanip/weaning_guide",
+  "title": "이유식 시작 가이드",
+  "type": "object",
+  "required": ["readiness", "stages", "stageNote", "faq", "methods", "first30"],
+  "properties": {
+    "readiness": {
+      "type": "object",
+      "required": ["reviewStatus", "title", "lead", "sources", "checklist", "notSigns", "milk", "consult"],
+      "properties": {
+        "reviewStatus": { "$ref": "#/$defs/status" },
+        "sources": { "$ref": "#/$defs/sources" },
+        "checklist": {
+          "type": "array",
+          "items": { "type": "object", "required": ["id", "text", "detail", "sources"], "properties": { "id": { "type": "string" }, "text": { "type": "string" }, "detail": { "type": "string" }, "sources": { "$ref": "#/$defs/sources" } } }
+        },
+        "notSigns": { "$ref": "#/$defs/cited" },
+        "milk": { "$ref": "#/$defs/cited" },
+        "consult": { "$ref": "#/$defs/cited" }
+      }
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "ageNote", "catalogCategory", "goal", "purpose", "texture", "meals", "nutrition", "cooking", "nextSignals", "reviewStatus", "sources"],
+        "properties": {
+          "id": { "type": "string", "enum": ["early", "middle", "late", "complete"] },
+          "reviewStatus": { "$ref": "#/$defs/status" },
+          "sources": { "$ref": "#/$defs/sources" }
+        }
+      }
+    },
+    "stageNote": { "type": "string" },
+    "faq": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "q", "a", "reviewStatus", "sources"],
+        "properties": { "id": { "type": "string" }, "q": { "type": "string" }, "a": { "type": "string" }, "reviewStatus": { "$ref": "#/$defs/status" }, "sources": { "$ref": "#/$defs/sources" } }
+      }
+    },
+    "methods": {
+      "type": "object",
+      "required": ["note", "options", "choices"],
+      "properties": {
+        "options": { "type": "array", "items": { "type": "object", "required": ["id", "label", "nick", "desc", "pros", "cons"] } },
+        "choices": { "type": "array", "items": { "type": "object", "required": ["id", "label", "sub"], "properties": { "id": { "type": "string", "enum": ["topping", "mixed", "both"] } } } }
+      }
+    },
+    "first30": {
+      "type": "object",
+      "required": ["reviewStatus", "title", "lead", "rules", "intervalOptions", "defaultInterval", "ingredientOrder", "orderNote", "sources"],
+      "properties": {
+        "reviewStatus": { "$ref": "#/$defs/status" },
+        "intervalOptions": { "type": "array", "items": { "type": "integer" } },
+        "defaultInterval": { "type": "integer" },
+        "ingredientOrder": { "type": "array", "items": { "type": "string" } },
+        "sources": { "$ref": "#/$defs/sources" }
+      }
+    }
+  },
+  "$defs": {
+    "status": { "type": "string", "enum": ["pending_review", "source_verified", "expert_reviewed"] },
+    "sources": { "type": "array", "items": { "type": "string" } },
+    "cited": { "type": "object", "required": ["text", "sources"], "properties": { "text": { "type": "string" }, "sources": { "$ref": "#/$defs/sources" } } }
+  }
+}

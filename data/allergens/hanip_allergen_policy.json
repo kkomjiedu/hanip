@@ -1,0 +1,60 @@
+{
+  "about": "알레르기 식품 도입과 반복 제공 정책. 출처는 data/guides/hanip_sources.json의 키. 앱은 이 파일의 범위 안에서만 안내하고, 일차별 섭취량이나 증량표를 만들지 않는다.",
+  "writtenAt": "2026-10-18",
+  "reviewStatus": "source_verified",
+  "statuses": [
+    { "id": "not_tried", "label": "아직 안 먹어봤어요", "tone": "neutral" },
+    { "id": "introducing", "label": "도입 중", "tone": "butter" },
+    { "id": "tried", "label": "먹어봤어요", "tone": "ok", "caution": "'먹어봤어요'는 알레르기가 없다는 의학적 확인이 아니에요." },
+    { "id": "suspected", "label": "반응 의심", "tone": "warn" },
+    { "id": "consult", "label": "의료진 상담 필요", "tone": "warn" }
+  ],
+  "riskQuestions": [
+    { "id": "eczema", "text": "피부가 심하게 짓무르거나 갈라지는 습진(아토피)이 있나요?", "highRisk": true, "sources": ["NIAID_2017", "KDCA_INFANT", "NHS_ALLERGY", "CDC_SOLIDS"] },
+    { "id": "foodAllergy", "text": "진단받은 식품 알레르기가 있나요? (예: 달걀 알레르기)", "highRisk": true, "sources": ["NIAID_2017", "NHS_ALLERGY", "CDC_SOLIDS"] },
+    { "id": "reaction", "text": "어떤 음식을 먹은 뒤 반응이 의심된 적이 있나요?", "highRisk": true, "sources": ["KDCA_INFANT"] },
+    { "id": "medicalPlan", "text": "알레르기 식품에 대해 의료진에게 따로 안내받은 내용이 있나요?", "highRisk": false, "sources": [] }
+  ],
+  "highRiskMessage": "의료진 상담을 먼저 받아 주세요. 위험 요인이 있는 아기는 앱이 도입 순서나 알림을 자동으로 만들지 않아요. 의료진 안내에 따라 먹였다면 기록만 할 수 있어요.",
+  "medicalPlanMessage": "의료진 안내가 있다면 그 안내를 따라 주세요. 앱의 일반 안내보다 우선해요.",
+  "introRules": [
+    { "text": "이유식에 적응한 뒤, 약 6개월부터 늦추지 않고 시작해요.", "sources": ["NHS_ALLERGY", "ASCIA_2026", "KDCA_INFANT"] },
+    { "text": "한 끼에 새 알레르기 식품은 하나만, 적은 양으로 줘요.", "sources": ["NHS_ALLERGY", "ASCIA_2026"] },
+    { "text": "아기 컨디션이 좋은 날, 먹은 뒤 지켜볼 수 있는 시간에 줘요.", "sources": ["NHS_ALLERGY"] },
+    { "text": "먹인 날짜와 반응이 있었는지를 기록해요.", "sources": [] },
+    { "text": "잘 먹었다면 평소 식단에 넣어 계속 줘요.", "sources": ["ASCIA_2026", "NHS_ALLERGY"] }
+  ],
+  "repeatGuidance": [
+    { "source": "ASCIA_2026", "text": "반응이 없으면 최소 주 1회 계속 제공" },
+    { "source": "NHS_ALLERGY", "text": "평소 식단에 계속 포함 (횟수는 제시하지 않음)" },
+    { "source": "NIAID_2017", "text": "땅콩: 정기 섭취량으로 주당 땅콩 단백질 약 6~7g을 3회 이상 나누어 제시. 위험 요인이 있는 아기에 대한 지침에서 나온 수치라, 앱은 이 수치로 양을 정하지 않아요" }
+  ],
+  "repeatIntervalDays": 7,
+  "repeatIntervalSource": "ASCIA_2026",
+  "reactionSigns": ["입 주변이나 얼굴이 붉어짐, 두드러기", "피부 가려움, 발진", "토하기, 설사", "기침, 쌕쌕거림, 숨참", "입술·눈·얼굴·목 부기", "콧물, 코막힘, 눈 충혈"],
+  "reactionSignsSources": ["NHS_ALLERGY"],
+  "emergency": {
+    "text": "숨쉬기 힘들어하거나, 입술·얼굴·목이 붓거나, 축 늘어지거나, 계속 토하면 바로 119에 연락해요.",
+    "sources": ["NHS_ALLERGY"]
+  },
+  "afterReaction": {
+    "text": "반응이 의심된 음식은 다시 먹이지 말고 소아청소년과와 상의해요. 앱은 반응이 의심된 음식을 다시 먹어 보라고 권하지 않아요.",
+    "sources": ["ASCIA_2026", "KDCA_INFANT"]
+  },
+  "prohibited": [
+    { "text": "음식을 피부에 문질러 알레르기를 확인하지 않아요.", "sources": ["ASCIA_2026"] },
+    { "text": "일차별 섭취량이나 증량표를 만들지 않아요.", "sources": [] },
+    { "text": "반응이 의심된 음식의 재도전을 앱이 권하지 않아요.", "sources": ["ASCIA_2026"] }
+  ],
+  "allergens": [
+    { "key": "계란", "label": "달걀", "safeForm": "흰자와 노른자가 단단해질 때까지 완전히 익혀서 줘요.", "sources": ["ASCIA_2026", "NHS_AVOID"], "order": 1 },
+    { "key": "땅콩", "label": "땅콩", "safeForm": "부드러운 땅콩버터나 곱게 간 땅콩·땅콩가루를 이유식에 묽게 섞어 줘요. 통땅콩·조각·덩어리째 떠 먹이는 땅콩버터는 주지 않아요.", "sources": ["ASCIA_2026", "NIAID_2017", "NHS_AVOID"], "order": 2 },
+    { "key": "우유", "label": "우유", "safeForm": "요리에 넣거나 다른 음식에 섞어서 줘요. 12개월 전에는 주된 음료로 쓰지 않아요.", "sources": ["NHS_ALLERGY", "KDCA_INFANT"], "order": 3 },
+    { "key": "밀", "label": "밀", "safeForm": "글루텐이 든 곡류를 익혀서 줘요.", "sources": ["NHS_ALLERGY"], "order": 4 },
+    { "key": "대두", "label": "콩(대두)", "safeForm": "익힌 콩 식품으로 줘요.", "sources": ["NHS_ALLERGY"], "order": 5 },
+    { "key": "참깨", "label": "참깨", "safeForm": "으깨거나 곱게 갈아서 줘요. 통깨는 피해요.", "sources": ["NHS_ALLERGY", "CDC_CHOKING"], "order": 6 },
+    { "key": "생선", "label": "생선", "safeForm": "가시를 꼼꼼히 바르고 완전히 익혀서 줘요.", "sources": ["NHS_ALLERGY", "CDC_CHOKING"], "order": 7 },
+    { "key": "갑각류", "label": "새우·게", "safeForm": "날것이나 덜 익힌 것은 피하고 완전히 익혀서 줘요.", "sources": ["NHS_ALLERGY", "NHS_AVOID"], "order": 8 },
+    { "key": "견과", "label": "견과", "safeForm": "으깨거나 곱게 갈아서 줘요. 통견과는 5세 전에는 주지 않아요.", "sources": ["NHS_ALLERGY", "NHS_AVOID"], "order": 9 }
+  ]
+}

@@ -321,12 +321,136 @@ report.cross = {
   guide_names_not_used_in_recipes: guideNames.filter((n) => !reviewed.some((r) => r.main_ingredients.includes(n))),
 };
 
+// ---------- 가이드·알레르기 정책·조리법 ----------
+// JSON Schema의 일부(type, required, properties, items, enum, pattern, $ref)만 검사하는 작은 검사기
+function validateSchema(value, schema, root = schema, path = '$') {
+  const errs = [];
+  if (schema.$ref) return validateSchema(value, schema.$ref.replace('#/', '').split('/').reduce((o, k) => o[k], root), root, path);
+  if (schema.type) {
+    const types = [].concat(schema.type);
+    const actual = value === null ? 'null' : Array.isArray(value) ? 'array' : Number.isInteger(value) ? 'integer' : typeof value;
+    const ok = types.some((t) => t === actual || (t === 'number' && actual === 'integer'));
+    if (!ok) return [`${path}: ${types.join('|')} 이어야 하는데 ${actual}`];
+  }
+  if (schema.enum && !schema.enum.includes(value)) errs.push(`${path}: 허용값 ${schema.enum.join(', ')} 아님 (${JSON.stringify(value)})`);
+  if (schema.pattern && typeof value === 'string' && !new RegExp(schema.pattern).test(value)) errs.push(`${path}: 형식 ${schema.pattern} 아님`);
+  if (value && typeof value === 'object' && !Array.isArray(value)) {
+    for (const k of schema.required ?? []) if (!(k in value)) errs.push(`${path}.${k}: 필수 항목 없음`);
+    for (const [k, s] of Object.entries(schema.properties ?? {})) if (k in value) errs.push(...validateSchema(value[k], s, root, `${path}.${k}`));
+  }
+  if (Array.isArray(value) && schema.items) value.forEach((v, i) => errs.push(...validateSchema(v, schema.items, root, `${path}[${i}]`)));
+  return errs;
+}
+const SCHEMAS = join(ROOT, 'data', 'schemas');
+const sources = readJson(join(ROOT, 'data', 'guides', 'hanip_sources.json')).sources;
+const guide = readJson(join(ROOT, 'data', 'guides', 'hanip_weaning_guide.json'));
+const policy = readJson(join(ROOT, 'data', 'allergens', 'hanip_allergen_policy.json'));
+const drafts = readJson(join(DIR_RECIPES, 'hanip_recipe_method_drafts.json')).drafts;
+
+const STAGE_OF = { 첫한입_초기: 'early', 첫한입_중기: 'middle', 첫한입_후기: 'late', 첫한입_완료기: 'complete', 쑥쑥한입: 'toddler', 같이한입: 'family' };
+const emptyMethod = () => ({ status: 'pending_review', steps: [] });
+const methods = {
+  about: '레시피별 토핑식·혼합식 조리법. 계량·조리 시간·보관 기간은 검증 전이라 비어 있다(null). pending_review는 앱에 노출하지 않는다. 자동 생성: scripts/build-data.mjs',
+  total: reviewed.length,
+  items: reviewed.map((r) => {
+    const d = drafts[r.id] ?? {};
+    return {
+      recipeId: r.id,
+      category: r.category,
+      stage: STAGE_OF[r.category],
+      ingredients: r.main_ingredients,
+      allergenTags: { confirmed: r.allergens, possible: r.possible_allergens.map((p) => p.allergen) },
+      toppingMethod: d.toppingMethod ?? emptyMethod(),
+      mixedMethod: d.mixedMethod ?? emptyMethod(),
+      cookingTime: null,
+      textureGuide: null,
+      storageGuide: null,
+      safetyNotes: r.cautions.map((c) => c.text),
+      reviewStatus: [d.toppingMethod, d.mixedMethod].every((m) => m?.status === 'expert_reviewed') ? 'expert_reviewed' : 'pending_review',
+      sourceReferences: [],
+    };
+  }),
+};
+const methodsPath = join(DIR_RECIPES, 'hanip_recipe_methods.json');
+writeJson(methodsPath, methods);
+
+// 안전 검사: 스키마, 출처, 검수 상태
+const contentErrors = [
+  ...validateSchema(guide, readJson(join(SCHEMAS, 'weaning_guide.schema.json'))).map((e) => `가이드 ${e}`),
+  ...validateSchema(policy, readJson(join(SCHEMAS, 'allergen_policy.schema.json'))).map((e) => `알레르기 정책 ${e}`),
+  ...validateSchema(methods, readJson(join(SCHEMAS, 'recipe_methods.schema.json'))).map((e) => `조리법 ${e}`),
+];
+const citeCheck = (where, keys, status) => {
+  for (const k of keys ?? []) {
+    if (!sources[k]) contentErrors.push(`${where}: 없는 출처 키 '${k}'`);
+    else if (status !== 'pending_review' && !sources[k].verified) contentErrors.push(`${where}: 원문 미확인 출처 '${k}'를 근거로 씀`);
+  }
+  if (status === 'source_verified' && !(keys ?? []).length) contentErrors.push(`${where}: source_verified인데 출처가 없음`);
+};
+citeCheck('가이드.readiness', guide.readiness.sources, guide.readiness.reviewStatus);
+guide.readiness.checklist.forEach((c) => citeCheck(`가이드.checklist.${c.id}`, c.sources, 'source_verified'));
+['notSigns', 'milk', 'consult'].forEach((k) => citeCheck(`가이드.readiness.${k}`, guide.readiness[k].sources, 'source_verified'));
+guide.stages.forEach((s) => citeCheck(`가이드.stage.${s.id}`, s.sources, s.reviewStatus));
+guide.faq.forEach((f) => {
+  citeCheck(`가이드.faq.${f.id}`, f.sources, f.reviewStatus);
+  if (f.reviewStatus === 'pending_review' && f.a.trim()) contentErrors.push(`가이드.faq.${f.id}: 검수 전 답변에 내용이 있음 (노출 위험)`);
+});
+citeCheck('가이드.first30', guide.first30.sources, guide.first30.reviewStatus);
+for (const ing of guide.first30.ingredientOrder) {
+  if (!reviewed.some((r) => r.category === '첫한입_초기' && r.main_ingredients.includes(ing))) contentErrors.push(`가이드.first30: '${ing}'가 들어간 초기 레시피가 카탈로그에 없음`);
+  if (INGREDIENT_ALLERGEN[ing]) contentErrors.push(`가이드.first30: 알레르기 식품 '${ing}'를 자동 식단에 넣음`);
+}
+policy.riskQuestions.forEach((q) => citeCheck(`알레르기.risk.${q.id}`, q.sources, 'pending_review'));
+policy.introRules.forEach((x, i) => citeCheck(`알레르기.introRules[${i}]`, x.sources, 'pending_review'));
+policy.repeatGuidance.forEach((x) => citeCheck('알레르기.repeatGuidance', [x.source], 'source_verified'));
+policy.allergens.forEach((a) => citeCheck(`알레르기.${a.key}`, a.sources, 'source_verified'));
+citeCheck('알레르기.emergency', policy.emergency.sources, 'source_verified');
+citeCheck('알레르기.repeatInterval', [policy.repeatIntervalSource], 'source_verified');
+// 검수 전 조리법에 계량·시간·기간 같은 수치가 들어가면 안 된다
+const NUMERIC_UNIT = /\d+(\.\d+)?\s*(g|kg|ml|mL|L|컵|큰술|작은술|숟가락|스푼|분|시간|일|개월|℃|도)/;
+for (const m of methods.items) {
+  for (const key of ['toppingMethod', 'mixedMethod']) {
+    const meth = m[key];
+    if (meth.status === 'expert_reviewed' && !(meth.reviewedBy && meth.reviewedAt)) contentErrors.push(`${m.recipeId}.${key}: 검수 완료인데 검수자·검수일 없음`);
+    if (meth.status !== 'expert_reviewed' && meth.steps.some((s) => NUMERIC_UNIT.test(s))) contentErrors.push(`${m.recipeId}.${key}: 검수 전 조리법에 계량·시간 수치가 있음`);
+  }
+  if (m.reviewStatus !== 'expert_reviewed' && (m.cookingTime || m.textureGuide || m.storageGuide)) contentErrors.push(`${m.recipeId}: 검수 전인데 조리 시간·질감·보관 정보가 채워짐`);
+}
+// 냉장고 보관: 기간은 원문 확인한 출처가 있는 그룹만, 재료 이름은 한 그룹에만
+const storage = readJson(join(DIR_INGREDIENTS, 'hanip_storage_guide.json'));
+const seenMatch = new Map();
+for (const g of storage.groups) {
+  if (g.fridgeDays) {
+    citeCheck(`보관.${g.id}`, g.sources, 'source_verified');
+    if (!(g.fridgeDays.min >= 0 && g.fridgeDays.max >= g.fridgeDays.min)) contentErrors.push(`보관.${g.id}: 기간 범위가 이상함`);
+  } else citeCheck(`보관.${g.id}`, g.sources, 'pending_review');
+  for (const m of g.match) {
+    if (seenMatch.has(m)) contentErrors.push(`보관: '${m}'가 ${seenMatch.get(m)}와 ${g.id}에 함께 있음`);
+    seenMatch.set(m, g.id);
+  }
+}
+citeCheck('보관.disclaimer', storage.disclaimerSources, 'source_verified');
+
+report.content = { errors: contentErrors, methods_total: methods.items.length, methods_with_drafts: Object.keys(drafts).length, methods_expert_reviewed: methods.items.filter((m) => m.reviewStatus === 'expert_reviewed').length };
+
 // 프로토타입 앱(app/)이 읽는 데이터. 검수본만 내보낸다.
 const APP_DATA = join(ROOT, 'app', 'data');
 mkdirSync(APP_DATA, { recursive: true });
 writeJson(join(APP_DATA, 'recipes.json'), readJson(reviewedPath));
 writeJson(join(APP_DATA, 'ingredients.json'), readJson(ingJsonPath));
 writeJson(join(APP_DATA, 'risks.json'), risks);
+writeJson(join(APP_DATA, 'guide.json'), guide);
+writeJson(join(APP_DATA, 'sources.json'), { sources });
+writeJson(join(APP_DATA, 'allergen_policy.json'), policy);
+writeJson(join(APP_DATA, 'storage.json'), storage);
+// 앱에는 검수 전 조리 단계를 보내지 않는다 (상태만 보냄)
+writeJson(join(APP_DATA, 'methods.json'), {
+  items: methods.items.map((m) => ({
+    ...m,
+    toppingMethod: m.toppingMethod.status === 'expert_reviewed' ? m.toppingMethod : { status: m.toppingMethod.status, steps: [] },
+    mixedMethod: m.mixedMethod.status === 'expert_reviewed' ? m.mixedMethod : { status: m.mixedMethod.status, steps: [] },
+  })),
+});
 const [sitHeader, ...sitRows] = parseCsv(readFileSync(join(ROOT, 'content', 'situations.csv'), 'utf8').replace(/^﻿/, ''));
 writeJson(join(APP_DATA, 'situations.json'), {
   status: 'AI 초안, 출처 검증·감수 전 (content/situations.csv)',
@@ -341,8 +465,10 @@ console.log(JSON.stringify({
   ingredients: { count: report.ingredients.actual_count, round_trip: report.ingredients.json_round_trip_identical },
   original: { count: report.recipes_original.actual_count, lint: report.recipes_original.lint_by_code },
   reviewed: { ...report.recipes_reviewed, lint_errors: reviewedErrors.length },
+  content: { ...report.content, errors: contentErrors.length },
 }, null, 2));
-if (reviewedErrors.length) {
-  console.error('검수본 오류:\n' + reviewedErrors.map((e) => `  ${e.id} ${e.title ?? ''} [${e.code}] ${e.msg}`).join('\n'));
+if (reviewedErrors.length || contentErrors.length) {
+  if (reviewedErrors.length) console.error('검수본 오류:\n' + reviewedErrors.map((e) => `  ${e.id} ${e.title ?? ''} [${e.code}] ${e.msg}`).join('\n'));
+  if (contentErrors.length) console.error('콘텐츠 오류:\n' + contentErrors.map((e) => `  ${e}`).join('\n'));
   process.exit(1);
 }

@@ -1,0 +1,7027 @@
+{
+  "items": [
+    {
+      "recipeId": "HN-001",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-002",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "오트밀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-003",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "소고기",
+        "쌀"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-004",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "닭고기",
+        "쌀"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-005",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "애호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-006",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-007",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "브로콜리"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-008",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "단호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-009",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "고구마"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-010",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "감자"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-011",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "콜리플라워"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-012",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "배"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-013",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "사과"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-014",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-015",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "달걀",
+        "쌀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-016",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "땅콩",
+        "쌀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "땅콩"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "통땅콩·견과 조각은 만 5세 미만 금지. 곱게 간 가루나 부드러운 버터를 묽게 섞어 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-017",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "애호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-018",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "브로콜리"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-019",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-020",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "단호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-021",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "감자"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-022",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "애호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-023",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-024",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "고구마"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-025",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "브로콜리",
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-026",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "단호박",
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-027",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "오트밀",
+        "배"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-028",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "오트밀",
+        "사과"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-029",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "애호박",
+        "쌀"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-030",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "단호박",
+        "쌀"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-031",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "애호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-032",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-033",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "브로콜리"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-034",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "시금치"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-035",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "단호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-036",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "비트"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-037",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "감자"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-038",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "애호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-039",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "양배추"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-040",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-041",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-042",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "브로콜리",
+        "흰살생선"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-043",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "감자",
+        "흰살생선"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-044",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "애호박",
+        "흰살생선"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-045",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "당근",
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-046",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "두부",
+        "시금치"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-047",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "두부",
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-048",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "달걀",
+        "애호박",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-049",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "오트밀",
+        "바나나"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-050",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "오트밀",
+        "사과"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-051",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "퀴노아"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-052",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "렌틸"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-053",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "고구마"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-054",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "애호박",
+        "연어"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-055",
+      "category": "첫한입_중기",
+      "stage": "middle",
+      "ingredients": [
+        "쌀",
+        "감자",
+        "연어"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-056",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "애호박",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-057",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-058",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "브로콜리",
+        "연어"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-059",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "애호박",
+        "대구"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-060",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "두부",
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-061",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "콜리플라워"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-062",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "단호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-063",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "달걀",
+        "시금치"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-064",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "배추"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-065",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "감자"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-066",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "아스파라거스"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-067",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "흰살생선",
+        "토마토"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요.",
+        "방울토마토는 잘라 주세요. 입 주변이 붉어지는 것만으로 알레르기라고 단정하지 않아요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-068",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "완두콩"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "콩·옥수수알은 통째로 주지 말고 으깨 주세요.",
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-069",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "고구마",
+        "연어"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-070",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "두부",
+        "달걀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란",
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-071",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "양배추"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-072",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "브로콜리"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-073",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "당근",
+        "대구"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-074",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "단호박",
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-075",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "퀴노아"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-076",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "오트밀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-077",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "연어",
+        "시금치"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-078",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-079",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "애호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-080",
+      "category": "첫한입_후기",
+      "stage": "late",
+      "ingredients": [
+        "쌀",
+        "브로콜리",
+        "달걀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-081",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "당근",
+        "양배추"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-082",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "애호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-083",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "감자",
+        "연어"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-084",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "두부",
+        "시금치"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-085",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "당근",
+        "달걀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-086",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "우유"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-087",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "단호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "우유"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-088",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "브로콜리",
+        "새우"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "갑각류"
+        ],
+        "possible": [
+          "우유"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "새우·조개는 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-089",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "두부",
+        "토마토"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": [
+          "우유"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "방울토마토는 잘라 주세요. 입 주변이 붉어지는 것만으로 알레르기라고 단정하지 않아요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-090",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "소고기",
+        "감자"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-091",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "닭고기",
+        "양배추"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-092",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "브로콜리",
+        "감자"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-093",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "단호박",
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-094",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "연어",
+        "감자",
+        "브로콜리"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-095",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-096",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "시금치"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-097",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "브로콜리",
+        "달걀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-098",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "당근",
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-099",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "애호박",
+        "연어"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-100",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "소고기",
+        "감자"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-101",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "닭고기",
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-102",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "브로콜리",
+        "대구"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-103",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "두부",
+        "당근",
+        "시금치"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-104",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "소고기",
+        "단호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-105",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "애호박",
+        "달걀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-106",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "브로콜리",
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-107",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "단호박",
+        "달걀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-108",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "두부",
+        "새우"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "갑각류",
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "새우·조개는 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-109",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "소고기",
+        "감자",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-110",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "애호박",
+        "감자"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-111",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "당근",
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-112",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "닭고기",
+        "브로콜리"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-113",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "감자",
+        "연어"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-114",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "고구마",
+        "오트밀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀"
+        ],
+        "possible": [
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-115",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "소고기",
+        "배추"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-116",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "닭고기",
+        "무"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-117",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "애호박",
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-118",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "달걀",
+        "시금치"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-119",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "감자",
+        "대구"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-120",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "달걀",
+        "토마토"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요.",
+        "방울토마토는 잘라 주세요. 입 주변이 붉어지는 것만으로 알레르기라고 단정하지 않아요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-121",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "소고기",
+        "미역"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+        "김·미역은 무염으로 소량만, 잘게 잘라 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-122",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "브로콜리"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-123",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "두부",
+        "애호박",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-124",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "애호박",
+        "달걀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-125",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "쌀",
+        "당근",
+        "연어"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-126",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "소고기",
+        "단호박",
+        "파스타"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-127",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "닭고기",
+        "토마토",
+        "파스타"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+        "방울토마토는 잘라 주세요. 입 주변이 붉어지는 것만으로 알레르기라고 단정하지 않아요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-128",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "브로콜리",
+        "두부",
+        "파스타"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두",
+          "밀"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-129",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "애호박",
+        "연어",
+        "파스타"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀",
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-130",
+      "category": "첫한입_완료기",
+      "stage": "complete",
+      "ingredients": [
+        "감자",
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "우유",
+          "밀"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-131",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "소고기",
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-132",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "닭고기",
+        "당근",
+        "애호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-133",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "감자",
+        "연어"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-134",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "두부",
+        "대구"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두",
+          "생선"
+        ],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-135",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "감자",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-136",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "애호박",
+        "달걀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": [
+          "밀"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-137",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "브로콜리",
+        "치즈"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "우유"
+        ],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "살균 치즈를 작게 자르거나 녹여 쓰고, 나트륨을 확인해 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-138",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "단호박",
+        "오트밀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀"
+        ],
+        "possible": [
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-139",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "두부",
+        "시금치"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-140",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "달걀",
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": [
+          "밀"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-141",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "소고기",
+        "무"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-142",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "닭고기",
+        "감자"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-143",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "두부",
+        "달걀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란",
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-144",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "애호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-145",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "소고기",
+        "미역"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+        "김·미역은 무염으로 소량만, 잘게 잘라 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-146",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "닭고기",
+        "감자",
+        "양배추"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-147",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "브로콜리",
+        "감자"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-148",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "단호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-149",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "달걀",
+        "토마토"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요.",
+        "방울토마토는 잘라 주세요. 입 주변이 붉어지는 것만으로 알레르기라고 단정하지 않아요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-150",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "버섯",
+        "들깨"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "들깨"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "깨는 통씨 대신 곱게 갈아 넣어 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-151",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-152",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "애호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-153",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "쌀",
+        "브로콜리",
+        "달걀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-154",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "쌀",
+        "두부",
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-155",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "쌀",
+        "연어",
+        "브로콜리",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-156",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "토마토"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "우유"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+        "방울토마토는 잘라 주세요. 입 주변이 붉어지는 것만으로 알레르기라고 단정하지 않아요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-157",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "단호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "우유"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-158",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "쌀",
+        "새우",
+        "애호박",
+        "브로콜리"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "갑각류"
+        ],
+        "possible": [
+          "우유"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "새우·조개는 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-159",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "쌀",
+        "두부",
+        "시금치"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-160",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "김"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+        "김·미역은 무염으로 소량만, 잘게 잘라 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-161",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": [
+          "밀"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-162",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "감자"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "대두",
+          "밀"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-163",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "소고기",
+        "가지"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-164",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "애호박",
+        "새우"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "갑각류"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "새우·조개는 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-165",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "당근",
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-166",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "달걀",
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-167",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "시금치",
+        "참깨"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "참깨"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "깨는 통씨 대신 곱게 갈아 넣어 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-168",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "브로콜리",
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-169",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "단호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-170",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "고구마",
+        "요거트"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "우유"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-171",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "닭고기",
+        "토마토",
+        "파스타"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+        "방울토마토는 잘라 주세요. 입 주변이 붉어지는 것만으로 알레르기라고 단정하지 않아요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-172",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "소고기",
+        "버섯",
+        "파스타"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-173",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "연어",
+        "파스타"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀",
+          "생선",
+          "우유"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-174",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "애호박",
+        "치즈",
+        "파스타"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀",
+          "우유"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "살균 치즈를 작게 자르거나 녹여 쓰고, 나트륨을 확인해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-175",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "두부",
+        "토마토",
+        "파스타"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두",
+          "밀"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "방울토마토는 잘라 주세요. 입 주변이 붉어지는 것만으로 알레르기라고 단정하지 않아요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-176",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "오트밀",
+        "바나나"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "밀"
+        ],
+        "possible": [
+          "계란",
+          "우유"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-177",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "고구마",
+        "사과"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "밀",
+          "계란",
+          "우유"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-178",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "배",
+        "요거트"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "우유"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-179",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "단호박",
+        "치즈"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "우유"
+        ],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "살균 치즈를 작게 자르거나 녹여 쓰고, 나트륨을 확인해 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-180",
+      "category": "쑥쑥한입",
+      "stage": "toddler",
+      "ingredients": [
+        "감자",
+        "치즈"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "우유"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "살균 치즈를 작게 자르거나 녹여 쓰고, 나트륨을 확인해 주세요.",
+        "아이가 씹기 쉬운 크기와 부드러운 질감으로 잘라 주세요. 앉아서 먹게 해 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-181",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "소고기",
+        "무"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-182",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "소고기",
+        "미역"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-183",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "닭고기"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-184",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "두부",
+        "달걀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란",
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-185",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "애호박"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": [
+          "밀"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-186",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "버섯",
+        "들깨"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "들깨"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-187",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "시금치"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": [
+          "밀"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-188",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "감자",
+        "양파"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-189",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "북어"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": [
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-190",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "달걀",
+        "토마토"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-191",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": [
+          "밀"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-192",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "감자"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "대두",
+          "밀"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-193",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "연근"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "대두",
+          "밀"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-194",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "메추리알"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란",
+          "대두"
+        ],
+        "possible": [
+          "밀"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-195",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "소고기"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": [
+          "밀"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-196",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": [
+          "밀"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-197",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "가지"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-198",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "애호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-199",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "당근",
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-200",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "양배추"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-201",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "닭고기",
+        "양파",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-202",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "소고기",
+        "숙주"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-203",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "브로콜리",
+        "새우"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "갑각류"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-204",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "두부",
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-205",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "시금치"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-206",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "콩나물"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-207",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "오이"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-208",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "미역줄기"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-209",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "고구마줄기"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-210",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "브로콜리",
+        "참깨"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "참깨"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-211",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "애호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-212",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "감자"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-213",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "두부"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-214",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-215",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "연어"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-216",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "소고기",
+        "애호박",
+        "당근"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "밀",
+          "계란"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-217",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "달걀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-218",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "달걀",
+        "시금치"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-219",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "두부",
+        "달걀"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란",
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-220",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "달걀",
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "계란"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-221",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "시금치",
+        "당근",
+        "애호박"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-222",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "쌀",
+        "닭고기",
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-223",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "쌀",
+        "두부",
+        "애호박",
+        "양파"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "대두"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-224",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "연어"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-225",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "대구",
+        "무"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": [
+          "대두",
+          "밀"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-226",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "고등어",
+        "무"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "생선"
+        ],
+        "possible": [
+          "대두",
+          "밀"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-227",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "닭고기",
+        "토마토"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-228",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "소고기",
+        "카레",
+        "감자",
+        "당근",
+        "양파"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "밀",
+          "우유"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-229",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "쌀",
+        "버섯"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": [
+          "우유"
+        ]
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-230",
+      "category": "같이한입",
+      "stage": "family",
+      "ingredients": [
+        "새우",
+        "토마토",
+        "파스타"
+      ],
+      "allergenTags": {
+        "confirmed": [
+          "갑각류",
+          "밀"
+        ],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hanip/allergen_policy",
+  "title": "알레르기 식품 도입 정책",
+  "type": "object",
+  "required": ["reviewStatus", "statuses", "riskQuestions", "highRiskMessage", "introRules", "repeatGuidance", "repeatIntervalDays", "reactionSigns", "emergency", "afterReaction", "prohibited", "allergens"],
+  "properties": {
+    "reviewStatus": { "type": "string", "enum": ["pending_review", "source_verified", "expert_reviewed"] },
+    "statuses": {
+      "type": "array",
+      "items": { "type": "object", "required": ["id", "label", "tone"], "properties": { "id": { "type": "string", "enum": ["not_tried", "introducing", "tried", "suspected", "consult"] } } }
+    },
+    "riskQuestions": {
+      "type": "array",
+      "items": { "type": "object", "required": ["id", "text", "highRisk", "sources"], "properties": { "id": { "type": "string", "enum": ["eczema", "foodAllergy", "reaction", "medicalPlan"] }, "highRisk": { "type": "boolean" }, "sources": { "type": "array", "items": { "type": "string" } } } }
+    },
+    "introRules": { "type": "array", "items": { "type": "object", "required": ["text", "sources"] } },
+    "repeatGuidance": { "type": "array", "items": { "type": "object", "required": ["source", "text"] } },
+    "repeatIntervalDays": { "type": "integer" },
+    "reactionSigns": { "type": "array", "items": { "type": "string" } },
+    "emergency": { "type": "object", "required": ["text", "sources"] },
+    "afterReaction": { "type": "object", "required": ["text", "sources"] },
+    "prohibited": { "type": "array", "items": { "type": "object", "required": ["text", "sources"] } },
+    "allergens": {
+      "type": "array",
+      "items": { "type": "object", "required": ["key", "label", "safeForm", "sources", "order"], "properties": { "key": { "type": "string" }, "order": { "type": "integer" }, "sources": { "type": "array", "items": { "type": "string" } } } }
+    }
+  }
+}

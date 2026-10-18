@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hanip/recipe_methods",
+  "title": "레시피별 조리법 (토핑식·혼합식)",
+  "type": "object",
+  "required": ["about", "total", "items"],
+  "properties": {
+    "about": { "type": "string" },
+    "total": { "type": "integer" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["recipeId", "category", "stage", "ingredients", "allergenTags", "toppingMethod", "mixedMethod", "cookingTime", "textureGuide", "storageGuide", "safetyNotes", "reviewStatus", "sourceReferences"],
+        "properties": {
+          "recipeId": { "type": "string", "pattern": "^HN-\\d{3}$" },
+          "category": { "type": "string" },
+          "stage": { "type": "string", "enum": ["early", "middle", "late", "complete", "toddler", "family"] },
+          "ingredients": { "type": "array", "items": { "type": "string" } },
+          "allergenTags": {
+            "type": "object",
+            "required": ["confirmed", "possible"],
+            "properties": {
+              "confirmed": { "type": "array", "items": { "type": "string" } },
+              "possible": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "toppingMethod": { "$ref": "#/$defs/method" },
+          "mixedMethod": { "$ref": "#/$defs/method" },
+          "cookingTime": { "type": ["null", "object"] },
+          "textureGuide": { "type": ["null", "string"] },
+          "storageGuide": { "type": ["null", "string"] },
+          "safetyNotes": { "type": "array", "items": { "type": "string" } },
+          "reviewStatus": { "type": "string", "enum": ["pending_review", "expert_reviewed"] },
+          "sourceReferences": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "method": {
+      "type": "object",
+      "required": ["status", "steps"],
+      "properties": {
+        "status": { "type": "string", "enum": ["pending_review", "expert_reviewed"] },
+        "steps": { "type": "array", "items": { "type": "string" } },
+        "reviewedBy": { "type": "string" },
+        "reviewedAt": { "type": "string" }
+      }
+    }
+  }
+}

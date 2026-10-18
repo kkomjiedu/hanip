@@ -1,0 +1,1009 @@
+// @ts-check
+/// <reference path="./types.d.ts" />
+/** @typedef {import('./types').Recipe} Recipe */
+/** @typedef {import('./types').RecipeMethods} RecipeMethods */
+/** @typedef {import('./types').Guide} Guide */
+/** @typedef {import('./types').AllergenPolicy} AllergenPolicy */
+/** @typedef {import('./types').Source} Source */
+/** @typedef {import('./types').Kid} Kid */
+/** @typedef {import('./types').AppState} AppState */
+/** @typedef {import('./types').AllergenStatus} AllergenStatus */
+/** @typedef {import('./types').MethodId} MethodId */
+
+(() => {
+  'use strict';
+  /** @type {(s: string, el?: ParentNode) => any} */
+  const $ = (s, el = document) => el.querySelector(s);
+  /** @param {unknown} s */
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => /** @type {Record<string,string>} */ ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const TODAY = new Date();
+  TODAY.setHours(12, 0, 0, 0);
+  /** @param {Date} d */
+  const iso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  /** @param {string} s */
+  const parse = (s) => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d, 12); };
+  /** @param {Date} d @param {number} n */
+  const addMonths = (d, n) => { const x = new Date(d); x.setMonth(x.getMonth() + n); return x; };
+  /** @param {Date} d @param {number} n */
+  const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+  /** @param {string} a @param {string} b */
+  const daysBetween = (a, b) => Math.round((parse(b).getTime() - parse(a).getTime()) / 86400000);
+  const todayIso = iso(TODAY);
+  /** @param {string} date */
+  const daysSince = (date) => daysBetween(date, todayIso);
+  /** @param {string} birth */
+  const monthsOld = (birth) => {
+    const b = parse(birth); let m = (TODAY.getFullYear() - b.getFullYear()) * 12 + (TODAY.getMonth() - b.getMonth());
+    if (TODAY.getDate() < b.getDate()) m -= 1; return Math.max(0, m);
+  };
+  /** @param {string} s */
+  const fmtDate = (s) => { const d = parse(s); return `${d.getMonth() + 1}월 ${d.getDate()}일`; };
+
+  // ---------- 데이터 ----------
+  /** @type {Recipe[]} */ let RECIPES = [];
+  /** @type {Record<string, RecipeMethods>} */ let METHODS = {};
+  /** @type {any[]} */ let GUIDE_ROWS = [];
+  /** @type {{ items: any[], sources: Record<string, {title: string, url: string}> }} */ let RISKS = { items: [], sources: {} };
+  /** @type {any[]} */ let SITUATIONS = [];
+  /** @type {Guide} */ let GUIDE;
+  /** @type {AllergenPolicy} */ let POLICY;
+  /** @type {Record<string, Source>} */ let SOURCES = {};
+  /** @type {import('./types').StorageGuide} */ let STORAGE;
+
+  const CATS = [
+    { key: '첫한입_초기', label: '초기', group: '첫한입', color: 'rose' },
+    { key: '첫한입_중기', label: '중기', group: '첫한입', color: 'rose' },
+    { key: '첫한입_후기', label: '후기', group: '첫한입', color: 'rose' },
+    { key: '첫한입_완료기', label: '완료기', group: '첫한입', color: 'rose' },
+    { key: '쑥쑥한입', label: '쑥쑥한입', group: '쑥쑥한입', color: 'mist' },
+    { key: '같이한입', label: '같이한입', group: '같이한입', color: 'butter' },
+  ];
+  /** @param {string} k */
+  const catOf = (k) => CATS.find((c) => c.key === k) ?? { key: k, label: k, group: k, color: '' };
+  /** @type {Record<string, string>} */
+  const CHAR = { 쌀: 'rice', 당근: 'carrot', 브로콜리: 'broccoli', 애호박: 'zucchini', 고구마: 'sweet-potato', 단호박: 'kabocha', 배: 'pear', 버섯: 'mushroom', 달걀: 'egg', 메추리알: 'egg', 사과: 'apple' };
+  /** @type {Record<string, string>} */
+  const INGREDIENT_ALLERGEN = { 달걀: '계란', 메추리알: '계란', 두부: '대두', 콩나물: '대두', 연어: '생선', 대구: '생선', 고등어: '생선', 흰살생선: '생선', 북어: '생선', 새우: '갑각류', 파스타: '밀', 밀: '밀', 오트밀: '밀', 요거트: '우유', 치즈: '우유', 땅콩: '땅콩', 참깨: '참깨', 들깨: '들깨' };
+  const TINTS = ['#F7E6E2', '#F6EBD0', '#E4ECDF', '#DCE8EC', '#F8E4DA', '#F1ECE2'];
+  /** @param {string} s */
+  const tintFor = (s) => TINTS[[...String(s)].reduce((a, c) => a + c.charCodeAt(0), 0) % TINTS.length];
+  /** @param {string} ing @param {number} [size] @param {string} [bg] */
+  function charHtml(ing, size = 52, bg) {
+    const file = CHAR[ing];
+    const inner = file ? `<img src="assets/${file}.svg" alt="">` : `<span class="dot" style="background:${tintFor(ing + 'x')}">${esc(String(ing).slice(0, 1))}</span>`;
+    return `<span class="char" style="width:${size}px;height:${size}px;background:${bg ?? tintFor(ing)}">${inner}</span>`;
+  }
+  /** @param {Recipe} r */
+  const leadIngredient = (r) => r.main_ingredients.find((i) => CHAR[i] && i !== '쌀') ?? r.main_ingredients.find((i) => i !== '쌀') ?? r.main_ingredients[0] ?? '';
+
+  // 출처: 위험 재료 파일은 url, 가이드·정책은 키로 가리킨다
+  /** @param {string[]} keys @param {{ status?: string }} [opt] */
+  function cite(keys, opt = {}) {
+    const links = keys.map((k) => {
+      const s = SOURCES[k];
+      if (s) return s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.org.split(' (')[0])}</a>` : `<span>${esc(s.org)}</span>`;
+      const r = Object.values(RISKS.sources).find((x) => x.url === k) ?? RISKS.sources[k];
+      if (r) return /^https?:/.test(r.url) ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title.split('·')[0].trim())}</a>` : `<span>${esc(r.title.split('(')[0].trim())}</span>`;
+      return /^https?:/.test(k) ? `<a href="${esc(k)}" target="_blank" rel="noopener">출처</a>` : '';
+    }).join('');
+    const tag = opt.status === 'source_verified' ? '<span class="badge" style="min-height:20px">원문 확인 · 전문가 감수 전</span>' : '';
+    return keys.length ? `<div class="src">${links}<span>확인 2026-10-18</span>${tag}</div>` : '';
+  }
+
+  const ICON = {
+    back: '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5L8 12L15 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    chev: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5L16 12L9 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    info: '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M12 7.5V13M12 16.2V16.4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
+    bell: '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17V11C6 7.7 8.7 5 12 5C15.3 5 18 7.7 18 11V17L19.5 18.5H4.5Z M10 21H14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    x: '<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
+    home: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11L12 4L20 11V20H14V14H10V20H4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>',
+    plan: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 10H20M9 3V7M15 3V7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+    ingredients: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6 10H18M9 6V8M9 13V16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+    recipes: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4H17A2 2 0 0 1 19 6V20H7A2 2 0 0 1 5 18Z M9 8H15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    kids: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 20C5 15.5 8 14 12 14C16 14 19 15.5 19 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  };
+
+  // ---------- 상태 (이 브라우저에만 저장) ----------
+  const KEY = 'hanip-prototype-v2';
+  /** @returns {Kid['risk']} */
+  const emptyRisk = () => ({ eczema: null, foodAllergy: null, reaction: null, medicalPlan: null });
+  /** @param {Partial<Kid>} k @returns {Kid} */
+  function kidDefaults(k) {
+    return {
+      id: k.id ?? 'k' + Date.now().toString(36), name: k.name ?? '', birth: k.birth ?? '', started: k.started ?? false, startDate: k.startDate ?? '',
+      allergies: k.allergies ?? [], risk: k.risk ?? emptyRisk(), allergen: k.allergen ?? {}, foods: k.foods ?? {}, suspectedFoods: k.suspectedFoods ?? {},
+      plan: k.plan ?? { interval: 3, offset: 0, pausedAt: null, records: {} },
+    };
+  }
+  /** @returns {AppState} */
+  function exampleState() {
+    const start1 = iso(addDays(TODAY, -21));
+    /** @type {Record<string, import('./types').DayRecord>} */
+    const records = {};
+    for (let d = 1; d <= 21; d++) records[d] = { done: true };
+    const k1 = kidDefaults({
+      id: 'k1', name: '콩이', birth: iso(addDays(addMonths(TODAY, -6), -14)), started: true, startDate: start1,
+      risk: { eczema: false, foodAllergy: false, reaction: false, medicalPlan: false },
+      allergen: { 계란: { status: 'introducing', first: iso(addDays(TODAY, -3)), last: iso(addDays(TODAY, -3)), log: [{ date: iso(addDays(TODAY, -3)), ok: true }] } },
+      plan: { interval: 3, offset: 0, pausedAt: null, records },
+    });
+    const k2 = kidDefaults({
+      id: 'k2', name: '별이', birth: iso(addMonths(TODAY, -28)), started: true, startDate: iso(addMonths(TODAY, -22)), allergies: ['계란'],
+      risk: { eczema: false, foodAllergy: true, reaction: false, medicalPlan: true },
+      allergen: {
+        우유: { status: 'tried', first: iso(addMonths(TODAY, -15)), last: iso(addDays(TODAY, -10)), log: [{ date: iso(addDays(TODAY, -10)), ok: true }] },
+        밀: { status: 'tried', first: iso(addMonths(TODAY, -14)), last: iso(addDays(TODAY, -2)), log: [{ date: iso(addDays(TODAY, -2)), ok: true }] },
+        계란: { status: 'consult', first: null, last: null, log: [] },
+      },
+    });
+    const fridge = [['소고기', 1], ['애호박', 3], ['달걀', 10], ['요거트', 5], ['두부', 0], ['브로콜리', 2]].map(([name, ago], i) => ({ id: 'f' + i, name: String(name), bought: iso(addDays(TODAY, -Number(ago))) }));
+    return { v: 2, example: true, adults: 2, selected: 'k1', prefs: { method: 'topping' }, today: { date: todayIso, items: ['소고기', '애호박', '감자'], riceAtHome: true, family: false }, fridge, kids: [k1, k2] };
+  }
+  /** @returns {AppState} */
+  function load() {
+    try {
+      const s = JSON.parse(localStorage.getItem(KEY) ?? 'null');
+      if (s && s.v === 2 && Array.isArray(s.kids) && s.kids.length) { s.kids = s.kids.map(kidDefaults); s.fridge ??= []; return s; }
+      const old = JSON.parse(localStorage.getItem('hanip-prototype-v1') ?? 'null');
+      if (old && Array.isArray(old.kids) && old.kids.length && !old.example) {
+        return {
+          v: 2, example: false, adults: old.adults ?? 2, selected: old.selected, prefs: { method: 'both' }, today: { date: todayIso, items: [], riceAtHome: true, family: false }, fridge: [],
+          kids: old.kids.map((/** @type {any} */ k) => kidDefaults({
+            ...k,
+            allergen: Object.fromEntries(Object.entries(k.tried ?? {}).map(([a, d]) => [a, { status: 'tried', first: String(d), last: String(d), log: [{ date: String(d), ok: true }] }])),
+          })),
+        };
+      }
+    } catch (e) { /* 저장소를 못 쓰면 예시로 시작 */ }
+    return exampleState();
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* 무시 */ } }
+  let state = load();
+  if (state.today.date !== todayIso) state.today = { date: todayIso, items: [], riceAtHome: state.today.riceAtHome, family: state.today.family };
+  /** @param {string} id */
+  const kidById = (id) => state.kids.find((k) => k.id === id);
+  const currentKid = () => kidById(state.selected) ?? state.kids[0];
+
+  // ---------- 규칙 ----------
+  /** @param {Kid} kid */
+  function stageLabel(kid) {
+    if (!kid.birth) return '';
+    const m = monthsOld(kid.birth);
+    if (m < 12 && !kid.started) return '이유식 시작 전';
+    if (m < 7) return '첫한입 · 초기'; if (m < 9) return '첫한입 · 중기'; if (m < 12) return '첫한입 · 후기';
+    if (m < 18) return '첫한입 · 완료기'; if (m < 24) return '쑥쑥한입 · 유아식'; if (m < 36) return '쑥쑥한입 · 작은아이';
+    if (m < 60) return '쑥쑥한입 · 큰아이'; return '같이한입';
+  }
+  /** @param {Kid} kid @param {string} key @returns {import('./types').AllergenRecord} */
+  const allergenRec = (kid, key) => kid.allergen[key] ?? { status: kid.allergies.includes(key) ? 'consult' : 'not_tried', first: null, last: null, log: [] };
+  /** @param {Kid} kid 피해야 하는 알레르기: 등록한 알레르기 + 반응 의심 + 상담 필요 */
+  const avoidSet = (kid) => new Set([...kid.allergies, ...Object.entries(kid.allergen).filter(([, r]) => r.status === 'suspected' || r.status === 'consult').map(([k]) => k)]);
+  /** @param {Recipe} r */
+  const recipeAllergens = (r) => [...r.allergens, ...r.possible_allergens.map((p) => p.allergen)];
+  /** @param {Kid} kid */
+  const isHighRisk = (kid) => POLICY.riskQuestions.some((q) => q.highRisk && kid.risk[q.id] === true);
+  /** @param {Kid} kid */
+  const riskAnswered = (kid) => POLICY.riskQuestions.every((q) => kid.risk[q.id] !== null);
+  /** @param {string} k */
+  const allergenLabel = (k) => POLICY.allergens.find((a) => a.key === k)?.label ?? k;
+  /** @param {AllergenStatus} s */
+  const statusOf = (s) => POLICY.statuses.find((x) => x.id === s) ?? POLICY.statuses[0];
+  /** @param {string} tone */
+  const toneClass = (tone) => ({ ok: 'sage', warn: 'warn', butter: 'butter' })[tone] ?? '';
+
+  /** 아이에게 맞지 않는 이유 하나 (null이면 먹을 수 있음) @param {Recipe} r @param {Kid} kid */
+  function unfitReason(r, kid) {
+    const m = monthsOld(kid.birth);
+    if (m < 12 && !kid.started) return '아직 이유식 시작 전이에요';
+    if (r.min_months > m) return `${r.min_months}개월부터예요`;
+    const avoid = avoidSet(kid);
+    const hit = recipeAllergens(r).filter((a) => avoid.has(a));
+    if (hit.length) {
+      const sure = hit.filter((a) => r.allergens.includes(a));
+      return sure.length ? `${sure.map(allergenLabel).join('·')} 피하기` : `${hit.map(allergenLabel).join('·')}가 들어갈 수 있어요`;
+    }
+    const sus = r.main_ingredients.filter((i) => kid.suspectedFoods[i]);
+    if (sus.length) return `${sus.join('·')} 반응 의심`;
+    return null;
+  }
+  /** @param {Recipe} r @param {Kid} kid */
+  const firstTimeAllergens = (r, kid) => r.allergens.filter((a) => POLICY.allergens.some((x) => x.key === a) && allergenRec(kid, a).status === 'not_tried');
+  /** @param {Kid} kid */
+  const fitRecipes = (kid) => RECIPES.filter((r) => !unfitReason(r, kid));
+
+  // ---------- 첫 30일 식단 ----------
+  /** @param {Kid} kid 오늘이 며칠째인지 (멈춘 동안은 멈춘 날에 고정) */
+  function planDayNumber(kid, date = todayIso) {
+    if (!kid.started || !kid.startDate) return null;
+    const until = kid.plan.pausedAt && date > kid.plan.pausedAt ? kid.plan.pausedAt : date;
+    return daysBetween(kid.startDate, until) + 1 - kid.plan.offset;
+  }
+  /** @param {Kid} kid */
+  const planOrder = (kid) => GUIDE.first30.ingredientOrder.filter((i) => !kid.suspectedFoods[i]);
+  /** @param {Kid} kid @param {number} day */
+  function planDate(kid, day) {
+    if (!kid.startDate) return null;
+    const d = iso(addDays(parse(kid.startDate), day - 1 + kid.plan.offset));
+    if (kid.plan.pausedAt && d > kid.plan.pausedAt) return null;
+    return d;
+  }
+  /** 그날의 새 재료·먹어 본 재료·추천 레시피 @param {Kid} kid @param {number} day */
+  function planFor(kid, day) {
+    const order = planOrder(kid);
+    const n = kid.plan.interval;
+    const block = Math.floor((day - 1) / n);
+    if (block >= order.length) return { day, block, newIng: null, isNewDay: false, dayInBlock: 0, known: order, recipe: null };
+    const newIng = order[block];
+    const known = order.slice(0, block + 1);
+    const m = monthsOld(kid.birth);
+    const cands = RECIPES.filter((r) => r.category === '첫한입_초기' && r.min_months <= Math.max(m, 6) && r.main_ingredients.includes(newIng)
+      && r.main_ingredients.every((i) => known.includes(i)) && !unfitReason(r, { ...kid, birth: kid.birth, started: true }))
+      .sort((a, b) => a.main_ingredients.length - b.main_ingredients.length);
+    const dayInBlock = ((day - 1) % n) + 1;
+    const recipe = cands.length ? cands[(dayInBlock - 1) % cands.length] : null;
+    return { day, block, newIng, isNewDay: dayInBlock === 1, dayInBlock, known, recipe };
+  }
+
+  // ---------- 알림 (앱 안에서만) ----------
+  /** @param {Kid} kid */
+  function alertsFor(kid) {
+    /** @type {{ tone: string, title: string, body: string, go?: [string, string|null], src?: string[] }[]} */
+    const out = [];
+    for (const [k, r] of Object.entries(kid.allergen)) {
+      if (r.status === 'suspected') out.push({ tone: 'warn', title: `${allergenLabel(k)} 반응 의심`, body: '다시 먹이지 말고 소아청소년과와 상의해 주세요.', go: ['allergen', k], src: POLICY.afterReaction.sources });
+    }
+    for (const [ing, d] of Object.entries(kid.suspectedFoods)) out.push({ tone: 'warn', title: `${ing} 반응 의심 (${fmtDate(d)})`, body: '식단에서 뺐어요. 새 재료 도입은 의료진과 상담한 뒤 다시 시작해 주세요.', go: ['plan', null] });
+    if (!riskAnswered(kid) && monthsOld(kid.birth) >= 4) out.push({ tone: 'butter', title: '알레르기 위험도를 확인해 주세요', body: '알레르기 식품을 시작하기 전에 네 가지 질문에 답해 주세요.', go: ['risk', null] });
+    for (const [k, r] of Object.entries(kid.allergen)) {
+      if ((r.status === 'tried' || r.status === 'introducing') && r.last && daysSince(r.last) >= POLICY.repeatIntervalDays && !isHighRisk(kid)) {
+        out.push({ tone: 'butter', title: `${allergenLabel(k)}를 ${daysSince(r.last)}일째 안 먹었어요`, body: `마지막 섭취 ${fmtDate(r.last)}. 잘 먹은 알레르기 식품은 최소 주 1회 계속 주는 것이 좋아요(ASCIA).`, go: ['allergen', k], src: [POLICY.repeatIntervalSource] });
+      }
+    }
+    const m = monthsOld(kid.birth);
+    const introducing = Object.entries(kid.allergen).find(([, r]) => r.status === 'introducing');
+    if (kid.started && m >= 6 && riskAnswered(kid) && !isHighRisk(kid) && !introducing) {
+      const next = [...POLICY.allergens].sort((a, b) => a.order - b.order).find((a) => allergenRec(kid, a.key).status === 'not_tried');
+      if (next && m < 24) out.push({ tone: 'sage', title: `다음 알레르기 식품: ${next.label}`, body: '이유식에 적응했다면 늦추지 않아요. 한 끼에 하나씩, 적은 양부터.', go: ['allergen', next.key], src: ['NHS_ALLERGY', 'ASCIA_2026'] });
+    }
+    if (isHighRisk(kid) && !kid.risk.medicalPlan) out.push({ tone: 'warn', title: '의료진 상담을 먼저 받아 주세요', body: POLICY.highRiskMessage, go: ['allergy', null] });
+    return out;
+  }
+
+  // ---------- 화면 이동 ----------
+  /** @type {{ name: string, arg: string|null }} */
+  let view = { name: 'home', arg: null };
+  /** @type {{ name: string, arg: string|null }[]} */
+  const history = [];
+  /** @type {Record<string, string>} */
+  const TAB_OF = { home: 'home', alerts: 'home', myfridge: 'ingredients', recipes: 'recipes', recipe: 'recipes', guide: 'recipes', readiness: 'recipes', stages: 'recipes', faq: 'recipes', methods: 'recipes', ingredients: 'ingredients', ingredient: 'ingredients', fridge: 'ingredients', family: 'recipes', allergy: 'kids', allergen: 'kids', risk: 'kids', situations: 'home', situation: 'home', kids: 'kids', kidEdit: 'kids', plan: 'plan' };
+  /** @param {string} name @param {string|null} [arg] @param {{ replace?: boolean }} [opt] */
+  function go(name, arg = null, opt = {}) { if (!opt.replace) history.push(view); view = { name, arg }; render(); $('#screen').scrollTop = 0; $('#screen').focus({ preventScroll: true }); }
+  function back() { view = history.pop() ?? { name: 'home', arg: null }; render(); }
+  /** @param {string} name */
+  function tabGo(name) { history.length = 0; view = { name, arg: null }; render(); $('#screen').scrollTop = 0; }
+  const TABS = [['home', '홈'], ['plan', '식단표'], ['ingredients', '재료'], ['recipes', '레시피'], ['kids', '우리 아이']];
+
+  /** @type {Record<string, (t: HTMLElement, e: Event) => void>} */
+  const handlers = {};
+  let hid = 0;
+  /** @param {(t: HTMLElement, e: Event) => void} fn */
+  const on = (fn) => { const k = 'h' + (++hid); handlers[k] = fn; return k; };
+
+  /** @type {Record<string, (arg: any) => { title?: string, top?: string, html: string, after?: () => void }>} */
+  const SCREENS = {};
+
+  function render() {
+    for (const k of Object.keys(handlers)) delete handlers[k];
+    const onboarding = view.name === 'onboard';
+    $('#exampleBar').hidden = !state.example || onboarding;
+    $('#tabs').hidden = onboarding;
+    $('#tabs').innerHTML = TABS.map(([k, l]) => `<button type="button" class="tab" data-tab="${k}" ${TAB_OF[view.name] === k ? 'aria-current="page"' : ''}>${/** @type {any} */ (ICON)[k]}${l}</button>`).join('');
+    const out = (SCREENS[view.name] ?? SCREENS.home)(view.arg);
+    const nAlerts = alertsFor(currentKid()).length;
+    $('#top').innerHTML = out.top ?? (view.name === 'home'
+      ? `<img class="logo" src="assets/logo.svg" alt="한입씩"><span style="flex:1"></span><button type="button" class="icon-btn" data-go="alerts" aria-label="알림 ${nAlerts}개">${ICON.bell}${nAlerts ? `<span class="count">${nAlerts}</span>` : ''}</button>`
+      : `${history.length ? `<button type="button" class="icon-btn" data-act="back" aria-label="뒤로">${ICON.back}</button>` : '<span class="icon-btn"></span>'}<h1>${esc(out.title ?? '')}</h1><span class="icon-btn"></span>`);
+    $('#screen').innerHTML = out.html;
+    out.after?.();
+  }
+
+  document.addEventListener('click', (e) => {
+    const t = /** @type {HTMLElement|null} */ (/** @type {HTMLElement} */ (e.target).closest('[data-act],[data-tab],[data-go],[data-h]'));
+    if (!t) return;
+    if (t.tagName === 'A') e.preventDefault();
+    if (t.dataset.tab) return tabGo(t.dataset.tab);
+    if (t.dataset.act === 'back') return back();
+    if (t.dataset.go) return go(t.dataset.go, t.dataset.arg ?? null);
+    if (t.dataset.h && handlers[t.dataset.h]) handlers[t.dataset.h](t, e);
+  });
+  $('#startOwn').addEventListener('click', () => { obDraft = kidDefaults({}); obKids = []; obAdults = 2; obMethod = 'both'; go('onboard', 'intro'); });
+
+  // ---------- 공통 조각 ----------
+  /** @param {() => void} [onPick] */
+  function kidBar(onPick) {
+    return `<div class="kidbar" role="group" aria-label="아이 선택">${state.kids.map((k, i) => `<button type="button" class="kid" aria-pressed="${k.id === currentKid().id}" data-h="${on(() => { state.selected = k.id; save(); onPick ? onPick() : render(); })}">${charHtml(i % 2 ? '당근' : '쌀', 32, 'var(--milk)')}${esc(k.name)} · ${monthsOld(k.birth)}개월</button>`).join('')}</div>`;
+  }
+  /** @param {Recipe} r @param {Kid|undefined} kid @param {string} [extra] @param {string} [method] */
+  function recipeItem(r, kid, extra = '', method = '') {
+    const c = catOf(r.category);
+    const reason = kid ? unfitReason(r, kid) : null;
+    const first = kid && !reason ? firstTimeAllergens(r, kid) : [];
+    return `<button type="button" class="ritem" data-go="recipe" data-arg="${r.id}${method ? '|' + method : ''}">${charHtml(leadIngredient(r), 52)}<span><span class="t">${esc(r.title)}</span><span class="m"><span class="badge ${c.color}">${esc(c.label)}</span><span class="badge">${r.min_months}개월+</span>${r.allergens.map((a) => `<span class="badge">${esc(allergenLabel(a))}</span>`).join('')}${reason ? `<span class="badge warn">${esc(reason)}</span>` : ''}${first.length ? `<span class="badge butter">처음 먹는 ${esc(first.map(allergenLabel).join('·'))}</span>` : ''}${extra}</span></span>${ICON.chev}</button>`;
+  }
+  /** @param {MethodId} m */
+  const methodLabel = (m) => ({ topping: '토핑식', mixed: '혼합식', both: '토핑식 · 혼합식' })[m];
+  const emergencyNote = () => `<div class="note emergency" role="note">${ICON.info}<span>${esc(POLICY.emergency.text)}</span></div>`;
+
+  // ---------- 홈 ----------
+  SCREENS.home = () => {
+    const kid = currentKid();
+    const m = monthsOld(kid.birth);
+    const alerts = alertsFor(kid);
+    const a0 = alerts[0];
+    const day = planDayNumber(kid);
+    const inPlan = day !== null && day >= 1 && day <= 30 && !kid.plan.pausedAt;
+    const p = inPlan ? planFor(kid, day) : null;
+    const fits = fitRecipes(kid).filter((r) => r.category !== '같이한입' || m >= 60);
+    const dayIdx = Math.floor(TODAY.getTime() / 86400000);
+    const todayRecipe = p?.recipe ?? (fits.length ? fits[dayIdx % fits.length] : null);
+    const pref = state.prefs.method;
+    const prefMethod = pref === 'mixed' ? 'mixed' : 'topping';
+    return {
+      html: `${kidBar()}
+        ${whatToEat(kid)}
+        ${a0 ? `<button type="button" class="banner ${a0.tone === 'warn' ? 'warn' : ''}" style="border:0;text-align:left" data-go="${a0.go?.[0] ?? 'alerts'}" ${a0.go?.[1] ? `data-arg="${esc(a0.go[1])}"` : ''}><span class="badge deep pill">${alerts.length > 1 ? `알림 ${alerts.length}개` : '알림'}</span><h2 style="padding-right:0">${esc(a0.title)}</h2><p style="padding-right:0">${esc(a0.body)}</p></button>` : ''}
+        <section class="stack" aria-label="오늘의 이유식">
+          <div class="row" style="justify-content:space-between"><div class="sec-title">${inPlan ? `오늘의 이유식 · ${day}일차` : `${esc(kid.name)}의 오늘 추천`}</div>${inPlan ? '<button type="button" class="btn ghost small" data-tab="plan">식단표</button>' : ''}</div>
+          ${p?.newIng ? `<div class="row"><span class="badge ${p.isNewDay ? 'warn' : 'butter'}">새 재료 ${esc(p.newIng)} · ${p.dayInBlock}/${kid.plan.interval}일째</span><span class="badge">${esc(methodLabel(pref))}으로 보기</span></div>` : ''}
+          ${todayRecipe ? recipeItem(todayRecipe, kid, '', prefMethod) : `<div class="card empty"><img src="assets/rice.svg" alt=""><div>${m < 12 && !kid.started ? '이유식을 시작하면 단계에 맞는 레시피를 보여 드려요.' : '조건에 맞는 레시피가 없어요.'}</div>${m < 12 && !kid.started ? '<button type="button" class="btn small" data-go="readiness">시작해도 될까요?</button>' : ''}</div>`}
+        </section>
+        <section class="stack"><div class="sec-title">무엇을 찾으세요?</div>
+        <div class="quick">
+          <button type="button" style="background:var(--butter)" data-go="guide"><img src="assets/bowl.svg" alt="">이유식 처음이라면?</button>
+          <button type="button" style="background:var(--mist)" data-go="family"><img src="assets/cat-family.svg" alt="">온 가족 레시피</button>
+          <button type="button" style="background:var(--rose)" data-go="allergy"><img src="assets/egg.svg" alt="">알레르기 식품</button>
+          <button type="button" style="background:var(--sage-tint)" data-go="situations"><img src="assets/pear.svg" alt="">이럴 땐 이렇게</button>
+          <button type="button" style="background:var(--white);border:1.5px solid var(--line)" data-go="myfridge"><img src="assets/fridge.svg" alt="">우리집 냉장고${fridgeSoon().length ? ` · 곧 ${fridgeSoon().length}개` : ''}</button>
+          <button type="button" style="background:var(--white);border:1.5px solid var(--line)" data-go="fridge"><img src="assets/broccoli.svg" alt="">재료로 레시피 찾기</button>
+        </div></section>`,
+      after: bindWhatToEat,
+    };
+  };
+
+  // 오늘 뭐 먹지: 오늘 쓸 수 있는 재료로 추천
+  const allIngredients = () => [...new Set([...GUIDE_ROWS.flatMap((g) => String(g['재료']).split('/')), ...RECIPES.flatMap((r) => r.main_ingredients)])].sort((a, b) => a.localeCompare(b, 'ko'));
+  /** @param {Kid} kid */
+  function whatToEat(kid) {
+    const t = state.today;
+    const have = new Set([...t.items, ...(t.riceAtHome ? ['쌀'] : [])]);
+    const eaters = t.family ? state.kids : [kid];
+    const ok = (/** @type {Recipe} */ r) => eaters.every((k) => !unfitReason(r, k));
+    const missing = (/** @type {Recipe} */ r) => r.main_ingredients.filter((i) => !have.has(i));
+    const pool = t.items.length ? RECIPES.filter((r) => ok(r) && r.main_ingredients.some((i) => t.items.includes(i))) : [];
+    const can = pool.filter((r) => !missing(r).length).sort((a, b) => b.main_ingredients.filter((i) => t.items.includes(i)).length - a.main_ingredients.filter((i) => t.items.includes(i)).length);
+    const almost = pool.filter((r) => missing(r).length === 1);
+    return `<section class="card stack" aria-label="오늘 뭐 먹지" style="background:var(--white)">
+      <h2 style="font-size:24px">오늘은 뭐 먹지?</h2>
+      <div class="muted">오늘 쓸 수 있는 재료를 넣으면 ${t.family ? '온 가족이' : esc(kid.name) + '가'} 먹을 수 있는 레시피를 찾아 드려요.</div>
+      <div class="row" style="flex-wrap:nowrap"><input class="input" id="todayInput" list="ingList" placeholder="예: 소고기, 애호박" aria-label="오늘 쓸 재료" autocomplete="off"><button type="button" class="btn small" id="todayAdd" style="flex:none">넣기</button></div>
+      <datalist id="ingList">${allIngredients().map((n) => `<option value="${esc(n)}"></option>`).join('')}</datalist>
+      ${t.items.length ? `<div class="row">${t.items.map((i) => `<span class="tag-x">${esc(i)}<button type="button" aria-label="${esc(i)} 빼기" data-h="${on(() => { t.items = t.items.filter((x) => x !== i); save(); render(); })}">${ICON.x}</button></span>`).join('')}</div>` : ''}
+      ${state.fridge.length ? `<button type="button" class="btn ghost small" style="align-self:flex-start" data-h="${on(() => { t.items = [...new Set([...t.items, ...state.fridge.map((f) => f.name)])]; save(); render(); })}">우리집 냉장고 재료 불러오기 (${state.fridge.length})</button>` : ''}
+      <label class="toggle"><input type="checkbox" id="riceHome" ${t.riceAtHome ? 'checked' : ''}> 쌀·밥은 집에 있어요</label>
+      ${state.kids.length > 1 ? `<label class="toggle"><input type="checkbox" id="familyMode" ${t.family ? 'checked' : ''}> 온 가족 기준으로 (${state.kids.map((k) => esc(k.name)).join(', ')} 모두 먹을 수 있는 것)</label>` : ''}
+      ${t.items.length ? `<div class="sec-title" style="font-size:17px">바로 만들 수 있어요 <span class="muted">${can.length}개</span></div>
+        <div class="rlist">${can.slice(0, 6).map((r) => recipeItem(r, t.family ? undefined : kid)).join('') || '<div class="muted">넣은 재료만으로 되는 레시피가 아직 없어요.</div>'}</div>
+        ${almost.length ? `<details class="fold"><summary>하나만 더 있으면 돼요 ${almost.length}개</summary><div class="rlist" style="margin-top:8px">${almost.slice(0, 8).map((r) => recipeItem(r, t.family ? undefined : kid, `<span class="badge warn">${esc(missing(r)[0])}만 있으면</span>`)).join('')}</div></details>` : ''}` : ''}
+    </section>`;
+  }
+  function bindWhatToEat() {
+    const input = $('#todayInput');
+    if (!input) return;
+    const add = () => {
+      const names = String(input.value).split(/[,，\s]+/).map((s) => s.trim()).filter(Boolean);
+      if (!names.length) return;
+      state.today.items = [...new Set([...state.today.items, ...names])];
+      save(); render(); $('#todayInput')?.focus();
+    };
+    $('#todayAdd').addEventListener('click', add);
+    input.addEventListener('keydown', (/** @type {KeyboardEvent} */ e) => { if (e.key === 'Enter') { e.preventDefault(); add(); } });
+    $('#riceHome').addEventListener('change', (/** @type {any} */ e) => { state.today.riceAtHome = e.target.checked; save(); render(); });
+    $('#familyMode')?.addEventListener('change', (/** @type {any} */ e) => { state.today.family = e.target.checked; save(); render(); });
+  }
+
+  // ---------- 알림 ----------
+  SCREENS.alerts = () => {
+    const kid = currentKid();
+    const list = alertsFor(kid);
+    return {
+      title: '알림',
+      html: `${kidBar()}<div class="muted">앱 안에서만 보이는 알림이에요. 휴대폰 푸시 알림은 아직 없어요.</div>
+        <div class="rlist">${list.map((a) => `<button type="button" class="card alert-item" style="text-align:left;background:${a.tone === 'warn' ? 'var(--warn-bg)' : a.tone === 'sage' ? 'var(--sage-tint)' : 'var(--butter)'};border:0" ${a.go ? `data-go="${a.go[0]}" ${a.go[1] ? `data-arg="${esc(a.go[1])}"` : ''}` : ''}><span style="flex:1;min-width:0"><b style="display:block">${esc(a.title)}</b><span style="font-size:13.5px">${esc(a.body)}</span></span>${ICON.chev}</button>`).join('') || '<div class="empty"><img src="assets/rice.svg" alt="">지금은 알림이 없어요.</div>'}</div>
+        <section class="card stack"><div class="sec-title" style="font-size:17px">알레르기 식품 마지막 섭취</div>
+          ${POLICY.allergens.map((a) => { const r = allergenRec(kid, a.key); return `<div class="row" style="justify-content:space-between"><span>${esc(a.label)}</span><span class="badge ${toneClass(statusOf(r.status).tone)}">${esc(statusOf(r.status).label)}${r.last ? ` · ${fmtDate(r.last)}` : ''}</span></div>`; }).join('')}
+        </section>`,
+    };
+  };
+
+  // ---------- 첫한입 가이드 ----------
+  SCREENS.guide = () => ({
+    title: '이유식 처음이라면?',
+    html: `<div class="hero" style="height:150px;background:var(--butter)"><img src="assets/rice.svg" alt="" style="left:50%;top:22px;width:104px;transform:translateX(-50%)"><img src="assets/zucchini.svg" alt="" style="left:18px;bottom:8px;width:72px;transform:rotate(-8deg)"><img src="assets/carrot.svg" alt="" style="right:18px;bottom:6px;width:72px;transform:rotate(8deg)"></div>
+      <div><h2 style="font-size:24px">처음 이유식, 순서대로 볼까요?</h2><div class="muted">하나씩 눌러 보세요. 안전 정보는 공식 기관 원문을 확인해 한입씩이 새로 쓴 문장이에요.</div></div>
+      <div class="steps-nav">
+        <button type="button" data-go="readiness"><span class="num">1</span><span style="flex:1"><b style="display:block">우리 아기 이유식 시작해도 될까?</b><span class="muted">준비 신호 체크리스트</span></span>${ICON.chev}</button>
+        <button type="button" data-go="stages"><span class="num">2</span><span style="flex:1"><b style="display:block">이유식 단계별 안내</b><span class="muted">초기 · 중기 · 후기 · 완료기</span></span>${ICON.chev}</button>
+        <button type="button" data-go="faq"><span class="num">3</span><span style="flex:1"><b style="display:block">처음 이유식 시작하기</b><span class="muted">첫 음식, 간격, 양, 보관 등 10가지 질문</span></span>${ICON.chev}</button>
+      </div>
+      <button type="button" class="ritem" data-go="methods"><span class="char" style="width:52px;height:52px;background:var(--mist)"><img src="assets/cat-first.svg" alt=""></span><span><span class="t">어떤 방식으로 만들까요?</span><span class="muted">토핑 이유식과 섞어 만드는 이유식 비교</span></span>${ICON.chev}</button>
+      <button type="button" class="ritem" data-tab="plan"><span class="char" style="width:52px;height:52px;background:var(--sage-tint)"><img src="assets/bowl.svg" alt=""></span><span><span class="t">첫 30일 이유식</span><span class="muted">날짜별 예시 식단과 기록</span></span>${ICON.chev}</button>`,
+  });
+
+  /** @type {Record<string, boolean>} */
+  const readyChecks = {};
+  SCREENS.readiness = () => {
+    const g = GUIDE.readiness;
+    const n = g.checklist.filter((c) => readyChecks[c.id]).length;
+    return {
+      title: '시작해도 될까?',
+      html: `<div><h2 style="font-size:24px">${esc(g.title)}</h2><p class="muted" style="margin-top:6px">${esc(g.lead)}</p></div>
+        <section class="card" aria-label="준비 신호 체크리스트">${g.checklist.map((c) => `<div class="check"><input type="checkbox" id="rc_${c.id}" ${readyChecks[c.id] ? 'checked' : ''} data-h="${on(() => { readyChecks[c.id] = !readyChecks[c.id]; render(); })}"><label for="rc_${c.id}"><b>${esc(c.text)}</b><span class="muted">${esc(c.detail)}</span></label></div>`).join('')}
+          <div style="padding-top:12px;font-size:14px">${n === g.checklist.length ? '네 가지 신호가 모두 보여요. 아기와 함께 첫 이유식을 시작해 볼 수 있어요.' : `${n}/${g.checklist.length}개 확인했어요. 신호가 함께 보일 때 시작해요. 서두르지 않아도 괜찮아요.`}</div>
+          ${cite(g.sources, { status: g.reviewStatus })}</section>
+        <div class="note mist">${ICON.info}<span>${esc(g.notSigns.text)}</span></div>
+        <section class="card stack"><div class="sec-title" style="font-size:17px">모유·분유와 이유식</div><span style="font-size:14px">${esc(g.milk.text)}</span>${cite(g.milk.sources)}</section>
+        <div class="note warn">${ICON.info}<span>${esc(g.consult.text)}${cite(g.consult.sources)}</span></div>
+        <div class="muted">이 체크리스트는 진단 기능이 아니에요. 걱정되는 점은 소아청소년과와 상의해 주세요.</div>
+        <button type="button" class="btn block" data-go="stages">다음: 단계별 안내</button>`,
+    };
+  };
+
+  let stageTab = 'early';
+  SCREENS.stages = () => {
+    const s = GUIDE.stages.find((x) => x.id === stageTab) ?? GUIDE.stages[0];
+    const kid = currentKid();
+    const recs = RECIPES.filter((r) => r.category === s.catalogCategory && !unfitReason(r, { ...kid, started: true, birth: iso(addMonths(TODAY, -60)) })).slice(0, 4);
+    /** @param {string} t @param {string} v */
+    const row = (t, v) => `<details class="fold" ${t === '식사의 목적' ? 'open' : ''}><summary>${esc(t)}</summary><p style="font-size:14px;margin-top:6px">${esc(v)}</p></details>`;
+    return {
+      title: '단계별 안내',
+      html: `<div class="note mist">${ICON.info}<span>${esc(GUIDE.stageNote)}</span></div>
+        <div class="mtabs" role="group" aria-label="단계">${GUIDE.stages.map((x) => `<button type="button" aria-pressed="${x.id === s.id}" data-h="${on(() => { stageTab = x.id; render(); })}">${esc(x.label)}</button>`).join('')}</div>
+        <section class="card stack"><div class="row" style="justify-content:space-between"><h2 style="font-size:22px">${esc(s.label)}</h2><span class="badge rose">${esc(s.ageNote)}</span></div><div class="hand" style="font-size:19px">${esc(s.goal)}</div>
+          ${row('식사의 목적', s.purpose)}${row('음식의 질감과 크기', s.texture)}${row('식사 횟수 (일반적인 가이드)', s.meals)}${row('영양상 주의사항', s.nutrition)}${row('조리할 때 조심할 점', s.cooking)}${row('다음 단계로 넘어갈 때 살펴볼 신호', s.nextSignals)}
+          ${cite(s.sources, { status: s.reviewStatus })}</section>
+        <section class="stack"><div class="sec-title">${esc(s.label)} 추천 레시피</div><div class="rlist">${recs.map((r) => recipeItem(r, kid)).join('')}</div><button type="button" class="btn ghost small" data-h="${on(() => { rq.cat = s.catalogCategory; rq.onlyFit = false; go('recipes'); })}">${esc(s.label)} 레시피 모두 보기</button></section>
+        <button type="button" class="btn block" data-go="faq">다음: 처음 이유식 시작하기</button>`,
+    };
+  };
+
+  SCREENS.faq = () => ({
+    title: '처음 이유식 시작하기',
+    html: `<div class="note sage">${ICON.info}<span>"쌀미음 3일, 다음 재료 3일"만이 정답은 아니에요. 일반 재료를 지켜보는 원칙과 알레르기 식품을 일찍 도입하는 원칙은 따로 봐요.</span></div>
+      <div class="stack">${GUIDE.faq.map((f) => `<details class="card"><summary>${esc(f.q)}</summary><div class="stack" style="margin-top:8px">${f.reviewStatus === 'pending_review'
+        ? '<div class="note mist">' + ICON.info + '<span>근거를 확인하고 있는 질문이에요. 확인이 끝나면 답을 올릴게요.</span></div>'
+        : `<p style="font-size:14px;white-space:pre-line">${esc(f.a)}</p>${cite(f.sources, { status: f.reviewStatus })}`}</div></details>`).join('')}</div>
+      <button type="button" class="btn block" data-go="methods">어떤 방식으로 만들까요?</button>`,
+  });
+
+  /** @param {(m: MethodId) => void} onPick @param {MethodId} current */
+  function methodChooser(onPick, current) {
+    return `<div class="pref" role="group" aria-label="이유식 방식">${GUIDE.methods.choices.map((c) => `<button type="button" aria-pressed="${c.id === current}" data-h="${on(() => onPick(c.id))}"><b>${esc(c.label)}</b><span class="muted">${esc(c.sub)}</span></button>`).join('')}</div>`;
+  }
+  SCREENS.methods = () => ({
+    title: '어떤 방식으로 만들까요?',
+    html: `<div class="compare">${GUIDE.methods.options.map((o) => `<section class="card stack"><div class="row" style="justify-content:space-between"><h3>${esc(o.label)}</h3><span class="badge ${o.id === 'topping' ? 'mist' : 'butter'}">${esc(o.nick)}</span></div><p style="font-size:14px">${esc(o.desc)}</p>
+        <div class="kv"><div style="background:var(--sage-tint)"><b>좋은 점</b><ul class="plist">${o.pros.map((x) => `<li data-m="+">${esc(x)}</li>`).join('')}</ul></div><div style="background:var(--oat)"><b>고려할 점</b><ul class="plist">${o.cons.map((x) => `<li data-m="·">${esc(x)}</li>`).join('')}</ul></div></div></section>`).join('')}</div>
+      <div class="note warn">${ICON.info}<span>${esc(GUIDE.methods.note)}</span></div>
+      <section class="stack"><div class="sec-title">우리 집은 이렇게 할래요</div>${methodChooser((m) => { state.prefs.method = m; save(); render(); }, state.prefs.method)}<div class="muted">오늘의 이유식 카드에서 고른 방식의 조리법을 먼저 보여 드려요. 영양·알레르기 안전 기준은 방식과 상관없이 같아요. 우리 아이 탭에서 언제든 바꿀 수 있어요.</div></section>`,
+  });
+
+  // ---------- 식단표 (첫 30일) ----------
+  /** @type {number|null} */ let planSel = null;
+  SCREENS.plan = () => {
+    const kid = currentKid();
+    const f = GUIDE.first30;
+    if (!kid.started || !kid.startDate) {
+      return { title: '식단표', html: `${kidBar(() => { planSel = null; render(); })}<div class="card empty"><img src="assets/bowl.svg" alt=""><h2 style="font-size:20px">이유식 시작일을 정하면 첫 30일 식단을 보여 드려요</h2><div>${esc(f.lead)}</div><button type="button" class="btn small" data-h="${on(() => { kid.started = true; kid.startDate = todayIso; state.example = false; save(); render(); })}">오늘 시작했어요</button><button type="button" class="btn ghost small" data-go="readiness">시작해도 될까요?</button></div>` };
+    }
+    const today = planDayNumber(kid) ?? 1;
+    planSel ??= Math.min(Math.max(today, 1), 30);
+    const sel = planFor(kid, planSel);
+    const rec = kid.plan.records[planSel] ?? {};
+    const paused = !!kid.plan.pausedAt;
+    const next = (() => { for (let d = Math.max(today, 1) + 1; d <= 30; d++) { const p = planFor(kid, d); if (p.isNewDay && p.newIng) return p; } return null; })();
+    const setRec = (/** @type {Partial<import('./types').DayRecord>} */ patch) => { kid.plan.records[/** @type {number} */ (planSel)] = { ...rec, ...patch }; save(); };
+    const cells = Array.from({ length: 30 }, (_, i) => {
+      const d = i + 1; const p = planFor(kid, d); const r = kid.plan.records[d] ?? {}; const date = planDate(kid, d);
+      const cls = [r.done ? 'done' : '', d === today && !paused ? 'today' : '', p.isNewDay && p.newIng ? 'new' : '', r.suspected ? 'sus' : ''].join(' ');
+      return `<button type="button" class="${cls}" aria-pressed="${d === planSel}" aria-label="${d}일차${date ? ' ' + fmtDate(date) : ''}${p.newIng ? ' ' + p.newIng : ''}${r.done ? ' 완료' : ''}" data-h="${on(() => { planSel = d; render(); })}"><span class="d">${d}</span>${p.newIng ? `<span class="ic">${charHtml(p.newIng, 26, 'transparent')}</span>` : '<span class="ic"></span>'}<span style="font-size:10px;color:var(--soft)">${date ? fmtDate(date).replace('월 ', '/').replace('일', '') : ''}</span></button>`;
+    }).join('');
+    return {
+      title: '첫 30일 이유식',
+      html: `${kidBar(() => { planSel = null; render(); })}
+        <div class="note mist">${ICON.info}<span>${esc(f.lead)} <button type="button" style="border:0;background:none;color:var(--deep);text-decoration:underline;padding:0" data-h="${on(() => { const d = $('#planRules'); d.open = !d.open; })}">식단 원칙 보기</button></span></div>
+        <details class="card" id="planRules"><summary>이 식단은 이렇게 만들어져요</summary><ul class="list" style="margin-top:8px">${f.rules.map((r) => `<li>${esc(r)}</li>`).join('')}</ul><p class="muted" style="margin-top:8px">${esc(f.orderNote)}</p>${cite(f.sources, { status: f.reviewStatus })}</details>
+        ${paused ? `<div class="banner warn"><h2 style="padding-right:0">식단을 멈췄어요 (${fmtDate(/** @type {string} */ (kid.plan.pausedAt))}부터)</h2><p style="padding-right:0">${Object.keys(kid.suspectedFoods).length ? '반응이 의심된 재료가 있어요. 새 재료 도입은 의료진과 상담한 뒤 다시 시작해 주세요.' : '다시 시작하면 멈춘 날만큼 일정이 뒤로 밀려요.'}</p><div><button type="button" class="btn small" data-h="${on(() => { kid.plan.offset += Math.max(0, daysBetween(/** @type {string} */ (kid.plan.pausedAt), todayIso)); kid.plan.pausedAt = null; save(); render(); })}">다시 시작</button></div></div>` : ''}
+        <div class="cal" role="group" aria-label="1일차부터 30일차까지">${cells}</div>
+        <section class="card stack" aria-label="${planSel}일차">
+          <div class="row" style="justify-content:space-between"><div class="sec-title">${planSel}일차${planDate(kid, planSel) ? ` · ${fmtDate(/** @type {string} */ (planDate(kid, planSel)))}` : ''}</div>${planSel === today && !paused ? '<span class="badge deep">오늘</span>' : ''}</div>
+          ${sel.newIng ? `<div class="row"><span class="badge ${sel.isNewDay ? 'warn' : 'butter'}">${sel.isNewDay ? '새 재료' : '지켜보는 중'} · ${esc(sel.newIng)} ${sel.dayInBlock}/${kid.plan.interval}일째</span>${sel.known.filter((i) => i !== sel.newIng).map((i) => `<span class="badge sage">${esc(i)}</span>`).join('')}</div>` : '<div class="muted">계획한 재료를 모두 넣었어요. 레시피 탭에서 먹어 본 재료로 만든 레시피를 골라 주세요.</div>'}
+          ${sel.recipe ? recipeItem(sel.recipe, kid, '', state.prefs.method === 'mixed' ? 'mixed' : 'topping') : sel.newIng ? `<div class="muted">카탈로그에 ${esc(sel.newIng)}가 들어간 초기 레시피가 없어요.</div>` : ''}
+          <label class="toggle"><input type="checkbox" id="pDone" ${rec.done ? 'checked' : ''}> 식사 완료</label>
+          <div class="row" style="gap:12px"><div class="field"><span class="lb">준 양</span><div class="amount"><input id="pOff" inputmode="decimal" aria-label="준 양" value="${esc(rec.offered ?? '')}"><select id="pOffU" aria-label="준 양 단위">${['숟가락', 'ml', 'g'].map((u) => `<option ${rec.offeredUnit === u ? 'selected' : ''}>${u}</option>`).join('')}</select></div></div>
+            <div class="field"><span class="lb">먹은 양</span><div class="amount"><input id="pEat" inputmode="decimal" aria-label="먹은 양" value="${esc(rec.eaten ?? '')}"><select id="pEatU" aria-label="먹은 양 단위">${['숟가락', 'ml', 'g'].map((u) => `<option ${rec.eatenUnit === u ? 'selected' : ''}>${u}</option>`).join('')}</select></div></div></div>
+          <div class="muted">양은 기록용이에요. 앱이 정해 주는 양은 없어요.</div>
+          ${rec.suspected ? `<div class="note warn">${ICON.info}<span>이날 반응이 의심된다고 기록했어요. ${sel.newIng ? esc(sel.newIng) + '는 식단에서 뺐어요.' : ''} 다시 먹이기 전에 소아청소년과와 상의해 주세요.</span></div>`
+            : `<button type="button" class="btn danger block" data-h="${on(() => { $('#susConfirm').hidden = false; })}">반응이 의심돼요</button>
+              <div class="note warn" id="susConfirm" hidden><span>${sel.newIng ? `<b>${esc(sel.newIng)}</b>를 식단에서 빼고 새 재료 도입을 멈출게요. ` : ''}증상 기록은 하지 않아요. 걱정되면 소아청소년과와 상의해 주세요.<br><button type="button" class="btn small" style="margin-top:8px;background:var(--warn-ink)" data-h="${on(() => { setRec({ suspected: true }); if (sel.newIng) kid.suspectedFoods[sel.newIng] = todayIso; kid.plan.pausedAt ??= todayIso; save(); render(); })}">반응 의심으로 기록</button></span></div>`}
+          ${emergencyNote()}
+        </section>
+        ${next && !paused ? `<div class="note sage">${ICON.info}<span>다음 새 재료: <b>${esc(next.newIng)}</b> · ${next.day}일차${planDate(kid, next.day) ? ` (${fmtDate(/** @type {string} */ (planDate(kid, next.day)))})` : ''}</span></div>` : ''}
+        <section class="card stack"><div class="sec-title" style="font-size:17px">일정 조정</div>
+          <div class="row"><button type="button" class="btn ghost small" ${paused ? 'disabled' : ''} data-h="${on(() => { kid.plan.offset += 1; save(); render(); })}">오늘은 쉬어요 · 하루 미루기</button>${paused ? '' : `<button type="button" class="btn ghost small" data-h="${on(() => { kid.plan.pausedAt = todayIso; save(); render(); })}">잠시 멈추기</button>`}</div>
+          <div class="field"><span class="lb">새 재료를 지켜보는 간격</span><div class="seg">${f.intervalOptions.map((n) => `<button type="button" aria-pressed="${kid.plan.interval === n}" data-h="${on(() => { kid.plan.interval = n; save(); render(); })}">${n}일</button>`).join('')}</div><span class="muted">CDC는 3~5일, 질병관리청은 약 3~7일 관찰을 안내해요.</span></div>
+          <div class="muted">먹어 본 재료 ${Object.keys(kid.foods).length}가지${Object.keys(kid.foods).length ? ': ' + Object.keys(kid.foods).map(esc).join(', ') : ''}</div>
+        </section>`,
+      after: () => {
+        $('#pDone').addEventListener('change', (/** @type {any} */ e) => {
+          setRec({ done: e.target.checked });
+          if (e.target.checked && sel.recipe) for (const i of sel.recipe.main_ingredients) kid.foods[i] ??= planDate(kid, /** @type {number} */ (planSel)) ?? todayIso;
+          save(); render();
+        });
+        for (const [id, key] of [['pOff', 'offered'], ['pOffU', 'offeredUnit'], ['pEat', 'eaten'], ['pEatU', 'eatenUnit']]) {
+          $('#' + id).addEventListener('change', (/** @type {any} */ e) => { kid.plan.records[/** @type {number} */ (planSel)] = { ...(kid.plan.records[/** @type {number} */ (planSel)] ?? {}), [key]: e.target.value }; save(); });
+        }
+      },
+    };
+  };
+
+  // ---------- 레시피 ----------
+  const rq = { q: '', cat: 'all', onlyFit: true };
+  SCREENS.recipes = () => {
+    const kid = currentKid();
+    const q = rq.q.trim();
+    let list = RECIPES.filter((r) => (rq.cat === 'all' || r.category === rq.cat) && (!q || r.title.includes(q) || r.main_ingredients.some((i) => i.includes(q))));
+    if (rq.onlyFit) list = list.filter((r) => !unfitReason(r, kid));
+    const firstBite = rq.cat === 'all' || rq.cat.startsWith('첫한입');
+    return {
+      title: '레시피',
+      html: `${firstBite ? `<div class="quick"><button type="button" style="background:var(--butter)" data-go="guide"><img src="assets/bowl.svg" alt="">이유식 처음이라면?</button><button type="button" style="background:var(--mist)" data-go="methods"><img src="assets/cat-first.svg" alt="">어떤 방식으로 만들까요?</button></div>` : ''}
+        <input class="search" id="rsearch" type="search" placeholder="레시피나 재료 이름" aria-label="레시피 검색" value="${esc(rq.q)}">
+        <div class="chips" role="group" aria-label="대상">${[['all', '전체'], ...CATS.map((c) => [c.key, c.label])].map(([k, l]) => `<button type="button" class="chip" aria-pressed="${rq.cat === k}" data-h="${on(() => { rq.cat = k; render(); })}">${esc(l)}</button>`).join('')}</div>
+        <label class="toggle"><input type="checkbox" id="onlyFit" ${rq.onlyFit ? 'checked' : ''}> ${esc(kid.name)}가 먹을 수 있는 것만 <span class="muted">(${monthsOld(kid.birth)}개월${avoidSet(kid).size ? ', ' + [...avoidSet(kid)].map(allergenLabel).join('·') + ' 제외' : ''})</span></label>
+        <div class="row" style="justify-content:space-between"><span class="muted">${list.length}개 · 모두 검수 전</span><button type="button" class="btn ghost small" data-go="family">온 가족 레시피</button></div>
+        <div class="rlist">${list.slice(0, 80).map((r) => recipeItem(r, kid)).join('') || `<div class="empty"><img src="assets/mushroom.svg" alt="">조건에 맞는 레시피가 없어요.</div>`}</div>
+        ${list.length > 80 ? `<div class="muted" style="text-align:center">처음 80개만 보여요. 검색이나 대상으로 좁혀 보세요.</div>` : ''}`,
+      after: () => {
+        const s = $('#rsearch');
+        s.addEventListener('input', () => { rq.q = s.value; const pos = s.selectionStart; render(); const n = $('#rsearch'); n.focus(); n.setSelectionRange(pos, pos); });
+        $('#onlyFit').addEventListener('change', (/** @type {any} */ e) => { rq.onlyFit = e.target.checked; render(); });
+      },
+    };
+  };
+
+  /** @type {Record<string, 'topping'|'mixed'>} */
+  const methodTab = {};
+  SCREENS.recipe = (arg) => {
+    const [id, m] = String(arg).split('|');
+    const r = RECIPES.find((x) => x.id === id);
+    if (!r) return { title: '레시피', html: '<div class="empty">레시피를 찾을 수 없어요.</div>' };
+    const meta = METHODS[r.id];
+    const pref = state.prefs.method === 'mixed' ? 'mixed' : 'topping';
+    methodTab[r.id] ??= m === 'mixed' || m === 'topping' ? m : pref;
+    const tab = methodTab[r.id];
+    const method = tab === 'topping' ? meta?.toppingMethod : meta?.mixedMethod;
+    const c = catOf(r.category);
+    const lead = leadIngredient(r);
+    return {
+      title: '레시피',
+      html: `<div class="hero" style="background:${tintFor(lead)};height:160px;display:grid;place-items:center">${CHAR[lead] ? `<img src="assets/${CHAR[lead]}.svg" alt="" style="position:static;width:124px">` : charHtml(lead, 110, 'transparent')}</div>
+        <div><h2 style="font-size:26px">${esc(r.title)}</h2><div class="row" style="margin-top:8px"><span class="badge ${c.color}">${esc(c.group)}${c.group !== c.label ? ' · ' + esc(c.label) : ''}</span><span class="badge">${r.min_months}개월부터</span><span class="badge warn">검수 전</span><span class="muted">${esc(r.id)}</span></div></div>
+        <section class="card kidfit" aria-label="우리 아이가 먹을 수 있나요"><div class="sec-title" style="font-size:17px">우리 아이가 먹을 수 있나요?</div>
+          ${state.kids.map((k) => { const why = unfitReason(r, k); const first = why ? [] : firstTimeAllergens(r, k); return `<div><b>${esc(k.name)}</b><span class="status" style="color:${why ? 'var(--warn-ink)' : 'var(--ok-ink)'}">${why ? esc(why) : '먹을 수 있어요'}${first.length ? ` · 처음 먹는 ${esc(first.map(allergenLabel).join('·'))}: <a href="#" data-go="allergen" data-arg="${esc(first[0])}">처음 주는 법</a>` : ''}</span></div>`; }).join('')}
+          ${state.adults ? `<div><b>어른</b><span class="status" style="color:var(--ok-ink)">함께 먹을 수 있어요</span></div>` : ''}
+        </section>
+        <section class="stack"><div class="sec-title">재료</div><div class="row">${r.main_ingredients.map((i) => `<button type="button" class="badge" style="min-height:34px;border:0;padding:0 12px 0 4px;gap:6px" data-go="ingredient" data-arg="${esc(i)}">${charHtml(i, 26, 'var(--milk)')}${esc(i)}</button>`).join('')}</div><div class="muted">계량은 전문가 검수 후 추가돼요.</div></section>
+        <section class="stack"><div class="sec-title">알레르기</div>
+          ${r.allergens.length ? `<div class="row">${r.allergens.map((a) => `<span class="badge warn">${esc(allergenLabel(a))}</span>`).join('')}</div>` : '<div class="muted">제목 기준 알레르기 식품 없음</div>'}
+          ${r.possible_allergens.length ? `<div class="note warn">${ICON.info}<span><b>부재료로 들어갈 수 있어요</b>: ${r.possible_allergens.map((p) => esc(allergenLabel(p.allergen))).join(', ')}<br><span style="font-size:12.5px">${esc(r.possible_allergens[0].reason)}</span></span></div>` : ''}
+        </section>
+        ${r.cautions.length ? `<section class="stack"><div class="sec-title">이것만은 조심해요</div>${r.cautions.map((x) => `<div class="card stack" style="padding:12px 14px;gap:6px"><span style="font-size:14px">${esc(x.text)}</span>${cite(x.sources)}</div>`).join('')}</section>` : ''}
+        <section class="stack"><div class="sec-title">만드는 법</div>
+          <div class="mtabs" role="group" aria-label="조리 방식">${[['topping', '토핑식 · 재료를 따로'], ['mixed', '혼합식 · 한 냄비에']].map(([k, l]) => `<button type="button" aria-pressed="${tab === k}" data-h="${on(() => { methodTab[r.id] = /** @type {'topping'|'mixed'} */ (k); render(); })}">${esc(l)}</button>`).join('')}</div>
+          ${method && method.status === 'expert_reviewed'
+            ? `<ol class="list">${method.steps.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>${meta?.cookingTime ? `<div class="muted">조리 시간 약 ${meta.cookingTime.minutes}분</div>` : ''}${meta?.textureGuide ? `<div class="note sage">${esc(meta.textureGuide)}</div>` : ''}${meta?.storageGuide ? `<div class="note mist">${esc(meta.storageGuide)}</div>` : ''}${cite(meta?.sourceReferences ?? [])}`
+            : `<div class="card empty" style="padding:18px"><img src="assets/bowl.svg" alt="" style="width:56px"><b>${tab === 'topping' ? '토핑식' : '혼합식'} 조리법은 전문가 검수 전이라 아직 공개하지 않아요</b><span>계량, 조리 시간, 보관 기간도 검수가 끝난 뒤 올라와요.</span></div>`}
+          <div class="muted">두 방식 모두 영양·알레르기 안전 기준은 같아요. <a href="#" data-go="methods">방식 비교 보기</a></div>
+        </section>
+        ${r.corrections.length ? `<details class="card"><summary>원본 데이터에서 고친 점 ${r.corrections.length}개</summary><ul class="list" style="margin-top:8px">${r.corrections.map((x) => `<li>${esc(x.field)}: ${esc(JSON.stringify(x.before))} → ${esc(JSON.stringify(x.after))}<br><span class="muted">${esc(x.reason)}</span></li>`).join('')}</ul></details>` : ''}`,
+    };
+  };
+
+  // ---------- 재료 ----------
+  const guideEntries = () => GUIDE_ROWS.flatMap((g) => String(g['재료']).split('/').map((n) => ({ name: n, row: g })));
+  /** @param {string} name */
+  const risksFor = (name) => RISKS.items.filter((x) => x.match.includes(name));
+  SCREENS.ingredients = () => {
+    const names = guideEntries().map((x) => x.name);
+    const kid = currentKid();
+    return {
+      title: '재료',
+      html: `<button type="button" class="ritem" style="background:var(--butter);border:0" data-go="myfridge"><span class="char" style="width:52px;height:52px"><img src="assets/fridge.svg" alt=""></span><span><span class="t">우리집 냉장고에는?</span><span class="muted">산 날짜와 보관법, 언제까지 쓰면 좋은지</span></span>${ICON.chev}</button>
+        <button type="button" class="ritem" style="background:var(--mist);border:0" data-go="fridge"><span class="char" style="width:52px;height:52px"><img src="assets/broccoli.svg" alt=""></span><span><span class="t">재료로 레시피 찾기</span><span class="muted">집에 있는 재료로 만들 수 있는 레시피</span></span>${ICON.chev}</button>
+        <div class="sec-title">식재료 도감 <span class="muted">${names.length}가지 · ${esc(kid.name)} 먹어 봄 ${names.filter((n) => kid.foods[n]).length}</span></div>
+        <div class="igrid">${names.map((n) => `<button type="button" class="ig" data-go="ingredient" data-arg="${esc(n)}">${charHtml(n, 60, kid.foods[n] ? 'var(--sage-tint)' : 'var(--oat)')}${esc(n)}${kid.foods[n] ? '<span class="status" style="color:var(--ok-ink)">먹어 봄</span>' : ''}</button>`).join('')}</div>
+        <div class="sec-title">주의가 필요한 재료 <span class="muted">${RISKS.items.length}가지</span></div>
+        <div class="rlist">${RISKS.items.map((x) => `<details class="card"><summary><span class="badge ${x.level === '금지' ? 'warn' : 'butter'}">${esc(x.level)}</span>${esc(x.name)}</summary><div class="stack" style="margin-top:8px"><span style="font-size:14px">${esc(x.description)}</span><span style="font-size:13.5px"><b>대신</b> ${esc(x.instead)}</span>${x.block_under_months ? `<span class="badge warn" style="align-self:flex-start">${x.block_under_months}개월 미만 레시피에 넣지 않아요</span>` : ''}${cite(x.sources.map((/** @type {string} */ k) => RISKS.sources[k]?.url ?? k))}</div></details>`).join('')}</div>`,
+    };
+  };
+
+  /** @type {string|null} */ let ingTab = null;
+  SCREENS.ingredient = (name) => {
+    const g = guideEntries().find((x) => x.name === name)?.row;
+    const kid = currentKid();
+    const withIng = RECIPES.filter((r) => r.main_ingredients.includes(name));
+    const cats = CATS.filter((c) => withIng.some((r) => r.category === c.key));
+    if (!ingTab || !cats.some((c) => c.key === ingTab)) {
+      const m = monthsOld(kid.birth);
+      ingTab = (cats.filter((c) => withIng.some((r) => r.category === c.key && r.min_months <= m)).pop() ?? cats[0])?.key ?? null;
+    }
+    const tabList = withIng.filter((r) => r.category === ingTab);
+    const rs = risksFor(name);
+    const allergen = INGREDIENT_ALLERGEN[name];
+    const earliest = withIng.reduce((/** @type {Recipe|null} */ a, r) => (!a || r.min_months < a.min_months ? r : a), null);
+    const pairs = g ? String(g['추천 조합']).split(/[·,]/).map((s) => s.trim()).filter(Boolean) : [];
+    return {
+      title: name,
+      html: `<div class="row" style="gap:14px;flex-wrap:nowrap">${charHtml(name, 84)}<div><h2 style="font-size:28px">${esc(name)}</h2><div class="row" style="margin-top:4px">${allergen ? `<span class="badge warn">주요 알레르겐 · ${esc(allergenLabel(allergen))}</span>` : '<span class="badge">주요 알레르겐 아님</span>'}${kid.foods[name] ? `<span class="badge sage">${esc(kid.name)} 먹어 봄</span>` : ''}${kid.suspectedFoods[name] ? '<span class="badge warn">반응 의심</span>' : ''}</div></div></div>
+        ${g ? `<div class="kv"><div style="background:var(--sage-tint)"><b>주요 영양 특징</b><span>${esc(g['특징'])}</span></div><div style="background:var(--butter)"><b>도입 참고 시기</b><span>${earliest ? `카탈로그 첫 등장: ${esc(catOf(earliest.category).label)} (${earliest.min_months}개월~)` : '카탈로그에 없음'}</span><span class="muted" style="font-size:11.5px">편집용 분류 · 감수 전</span></div><div style="background:var(--peach-tint);grid-column:1/-1"><b style="color:var(--warn-ink)">안전한 조리 방법과 주의</b><span>${esc(g['주의 및 한계'])}</span></div></div>` : '<div class="muted">식재료 도감에 아직 없는 재료예요.</div>'}
+        ${rs.map((x) => `<div class="note warn">${ICON.info}<span><b>${esc(x.name)}</b><br>${esc(x.description)}${cite(x.sources.map((/** @type {string} */ k) => RISKS.sources[k]?.url ?? k))}</span></div>`).join('')}
+        ${pairs.length ? `<section class="stack"><div class="sec-title">함께 쓰기 좋은 재료</div><div class="row">${pairs.map((p) => `<button type="button" class="badge" style="min-height:34px;border:0;padding:0 12px 0 4px;gap:6px" data-go="ingredient" data-arg="${esc(p)}">${charHtml(p, 26, 'var(--milk)')}${esc(p)}</button>`).join('')}</div><div class="muted">조합 유형(영양 보완·맛·질감·조리 편의)은 근거 확인 전이라 아직 나누지 않았어요.</div></section>` : ''}
+        <details class="card"><summary>단계별 질감</summary><div class="stack" style="margin-top:8px">${GUIDE.stages.map((s) => `<div><b style="font-size:13.5px">${esc(s.label)} · ${esc(s.ageNote)}</b><p style="font-size:13.5px">${esc(s.texture)}</p></div>`).join('')}${cite(['NHS_FIRST_FOODS', 'NHS_OVER_12'], { status: 'source_verified' })}</div></details>
+        <details class="card"><summary>보관할 때 주의할 점</summary><div class="stack" style="margin-top:8px"><p style="font-size:13.5px;white-space:pre-line">${esc(GUIDE.faq.find((f) => f.id === 'storage')?.a ?? '')}</p>${cite(['NHS_STORAGE'], { status: 'source_verified' })}</div></details>
+        ${cats.length ? `<section class="stack"><div class="sec-title">관련 레시피</div>
+          <div class="chips" role="group" aria-label="대상">${cats.map((c) => `<button type="button" class="chip" aria-pressed="${c.key === ingTab}" data-h="${on(() => { ingTab = c.key; render(); })}">${esc(c.label)}</button>`).join('')}</div>
+          <div class="rlist">${tabList.map((r) => recipeItem(r, kid)).join('')}</div></section>` : '<div class="muted">이 재료가 들어간 레시피가 아직 없어요.</div>'}
+        <div class="src"><span>출처: 한입씩 식재료 가이드(사용자 제공)</span></div>`,
+    };
+  };
+
+  const fridgeSel = new Set(['소고기', '애호박', '쌀']);
+  SCREENS.fridge = () => {
+    const kid = currentKid();
+    const names = allIngredients().filter((n) => RECIPES.some((r) => r.main_ingredients.includes(n))).sort((a, b) => (CHAR[b] ? 1 : 0) - (CHAR[a] ? 1 : 0) || a.localeCompare(b, 'ko'));
+    const cands = RECIPES.filter((r) => !unfitReason(r, kid) && r.main_ingredients.some((i) => fridgeSel.has(i)));
+    const missing = (/** @type {Recipe} */ r) => r.main_ingredients.filter((i) => !fridgeSel.has(i));
+    const can = cands.filter((r) => !missing(r).length);
+    const almost = cands.filter((r) => missing(r).length === 1);
+    return {
+      title: '재료로 찾기',
+      html: `<h2 style="font-size:24px">냉장고에 뭐 있지?</h2>${kidBar()}
+        <div class="igrid">${names.map((n) => `<button type="button" class="ig" aria-pressed="${fridgeSel.has(n)}" data-h="${on(() => { fridgeSel.has(n) ? fridgeSel.delete(n) : fridgeSel.add(n); render(); })}">${charHtml(n, 60)}${esc(n)}</button>`).join('')}</div>
+        <div class="sec-title">${fridgeSel.size ? '이 재료로 만들 수 있어요' : '재료를 골라 주세요'} <span class="muted">${can.length}개</span></div>
+        <div class="rlist">${can.map((r) => recipeItem(r, kid)).join('') || (fridgeSel.size ? '<div class="muted">고른 재료만으로 되는 레시피가 없어요.</div>' : '')}</div>
+        ${almost.length ? `<div class="sec-title">하나만 더 있으면 돼요 <span class="muted">${almost.length}개</span></div><div class="rlist">${almost.slice(0, 20).map((r) => recipeItem(r, kid, `<span class="badge warn">${esc(missing(r)[0])}만 있으면</span>`)).join('')}</div>` : ''}`,
+    };
+  };
+
+  // ---------- 우리집 냉장고 ----------
+  /** @param {string} name */
+  const storageFor = (name) => STORAGE.groups.find((g) => g.match.includes(name.trim())) ?? null;
+  /** 언제까지: 산 날 + 최대 냉장 기간 (출처에 기간이 있는 재료만) @param {import('./types').FridgeItem} f */
+  function useBy(f) {
+    const g = storageFor(f.name);
+    if (!g?.fridgeDays) return null;
+    const from = iso(addDays(parse(f.bought), g.fridgeDays.min));
+    const to = iso(addDays(parse(f.bought), g.fridgeDays.max));
+    const left = daysBetween(todayIso, to);
+    const tone = todayIso > to ? 'over' : todayIso >= from ? 'soon' : left <= 1 ? 'soon' : 'ok';
+    return { from, to, left, tone, days: g.fridgeDays };
+  }
+  const fridgeSoon = () => state.fridge.filter((f) => { const u = useBy(f); return u && u.tone !== 'ok'; });
+  /** @type {'today'|'ago'|'date'} */ let boughtMode = 'today';
+  let boughtAgo = 1;
+  let boughtDate = todayIso;
+  SCREENS.myfridge = () => {
+    const sorted = [...state.fridge].sort((a, b) => {
+      const ua = useBy(a), ub = useBy(b);
+      if (ua && ub) return ua.to.localeCompare(ub.to);
+      if (ua) return -1; if (ub) return 1;
+      return a.bought.localeCompare(b.bought);
+    });
+    const preview = () => {
+      const bought = boughtMode === 'today' ? todayIso : boughtMode === 'ago' ? iso(addDays(TODAY, -Math.max(0, boughtAgo))) : boughtDate;
+      return bought;
+    };
+    return {
+      title: '우리집 냉장고',
+      html: `<div><h2 style="font-size:24px">우리집 냉장고에는?</h2><div class="muted">재료와 산 날을 넣으면 보관법과 언제까지 쓰면 좋은지 알려 드려요.</div></div>
+        <section class="card stack" aria-label="재료 넣기">
+          <div class="field"><label for="fName">재료</label><input class="input" id="fName" list="fIngList" placeholder="예: 소고기" autocomplete="off"><datalist id="fIngList">${[...new Set([...allIngredients(), ...STORAGE.groups.flatMap((g) => g.match)])].sort((a, b) => a.localeCompare(b, 'ko')).map((n) => `<option value="${esc(n)}"></option>`).join('')}</datalist></div>
+          <div class="field"><span class="lb">언제 샀어요?</span>
+            <div class="seg" role="group" aria-label="산 날"><button type="button" id="bToday" aria-pressed="${boughtMode === 'today'}">오늘</button><button type="button" id="bAgo" aria-pressed="${boughtMode === 'ago'}">며칠 전</button><button type="button" id="bDate" aria-pressed="${boughtMode === 'date'}">달력</button></div>
+            <div class="row" id="bAgoWrap" ${boughtMode === 'ago' ? '' : 'hidden'}><div class="amount"><input id="bAgoN" type="number" min="0" max="365" inputmode="numeric" value="${boughtAgo}" aria-label="며칠 전"></div><span>일 전</span></div>
+            <input class="input" id="bDateIn" type="date" max="${todayIso}" value="${esc(boughtDate)}" aria-label="산 날짜" ${boughtMode === 'date' ? '' : 'hidden'}>
+            <span class="muted" id="bPreview">산 날: ${fmtDate(preview())}</span>
+          </div>
+          <p class="muted" id="fErr" hidden style="color:var(--warn-ink)">재료 이름을 넣어 주세요.</p>
+          <button type="button" class="btn block" id="fAdd">냉장고에 넣기</button>
+        </section>
+        <div class="note warn">${ICON.info}<span>${esc(STORAGE.disclaimer)}${cite(STORAGE.disclaimerSources)}</span></div>
+        <div class="row" style="justify-content:space-between"><div class="sec-title">내 냉장고 <span class="muted">${state.fridge.length}개 · 빨리 쓸 순서</span></div>${state.fridge.length ? `<button type="button" class="btn ghost small" data-h="${on(() => { state.today.items = [...new Set([...state.today.items, ...state.fridge.map((f) => f.name)])]; save(); tabGo('home'); })}">이 재료로 오늘 뭐 먹지</button>` : ''}</div>
+        <div class="rlist">${sorted.map((f) => {
+          const g = storageFor(f.name); const u = useBy(f); const ago = daysSince(f.bought);
+          const badge = u ? (u.tone === 'over' ? `<span class="badge warn">최대 기간 지남 · 상태 확인</span>` : u.tone === 'soon' ? `<span class="badge butter">${u.from === u.to ? fmtDate(u.to) : `${fmtDate(u.from)}~${fmtDate(u.to)}`}까지 · 곧</span>` : `<span class="badge sage">${u.from === u.to ? fmtDate(u.to) : `${fmtDate(u.from)}~${fmtDate(u.to)}`}까지</span>`) : '<span class="badge">보관 기간 정보 없음 · 상태 보고 판단</span>';
+          return `<details class="card" style="padding:10px 12px"><summary style="align-items:center">${charHtml(f.name, 44)}<span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px"><span style="font-family:var(--f-display);font-size:16.5px">${esc(f.name)} <span class="muted">${fmtDate(f.bought)} 구입 · ${ago === 0 ? '오늘' : ago + '일째'}</span></span><span class="row">${badge}</span></span></summary>
+            <div class="stack" style="margin-top:10px">
+              <div><b style="font-size:13.5px">${esc(g?.label ?? STORAGE.fallback.label)} 보관법</b><ul class="list" style="margin-top:4px">${(g?.tips ?? STORAGE.fallback.tips).map((t) => `<li>${esc(t)}</li>`).join('')}</ul></div>
+              ${u ? `<div style="font-size:13.5px">5℃ 이하 냉장 기준 최대 ${u.days.min === u.days.max ? u.days.max : `${u.days.min}~${u.days.max}`}일 → <b>${u.from === u.to ? fmtDate(u.to) : `${fmtDate(u.from)}~${fmtDate(u.to)}`}</b>까지 쓰는 것이 좋아요. 재료 상태에 따라 달라질 수 있어요.</div>` : '<div style="font-size:13.5px">확인한 공식 자료에 이 재료의 냉장 보관 기간이 없어 날짜를 계산하지 않았어요. 포장 제품은 표시된 소비기한을, 나머지는 상태를 보고 판단해 주세요.</div>'}
+              ${cite(g?.sources ?? [])}
+              <button type="button" class="btn ghost small" style="align-self:flex-start" data-h="${on(() => { state.fridge = state.fridge.filter((x) => x.id !== f.id); save(); render(); })}">다 썼어요 · 빼기</button>
+            </div></details>`;
+        }).join('') || '<div class="empty"><img src="assets/fridge.svg" alt="">아직 넣은 재료가 없어요.</div>'}</div>`,
+      after: () => {
+        const setMode = (/** @type {'today'|'ago'|'date'} */ m) => { boughtMode = m; render(); };
+        $('#bToday').addEventListener('click', () => setMode('today'));
+        $('#bAgo').addEventListener('click', () => setMode('ago'));
+        $('#bDate').addEventListener('click', () => setMode('date'));
+        const upd = () => { $('#bPreview').textContent = `산 날: ${fmtDate(preview())}`; };
+        $('#bAgoN').addEventListener('input', (/** @type {any} */ e) => { boughtAgo = Math.min(365, Math.max(0, Number(e.target.value) || 0)); upd(); });
+        $('#bDateIn').addEventListener('change', (/** @type {any} */ e) => { if (e.target.value) boughtDate = e.target.value > todayIso ? todayIso : e.target.value; upd(); });
+        const add = () => {
+          const names = String($('#fName').value).split(/[,，]+/).map((s) => s.trim()).filter(Boolean);
+          if (!names.length) { $('#fErr').hidden = false; return; }
+          const bought = preview();
+          for (const n of names) state.fridge.push({ id: 'f' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), name: n, bought });
+          save(); render(); $('#fName')?.focus();
+        };
+        $('#fAdd').addEventListener('click', add);
+        $('#fName').addEventListener('keydown', (/** @type {KeyboardEvent} */ e) => { if (e.key === 'Enter') { e.preventDefault(); add(); } });
+      },
+    };
+  };
+
+  /** @type {Set<string>|null} */ let famSel = null;
+  SCREENS.family = () => {
+    const sel = famSel ??= new Set([...state.kids.map((k) => k.id), ...(state.adults ? ['adults'] : [])]);
+    const kids = state.kids.filter((k) => sel.has(k.id));
+    const list = kids.length ? RECIPES.filter((r) => kids.every((k) => !unfitReason(r, k))) : RECIPES.filter((r) => r.category === '같이한입');
+    const excluded = [...new Set(kids.flatMap((k) => [...avoidSet(k)]))];
+    /** @param {string} id */
+    const toggle = (id) => on(() => { sel.has(id) ? sel.delete(id) : sel.add(id); render(); });
+    return {
+      title: '온 가족 레시피',
+      html: `<div class="sec-title">누가 같이 먹나요?</div>
+        <div class="chips wrap" role="group" aria-label="먹을 사람">${state.kids.map((k) => `<button type="button" class="chip" aria-pressed="${sel.has(k.id)}" data-h="${toggle(k.id)}">${esc(k.name)} · ${esc(stageLabel(k).split(' · ').pop())}</button>`).join('')}
+        ${state.adults ? `<button type="button" class="chip" aria-pressed="${sel.has('adults')}" data-h="${toggle('adults')}">어른 ${state.adults}명</button>` : ''}</div>
+        <div class="row"><span class="muted">${kids.length ? `고른 아이 모두 먹을 수 있는 레시피 ${list.length}개` : `어른 레시피 ${list.length}개`}</span>${excluded.map((a) => `<span class="badge warn">${esc(allergenLabel(a))} 뺐어요</span>`).join('')}</div>
+        ${kids.length ? `<div class="note sage">${ICON.info}<span>가장 어린 아이의 개월 수와 모든 아이의 알레르기를 함께 따져서 골랐어요.</span></div>` : ''}
+        <div class="rlist">${list.slice(0, 60).map((r) => recipeItem(r, kids[0])).join('') || '<div class="empty"><img src="assets/apple.svg" alt="">함께 먹을 수 있는 레시피가 없어요. 아이를 한 명 빼 보세요.</div>'}</div>`,
+    };
+  };
+
+  // ---------- 알레르기 ----------
+  SCREENS.allergy = () => {
+    const kid = currentKid();
+    const high = isHighRisk(kid);
+    return {
+      title: '알레르기 식품',
+      html: `${kidBar()}
+        ${!riskAnswered(kid) ? `<button type="button" class="banner" style="border:0;text-align:left" data-go="risk"><span class="badge deep pill">먼저 확인해요</span><h2 style="padding-right:0">${esc(kid.name)}의 알레르기 위험도 확인</h2><p style="padding-right:0">질문 네 가지에 답하면 시작해도 되는지, 의료진 상담이 먼저인지 알려 드려요.</p></button>`
+          : high ? `<div class="banner warn"><span class="badge deep pill">의료진 상담 우선</span><h2 style="padding-right:0">위험 요인이 있어요</h2><p style="padding-right:0">${esc(kid.risk.medicalPlan ? POLICY.medicalPlanMessage : POLICY.highRiskMessage)}</p><div><button type="button" class="btn ghost small" data-go="risk">답변 다시 보기</button></div></div>`
+          : `<div class="note sage">${ICON.info}<span>위험 요인이 없다고 답했어요. 이유식에 적응하면 늦추지 않고, 한 끼에 하나씩 시작해요. <a href="#" data-go="risk">답변 바꾸기</a></span></div>`}
+        <div class="rlist">${[...POLICY.allergens].sort((a, b) => a.order - b.order).map((a) => {
+          const r = allergenRec(kid, a.key); const st = statusOf(r.status);
+          return `<button type="button" class="ritem" data-go="allergen" data-arg="${esc(a.key)}">${charHtml(a.label, 44)}<span><span class="t">${esc(a.label)}</span><span class="m"><span class="badge ${toneClass(st.tone)}">${esc(st.label)}</span>${r.last ? `<span class="badge">마지막 ${fmtDate(r.last)}</span>` : ''}</span></span>${ICON.chev}</button>`;
+        }).join('')}</div>
+        <div class="note mist">${ICON.info}<span>'먹어봤어요'는 알레르기가 없다는 의학적 확인이 아니에요.</span></div>
+        <details class="card"><summary>앱이 하지 않는 것</summary><ul class="list" style="margin-top:8px">${POLICY.prohibited.map((p) => `<li>${esc(p.text)}</li>`).join('')}</ul>${cite(['ASCIA_2026'])}</details>
+        ${emergencyNote()}`,
+    };
+  };
+
+  SCREENS.risk = () => {
+    const kid = currentKid();
+    const draft = { ...kid.risk };
+    return {
+      title: '알레르기 위험도 확인',
+      html: `${kidBar()}<div class="muted">진단이 아니라, 알레르기 식품을 시작하기 전에 의료진 상담이 먼저인지 확인하는 질문이에요.</div>
+        ${POLICY.riskQuestions.map((q) => `<section class="card stack"><b style="font-weight:500">${esc(q.text)}</b><div class="seg" data-q="${q.id}"><button type="button" data-v="yes" aria-pressed="${draft[q.id] === true}">예</button><button type="button" data-v="no" aria-pressed="${draft[q.id] === false}">아니요</button></div>${cite(q.sources)}</section>`).join('')}
+        <p class="muted" id="riskErr" hidden style="color:var(--warn-ink)">네 가지 모두 답해 주세요.</p>
+        <button type="button" class="btn block" id="riskSave">저장</button>`,
+      after: () => {
+        document.querySelectorAll('[data-q]').forEach((el) => el.addEventListener('click', (e) => {
+          const b = /** @type {HTMLElement} */ (e.target).closest('[data-v]'); if (!b) return;
+          const q = /** @type {import('./types').RiskKey} */ (/** @type {HTMLElement} */ (el).dataset.q);
+          draft[q] = /** @type {HTMLElement} */ (b).dataset.v === 'yes';
+          el.querySelectorAll('[data-v]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+        }));
+        $('#riskSave').addEventListener('click', () => {
+          if (POLICY.riskQuestions.some((q) => draft[q.id] === null)) { $('#riskErr').hidden = false; return; }
+          kid.risk = draft; save(); back();
+        });
+      },
+    };
+  };
+
+  SCREENS.allergen = (key) => {
+    const a = POLICY.allergens.find((x) => x.key === key) ?? POLICY.allergens[0];
+    const kid = currentKid();
+    const r = allergenRec(kid, a.key);
+    const st = statusOf(r.status);
+    const high = isHighRisk(kid);
+    const blocked = r.status === 'suspected' || r.status === 'consult';
+    /** @param {boolean} byDoctor */
+    const logOk = (byDoctor) => on(() => { const rec = allergenRec(kid, a.key); kid.allergen[a.key] = { ...rec, status: rec.status === 'not_tried' ? 'introducing' : rec.status, first: rec.first ?? todayIso, last: todayIso, log: [...rec.log, { date: todayIso, ok: true, ...(byDoctor ? { byDoctor: true } : {}) }] }; save(); render(); });
+    const recipes = RECIPES.filter((x) => x.allergens.includes(a.key) && !unfitReason(x, kid)).slice(0, 4);
+    return {
+      title: a.label,
+      html: `${kidBar()}
+        <div class="row" style="gap:14px;flex-wrap:nowrap">${charHtml(a.label, 72)}<div><h2 style="font-size:24px">${esc(kid.name)} · ${esc(a.label)}</h2><div class="row" style="margin-top:4px"><span class="badge ${toneClass(st.tone)}">${esc(st.label)}</span>${r.last ? `<span class="badge">마지막 섭취 ${fmtDate(r.last)}</span>` : ''}</div></div></div>
+        ${st.caution ? `<div class="note mist">${ICON.info}<span>${esc(st.caution)}</span></div>` : ''}
+        ${blocked ? `<div class="note warn">${ICON.info}<span>${esc(POLICY.afterReaction.text)}${cite(POLICY.afterReaction.sources)}</span></div>
+          ${r.status === 'suspected' ? `<button type="button" class="btn ghost block" data-h="${on(() => { kid.allergen[a.key] = { ...r, status: 'consult' }; save(); render(); })}">의료진과 상담하기로 했어요</button>` : ''}`
+        : !riskAnswered(kid) ? `<button type="button" class="btn block" data-go="risk">먼저 위험도 확인하기</button>`
+        : high && !kid.risk.medicalPlan ? `<div class="note warn">${ICON.info}<span>${esc(POLICY.highRiskMessage)}</span></div>`
+        : `<section class="card stack"><div class="sec-title" style="font-size:17px">처음 줄 때</div>
+            <ul class="list">${POLICY.introRules.map((x) => `<li>${esc(x.text)}</li>`).join('')}<li><b>${esc(a.safeForm)}</b></li></ul>${cite([...new Set([...POLICY.introRules.flatMap((x) => x.sources), ...a.sources])], { status: 'source_verified' })}</section>
+          <section class="card stack"><div class="sec-title" style="font-size:17px">먹은 뒤 지켜볼 반응</div><div class="row">${POLICY.reactionSigns.map((s) => `<span class="badge">${esc(s)}</span>`).join('')}</div>${cite(POLICY.reactionSignsSources)}</section>
+          <div class="stack">
+            ${high ? `<div class="note mist">${ICON.info}<span>${esc(POLICY.medicalPlanMessage)}</span></div><button type="button" class="btn block" data-h="${logOk(true)}">의료진 안내에 따라 먹였어요 (반응 없음)</button>`
+              : `<button type="button" class="btn block" data-h="${logOk(false)}">${r.status === 'not_tried' ? '오늘 처음 먹였어요 (반응 없음)' : '오늘 먹였어요 (반응 없음)'}</button>`}
+            ${r.status === 'introducing' ? `<button type="button" class="btn ghost block" data-h="${on(() => { kid.allergen[a.key] = { ...r, status: 'tried' }; save(); render(); })}">평소 식단에 넣었어요 (먹어봤어요로 바꾸기)</button>` : ''}
+            <button type="button" class="btn danger block" data-h="${on(() => { $('#aSus').hidden = false; })}">반응이 의심돼요</button>
+            <div class="note warn" id="aSus" hidden><span>${esc(a.label)}를 '반응 의심'으로 기록하고 레시피에서 뺄게요. 앱은 다시 먹어 보라고 권하지 않아요.<br><button type="button" class="btn small" style="margin-top:8px;background:var(--warn-ink)" data-h="${on(() => { kid.allergen[a.key] = { ...r, status: 'suspected', log: [...r.log, { date: todayIso, ok: false }] }; save(); render(); })}">반응 의심으로 기록</button></span></div>
+          </div>
+          <details class="card"><summary>잘 먹었다면 얼마나 자주? (출처별)</summary><ul class="list" style="margin-top:8px">${POLICY.repeatGuidance.map((g) => `<li><b>${esc(SOURCES[g.source]?.org.split(' (')[0] ?? g.source)}</b> ${esc(g.text)}</li>`).join('')}</ul>${cite(POLICY.repeatGuidance.map((g) => g.source))}</details>`}
+        ${emergencyNote()}
+        ${r.log.length ? `<details class="card"><summary>기록 ${r.log.length}개</summary><ul class="list" style="margin-top:8px">${[...r.log].reverse().map((l) => `<li>${fmtDate(l.date)} · ${l.ok ? '반응 없음' : '반응 의심'}${l.byDoctor ? ' · 의료진 안내' : ''}</li>`).join('')}</ul></details>` : ''}
+        ${recipes.length && !blocked ? `<section class="stack"><div class="sec-title">${esc(a.label)}가 들어간 레시피</div><div class="rlist">${recipes.map((x) => recipeItem(x, kid)).join('')}</div></section>` : ''}`,
+    };
+  };
+
+  // ---------- 이럴 땐 이렇게 ----------
+  /** @type {Record<string, string>} */
+  const SIT_CHAR = { 설사: 'apple', 변비: 'sweet-potato', 감기: 'pear', 열: 'rice', 이앓이: 'kabocha', 철분: 'broccoli' };
+  SCREENS.situations = () => ({
+    title: '이럴 땐 이렇게',
+    html: `<div><h2 style="font-size:24px">오늘 아이가 어때요?</h2><div class="hand">괜찮아요, 먹을 걸로 먼저 챙겨 봐요.</div></div>
+      <div class="note warn">${ICON.info}<span>이 메뉴는 <b>AI가 만든 초안</b>이고 출처 확인과 감수 전이에요. 실제 서비스 전에 내용이 바뀔 수 있어요.</span></div>
+      <div class="quick">${SITUATIONS.map((s, i) => `<button type="button" style="background:${TINTS[i % TINTS.length]};align-items:flex-start;text-align:left;padding:14px" data-go="situation" data-arg="${esc(s['상황태그'])}"><img src="assets/${SIT_CHAR[s['상황태그']] ?? 'rice'}.svg" alt=""><span style="font-family:var(--f-display);font-size:17px">${esc(s['상황이름'])}</span></button>`).join('')}</div>
+      <div class="note warn">${ICON.info}<span>탈수, 피 섞인 변, 고열, 3개월 미만 발열은 음식보다 병원이 먼저예요.</span></div>`,
+  });
+  SCREENS.situation = (tag) => {
+    const s = SITUATIONS.find((x) => x['상황태그'] === tag);
+    if (!s) return { title: '이럴 땐 이렇게', html: '' };
+    const kid = currentKid();
+    const recipes = RECIPES.filter((r) => String(s['좋은음식']).split(/[,\s]+/).some((w) => w && r.main_ingredients.some((i) => w.startsWith(i))) && !unfitReason(r, kid)).slice(0, 6);
+    return {
+      title: s['상황이름'],
+      html: `<div class="banner"><img class="deco" src="assets/${SIT_CHAR[tag] ?? 'rice'}.svg" alt=""><h2>${esc(s['상황이름'])}</h2><p>${esc(s['설명'])}</p><span class="badge warn pill">감수 전 초안</span></div>
+        <section class="card stack"><div class="sec-title" style="font-size:17px">도움이 되는 음식</div><span>${esc(s['좋은음식'])}</span></section>
+        <section class="card stack"><div class="sec-title" style="font-size:17px">잠깐 줄여요</div><span>${esc(s['피할것'])}</span></section>
+        ${recipes.length ? `<section class="stack"><div class="sec-title">${esc(kid.name)}가 먹을 수 있는 메뉴</div><div class="rlist">${recipes.map((r) => recipeItem(r, kid)).join('')}</div></section>` : ''}
+        ${s['병원신호'] ? `<div class="note warn">${ICON.info}<span><b>병원에 가요</b> · ${esc(s['병원신호'])}</span></div>` : ''}`,
+    };
+  };
+
+  // ---------- 우리 아이 ----------
+  SCREENS.kids = () => ({
+    title: '우리 아이',
+    html: `<div class="rlist">${state.kids.map((k, i) => `<button type="button" class="ritem" data-go="kidEdit" data-arg="${k.id}">${charHtml(i % 2 ? '당근' : '쌀', 56)}<span><span class="t">${esc(k.name)}</span><span class="m"><span class="badge">${monthsOld(k.birth)}개월</span><span class="badge rose">${esc(stageLabel(k))}</span>${[...avoidSet(k)].map((a) => `<span class="badge warn">${esc(allergenLabel(a))} 피하기</span>`).join('')}${isHighRisk(k) ? '<span class="badge warn">의료진 상담 우선</span>' : ''}</span></span>${ICON.chev}</button>`).join('')}</div>
+      <button type="button" class="btn ghost block" data-h="${on(() => go('kidEdit', 'new'))}">+ 아이 추가하기</button>
+      <button type="button" class="ritem" data-go="allergy"><span class="char" style="width:52px;height:52px;background:var(--rose)"><img src="assets/egg.svg" alt=""></span><span><span class="t">알레르기 식품 기록</span><span class="muted">위험도 확인, 도입 기록, 반복 제공 알림</span></span>${ICON.chev}</button>
+      <section class="stack"><div class="sec-title">이유식 방식</div>${methodChooser((m) => { state.prefs.method = m; save(); render(); }, state.prefs.method)}<a href="#" data-go="methods" style="font-size:13.5px">두 방식 비교 보기</a></section>
+      <section class="card" style="display:flex;align-items:center;justify-content:space-between;gap:12px"><div><div class="sec-title" style="font-size:17px">함께 먹는 어른</div><div class="muted">온 가족 레시피에 쓰여요</div></div>
+        <div class="stepper"><button type="button" aria-label="어른 한 명 빼기" data-h="${on(() => { state.adults = Math.max(0, state.adults - 1); save(); render(); })}">−</button><output>${state.adults}</output><button type="button" aria-label="어른 한 명 더하기" data-h="${on(() => { state.adults += 1; save(); render(); })}">+</button></div></section>
+      <div class="note mist">${ICON.info}<span>프로토타입이라 아이 정보는 이 기기의 브라우저에만 저장돼요. 실제 앱에서는 카카오 로그인 후 계정에 저장돼요.</span></div>
+      <button type="button" class="btn ghost block" data-h="${on(() => { state = exampleState(); save(); famSel = null; planSel = null; tabGo('home'); })}">예시 가족으로 되돌리기</button>`,
+  });
+
+  /** @param {Kid} k */
+  function kidForm(k) {
+    return `<div class="field"><label for="kName">부르는 이름</label><input class="input" id="kName" value="${esc(k.name)}" autocomplete="off"></div>
+      <div class="field"><label for="kBirth">생년월일</label><input class="input" id="kBirth" type="date" max="${todayIso}" value="${esc(k.birth)}"><span class="muted" id="kStage">${k.birth ? `${monthsOld(k.birth)}개월 · ${esc(stageLabel(k))}` : ''}</span></div>
+      <div class="field"><span class="lb">이유식을 시작했나요?</span><div class="seg"><button type="button" id="kNo" aria-pressed="${!k.started}">아직이에요</button><button type="button" id="kYes" aria-pressed="${k.started}">시작했어요</button></div></div>
+      <div class="field" id="kStartWrap" ${k.started ? '' : 'hidden'}><label for="kStart">시작한 날</label><input class="input" id="kStart" type="date" max="${todayIso}" value="${esc(k.startDate)}"></div>
+      <div class="field"><span class="lb">진단받은 알레르기 <span class="muted">(선택)</span></span><div class="chips wrap" id="kAll">${['계란', '우유', '밀', '땅콩', '대두', '생선', '갑각류', '참깨', '들깨', '견과'].map((a) => `<button type="button" class="chip" data-a="${a}" aria-pressed="${k.allergies.includes(a)}">${esc(allergenLabel(a))}</button>`).join('')}</div><span class="muted">고른 알레르기 식품은 레시피에서 빼요.</span></div>`;
+  }
+  /** @param {Kid} k */
+  function bindKidForm(k) {
+    const upd = () => { if (k.birth) $('#kStage').textContent = `${monthsOld(k.birth)}개월 · ${stageLabel(k)}`; };
+    $('#kName').addEventListener('input', (/** @type {any} */ e) => { k.name = e.target.value; });
+    $('#kBirth').addEventListener('change', (/** @type {any} */ e) => { k.birth = e.target.value; upd(); });
+    $('#kStart').addEventListener('change', (/** @type {any} */ e) => { k.startDate = e.target.value; });
+    $('#kNo').addEventListener('click', () => { k.started = false; $('#kNo').setAttribute('aria-pressed', 'true'); $('#kYes').setAttribute('aria-pressed', 'false'); $('#kStartWrap').hidden = true; upd(); });
+    $('#kYes').addEventListener('click', () => { k.started = true; k.startDate ||= todayIso; $('#kStart').value = k.startDate; $('#kYes').setAttribute('aria-pressed', 'true'); $('#kNo').setAttribute('aria-pressed', 'false'); $('#kStartWrap').hidden = false; upd(); });
+    $('#kAll').addEventListener('click', (/** @type {any} */ e) => { const b = e.target.closest('[data-a]'); if (!b) return; const a = b.dataset.a; k.allergies = k.allergies.includes(a) ? k.allergies.filter((x) => x !== a) : [...k.allergies, a]; b.setAttribute('aria-pressed', String(k.allergies.includes(a))); });
+  }
+  /** @param {Kid} k */
+  const kidValid = (k) => k.name.trim() && k.birth;
+
+  SCREENS.kidEdit = (id) => {
+    const isNew = id === 'new';
+    const orig = isNew ? null : kidById(id);
+    const k = isNew || !orig ? kidDefaults({}) : structuredClone(orig);
+    return {
+      title: isNew || !orig ? '아이 추가' : `${orig.name} 정보`,
+      html: `${kidForm(k)}<p class="muted" id="kErr" hidden style="color:var(--warn-ink)">이름과 생년월일을 넣어 주세요.</p>
+        <button type="button" class="btn block" data-h="${on(() => {
+          if (!kidValid(k)) { $('#kErr').hidden = false; return; }
+          if (isNew || !orig) state.kids.push(k); else Object.assign(orig, k);
+          state.example = false; save(); back();
+        })}">저장</button>
+        ${orig ? `<button type="button" class="btn danger block" data-h="${on(() => { $('#kConfirm').hidden = false; })}">이 아이 지우기</button><div class="note warn" id="kConfirm" hidden><span>${esc(orig.name)}의 정보와 기록을 지울까요?<br><button type="button" class="btn small" style="margin-top:8px;background:var(--warn-ink)" data-h="${on(() => { state.kids = state.kids.filter((x) => x.id !== id); if (!state.kids.length) state = exampleState(); state.selected = state.kids[0].id; save(); back(); })}">지우기</button></span></div>` : ''}`,
+      after: () => bindKidForm(k),
+    };
+  };
+
+  // ---------- 온보딩 ----------
+  let obDraft = kidDefaults({});
+  /** @type {Kid[]} */ let obKids = [];
+  let obAdults = 2;
+  /** @type {MethodId} */ let obMethod = 'both';
+  /** @param {number} n */
+  const dots = (n) => `<div class="row" style="justify-content:center;gap:6px;flex:1" aria-label="4단계 중 ${n}단계">${[1, 2, 3, 4].map((i) => `<span style="width:24px;height:6px;border-radius:3px;background:${i <= n ? 'var(--deep)' : 'var(--line)'}"></span>`).join('')}</div>`;
+  SCREENS.onboard = (step) => {
+    const topBack = `<button type="button" class="icon-btn" data-act="back" aria-label="뒤로">${ICON.back}</button>`;
+    if (step === 'intro') return {
+      top: `${topBack}<span style="flex:1"></span>`,
+      html: `<div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding-top:12px"><img src="assets/logo.svg" alt="한입씩" style="height:44px"><div class="hand">오늘도 맛있게 한입씩.</div></div>
+        <div class="hero"><img src="assets/carrot.svg" alt="" style="left:14px;top:20px;width:96px;transform:rotate(-10deg)"><img src="assets/rice.svg" alt="" style="left:50%;top:60px;width:110px;transform:translateX(-50%)"><img src="assets/broccoli.svg" alt="" style="right:14px;top:14px;width:92px;transform:rotate(8deg)"><img src="assets/egg.svg" alt="" style="left:30px;bottom:12px;width:76px"><img src="assets/kabocha.svg" alt="" style="right:26px;bottom:10px;width:86px"></div>
+        <div style="text-align:center;display:flex;flex-direction:column;gap:6px"><h2 style="font-size:27px">첫 숟가락부터<br>온 가족 식탁까지</h2><div class="muted" style="font-size:14.5px">재료 하나로 이유식, 아이 반찬, 어른 밥상까지</div></div>
+        <button type="button" class="btn block" style="background:#FEE500;color:rgba(0,0,0,.85);border-radius:12px" data-h="${on(() => go('onboard', 'kid'))}">카카오로 시작하기 (프로토타입은 바로 시작)</button>`,
+    };
+    if (step === 'kid') {
+      const k = obDraft;
+      return {
+        top: `${topBack}${dots(1)}<span class="icon-btn"></span>`,
+        html: `<h2 style="font-size:26px">아이를 소개해 주세요</h2>${kidForm(k)}<p class="muted" id="kErr" hidden style="color:var(--warn-ink)">이름과 생년월일을 넣어 주세요.</p>
+          <button type="button" class="btn block" id="obAdd" data-h="${on(() => { if (!kidValid(k)) { $('#kErr').hidden = false; return; } obKids.push(k); obDraft = kidDefaults({}); go('onboard', 'kids', { replace: true }); })}">${esc(k.name || '아이')} 추가하기</button>`,
+        after: () => { bindKidForm(k); $('#kName').addEventListener('input', () => { $('#obAdd').textContent = `${k.name || '아이'} 추가하기`; }); },
+      };
+    }
+    if (step === 'kids') return {
+      top: `${topBack}${dots(2)}<span class="icon-btn"></span>`,
+      html: `<div><h2 style="font-size:26px">우리 집 아이들</h2><div class="muted">아이마다 맞는 단계로 따로 챙겨 드려요.</div></div>
+        <div class="rlist">${obKids.map((k, i) => `<div class="ritem" style="cursor:default">${charHtml(i % 2 ? '당근' : '쌀', 56)}<span><span class="t">${esc(k.name)}</span><span class="m"><span class="badge">${monthsOld(k.birth)}개월</span><span class="badge rose">${esc(stageLabel(k))}</span>${k.allergies.map((a) => `<span class="badge warn">${esc(allergenLabel(a))}</span>`).join('')}</span></span></div>`).join('')}</div>
+        <button type="button" class="btn ghost block" data-h="${on(() => go('onboard', 'kid'))}">+ 아이 더 추가하기</button>
+        <div class="note sage">${ICON.info}<span>알레르기가 있는 재료는 그 아이의 레시피에서 자동으로 빼 드려요.</span></div>
+        <button type="button" class="btn block" data-h="${on(() => go('onboard', 'family'))}">다음</button>`,
+    };
+    if (step === 'family') return {
+      top: `${topBack}${dots(3)}<span class="icon-btn"></span>`,
+      html: `<div><h2 style="font-size:26px">함께 먹는 어른은<br>몇 명인가요?</h2><div class="muted">온 가족 레시피에 쓰여요.</div></div>
+        <section class="card" style="display:flex;align-items:center;justify-content:space-between"><div class="sec-title" style="font-size:18px">어른</div><div class="stepper"><button type="button" aria-label="어른 한 명 빼기" data-h="${on(() => { obAdults = Math.max(0, obAdults - 1); render(); })}">−</button><output>${obAdults}</output><button type="button" aria-label="어른 한 명 더하기" data-h="${on(() => { obAdults += 1; render(); })}">+</button></div></section>
+        <section class="card" style="display:flex;align-items:center;justify-content:space-between;background:var(--milk)"><div class="sec-title" style="font-size:18px">아이</div><output style="font-family:var(--f-display);font-size:24px;padding-right:14px">${obKids.length}</output></section>
+        <button type="button" class="btn block" data-h="${on(() => go('onboard', 'method'))}">다음</button>`,
+    };
+    if (step === 'method') return {
+      top: `${topBack}${dots(4)}<span class="icon-btn"></span>`,
+      html: `<div><h2 style="font-size:26px">이유식은 어떻게<br>만들고 싶으세요?</h2><div class="muted">나중에 우리 아이 탭에서 바꿀 수 있어요.</div></div>
+        ${methodChooser((m) => { obMethod = m; render(); }, obMethod)}
+        <div class="note mist">${ICON.info}<span>${esc(GUIDE.methods.note)} <a href="#" data-go="methods">자세히 비교하기</a></span></div>
+        <button type="button" class="btn block" data-h="${on(() => { state = { v: 2, example: false, adults: obAdults, selected: obKids[0].id, prefs: { method: obMethod }, today: { date: todayIso, items: [], riceAtHome: true, family: false }, fridge: [], kids: obKids }; save(); famSel = null; planSel = null; go('onboard', 'done', { replace: true }); })}">다 됐어요</button>`,
+    };
+    return {
+      top: '<span class="icon-btn"></span><span style="flex:1"></span>',
+      html: `<div class="hero" style="height:200px"><img src="assets/apple.svg" alt="" style="left:24px;top:40px;width:80px;transform:rotate(-12deg)"><img src="assets/rice.svg" alt="" style="left:50%;top:50px;width:110px;transform:translateX(-50%)"><img src="assets/pear.svg" alt="" style="right:24px;top:30px;width:78px;transform:rotate(10deg)"></div>
+        <div class="hand">준비 끝!</div><h2 style="font-size:26px;margin-top:-8px">${esc(state.kids.map((k) => k.name).join('와 '))}의 한입,<br>오늘부터 시작해요</h2>
+        <button type="button" class="btn block" data-h="${on(() => tabGo('home'))}">홈으로 가기</button>
+        <button type="button" class="btn ghost block" data-h="${on(() => { tabGo('home'); go('guide'); })}">이유식 처음이라면? 먼저 보기</button>`,
+    };
+  };
+
+  // ---------- 시작 ----------
+  function boot() {
+    $('#screen').innerHTML = '<div class="empty"><img src="assets/rice.svg" alt="">불러오는 중이에요</div>';
+    const names = ['recipes', 'ingredients', 'risks', 'situations', 'guide', 'sources', 'allergen_policy', 'methods', 'storage'];
+    Promise.all(names.map((n) => fetch(`data/${n}.json`).then((r) => { if (!r.ok) throw new Error(n); return r.json(); })))
+      .then(([rec, ing, risk, sit, guide, src, policy, meth, storage]) => {
+        RECIPES = rec.recipes; GUIDE_ROWS = ing.items; RISKS = risk; SITUATIONS = sit.items; GUIDE = guide; SOURCES = src.sources; POLICY = policy; STORAGE = storage;
+        METHODS = Object.fromEntries(meth.items.map((/** @type {RecipeMethods} */ m) => [m.recipeId, m]));
+        render();
+      })
+      .catch((e) => { $('#screen').innerHTML = `<div class="empty"><img src="assets/mushroom.svg" alt="">데이터를 불러오지 못했어요 (${esc(e.message)}). 새로고침해 주세요.</div>`; });
+  }
+  boot();
+})();
