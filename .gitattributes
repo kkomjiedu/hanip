@@ -4,3 +4,9 @@
 *.jpeg binary
 *.png binary
 *.webp binary
+
+# 원본 데이터는 줄바꿈을 포함해 한 바이트도 바꾸지 않는다
+hanip_recipe_catalog_230.json -text
+hanip_ingredient_guide_30.csv -text
+data/recipes/hanip_recipe_catalog_230.json -text
+data/ingredients/hanip_ingredient_guide_30.csv -text
