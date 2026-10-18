@@ -216,6 +216,8 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
   const daysSince = (date) => daysBetween(date, todayIso);
   /** 한글 등 입력기가 글자를 조합하는 중인지 (조합 중 Enter는 글자 확정용이라 무시) @param {KeyboardEvent} e */
   const imeBusy = (e) => e.isComposing || e.keyCode === 229;
+  /** 마지막 호출 뒤 ms만큼 조용하면 한 번 실행 @param {() => void} fn @param {number} ms */
+  const debounce = (fn, ms) => { /** @type {ReturnType<typeof setTimeout>|undefined} */ let t; return () => { clearTimeout(t); t = setTimeout(fn, ms); }; };
   /** @param {string} birth */
   const monthsOld = (birth) => {
     const b = parse(birth); let m = (TODAY.getFullYear() - b.getFullYear()) * 12 + (TODAY.getMonth() - b.getMonth());
@@ -579,8 +581,9 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
       const hits = last ? names.filter((n) => n.includes(last) && n !== last).slice(0, 8) : [];
       box.innerHTML = hits.map((n) => `<button type="button" class="badge" style="min-height:34px;border:1.5px solid var(--line);background:var(--white)" data-s="${esc(n)}">${esc(n)}</button>`).join('');
     };
-    input.addEventListener('input', show);
-    input.addEventListener('compositionupdate', () => setTimeout(show, 0));
+    const later = debounce(show, 250);
+    input.addEventListener('input', later);
+    input.addEventListener('compositionend', later);
     box.addEventListener('click', (e) => {
       const b = /** @type {HTMLElement|null} */ (/** @type {HTMLElement} */ (e.target).closest('[data-s]'));
       if (b?.dataset.s) onPick(b.dataset.s);
@@ -804,7 +807,10 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
         <div class="stack" id="rResults">${resultsHtml()}</div>`,
       after: () => {
         const s = $('#rsearch');
-        s.addEventListener('input', () => { rq.q = s.value; $('#rResults').innerHTML = resultsHtml(); });
+        // 입력이 잠깐 멈췄을 때만 결과를 바꾼다. 글자마다 목록을 그리면 아이폰에서 느려지고 글자가 빠진다
+        const update = debounce(() => { rq.q = s.value; $('#rResults').innerHTML = resultsHtml(); }, 300);
+        s.addEventListener('input', update);
+        s.addEventListener('compositionend', update);
         $('#onlyFit').addEventListener('change', (/** @type {any} */ e) => { rq.onlyFit = e.target.checked; render(); });
       },
     };
