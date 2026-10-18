@@ -46,6 +46,11 @@
 6. 질식 위험: 둥근 과일, 단단한 생채소, 통콩, 통씨, 큰 고기·치즈 덩어리, 생선 가시는 검수본의 `cautions`로 자동 표시된다. 레시피를 바꿔도 이 주의를 지우지 않는다.
 7. 의료 정보에는 출처 링크를 붙이고, 위험 신호(호흡 곤란, 입술·얼굴 부기, 반복 구토 등)는 119·병원 안내로 연결한다. 진단처럼 들리는 문장을 쓰지 않는다.
 8. 앱의 모든 알레르기·상황별 내용은 출시 전 소아과 전문의 감수가 필요하다.
+9. **검수 상태 세 가지** (`reviewStatus`): `pending_review`는 앱에서 내용을 숨긴다 / `source_verified`는 원문을 확인했지만 전문가 감수 전이라 출처와 "전문가 감수 전" 표시를 붙여 보여 준다 / `expert_reviewed`만 확정 콘텐츠로 보여 준다.
+10. 출처는 [data/guides/hanip_sources.json](data/guides/hanip_sources.json)에만 등록한다. `verified: false`인 출처(현재 WHO 2023, AAP 2019, 국내 학회)는 근거로 쓰지 않는다. 안내 문장은 원문을 읽고 한입씩 문장으로 새로 쓴다. 책·블로그(삐뽀삐뽀 119 이유식, 뿐이 토핑 이유식 등)의 문장·식단표·레시피·사진은 옮기지 않는다.
+11. 조리법(토핑식·혼합식), 계량, 조리 시간, 보관 기간은 전문가 검수 전에는 비워 두고 `pending_review`로 둔다. 검수 전 조리 단계에 수치(g, ml, 분, 일 등)가 들어가면 빌드가 실패한다. 앱용 데이터에는 검수 전 조리 단계를 아예 내보내지 않는다.
+12. 알레르기 식품 도입: 위험 요인(심한 습진, 진단된 식품 알레르기, 이전 반응 의심)이 있는 아기는 도입 순서와 알림을 자동으로 만들지 않고 의료진 상담을 먼저 안내한다. 반응이 의심된 식품의 재도전을 권하지 않는다. 피부에 문지르는 자가 테스트, 일차별 증량표는 만들지 않는다. '먹어봤어요'는 알레르기가 없다는 확인이 아니라고 함께 안내한다.
+13. 냉장고 보관 기간은 [data/ingredients/hanip_storage_guide.json](data/ingredients/hanip_storage_guide.json)에서 원문을 확인한 출처 표에 있는 품목만 날짜를 계산한다. 표에 없는 재료(채소, 두부, 우유 등)는 기간을 지어내지 않고 "상태를 보고 판단" 안내만 한다.
 
 ## 4. 데이터 규칙
 
@@ -53,8 +58,9 @@
   - `hanip_recipe_catalog_230.json`, `hanip_ingredient_guide_30.csv` (최상위)
   - `data/recipes/hanip_recipe_catalog_230.json`, `data/ingredients/hanip_ingredient_guide_30.csv` (원본과 같은 바이트 복사본)
 - 원본 레시피는 고치지 않고, 고칠 내용은 [data/recipes/hanip_recipe_corrections.json](data/recipes/hanip_recipe_corrections.json)에 규칙으로 적는다. 앱은 **검수본 `data/recipes/hanip_recipes_reviewed.json`만** 읽는다.
-- 파생 파일은 `node scripts/build-data.mjs`로만 다시 만든다. 이 스크립트는 다른 내용의 원본 복사본이 있으면 덮어쓰지 않고 멈추고, 검수본에 오류가 하나라도 있으면 실패한다(종료 코드 1).
-  - `data/ingredients/hanip_ingredient_guide_30.json`, `data/recipes/hanip_recipes_reviewed.json`, `data/validation_report.json`, `docs/hanip_risk_ingredients.md`
+- 파생 파일은 `npm run build`(= 데이터 빌드 → 타입 검사 → 앱 빌드)로만 다시 만든다. 데이터 빌드는 다른 내용의 원본 복사본이 있으면 덮어쓰지 않고 멈추고, 검수본·콘텐츠에 오류가 하나라도 있으면 실패한다(종료 코드 1).
+  - `data/ingredients/hanip_ingredient_guide_30.json`, `data/recipes/hanip_recipes_reviewed.json`, `data/recipes/hanip_recipe_methods.json`, `data/validation_report.json`, `docs/hanip_risk_ingredients.md`, `app/data/*`, `app/index.html`, `dist/`
+- 사람이 쓰는 데이터: `data/guides/`(출처 목록, 이유식 가이드), `data/allergens/`(알레르기 정책), `data/ingredients/hanip_storage_guide.json`(냉장고 보관), `data/recipes/hanip_recipe_corrections.json`, `data/recipes/hanip_recipe_method_drafts.json`. 모양은 `data/schemas/*.schema.json`으로 빌드 때 검사한다.
 - 빌드 검사 항목 (실패하면 데이터를 고치고, 검사를 끄지 않는다):
   - 제목에 없는 재료 (예: 양배추 → 배·배추, 무침 → 무, 김치 → 김, 오트밀 → 밀처럼 다른 단어의 일부를 뽑은 경우)
   - 제목에 있는데 빠진 재료 (예: 뭇국의 무, 북엇국의 북어)
@@ -72,7 +78,9 @@
 
 - 가입은 카카오 소셜 로그인만. 계정은 혼자 쓰고 가족 공유는 없다. 저장소는 Supabase.
 - 온보딩: 카카오로 시작 → 약관 동의 → 아이 정보(여러 명) → 우리 집 아이들 → 식구 수 → 준비 완료.
-- 증상 기록 기능은 없다. "먹어봤어요" 체크(재료 도감)만 남긴다.
+- 증상을 고르거나 적는 기록 기능은 없다. "먹어봤어요" 체크(재료 도감)와 "반응이 의심돼요" 표시 하나만 둔다(2026-10-19 사용자 요청으로 추가). 표시하면 그 재료를 식단·레시피에서 빼고 새 재료 도입을 멈추며 상담을 안내한다.
+- 이유식 방식(토핑식·혼합식·둘 다)은 온보딩 마지막 단계와 우리 아이 탭에서 고르고, 오늘의 이유식 카드에서 먼저 보여 줄 조리법만 바꾼다. 영양·알레르기 기준은 방식과 상관없이 같다.
+- 첫 30일 식단은 일반적인 입문 예시이고, 알레르기 식품을 자동으로 넣지 않으며, 제공량을 정해 주지 않는다. 하루 미루기·멈추기·관찰 간격(3~5일) 변경을 지원한다.
 - 내 레시피는 나만 보기 / 공개를 고를 수 있다(기본값 나만 보기). 만드는 법은 단계마다 사진 여러 장 + 설명. 준비물은 만드는 법에서 자동으로 찾고 사용자는 더하고 고치기만 한다. 수량은 숫자 칸 + 단위 드롭다운.
 - 홈 상단에는 시기별 알림 배너를 한 번에 하나만 띄운다.
 - 캔버스의 보드(O1~O6, A·A', B, C, D, R1~R5, I1, F1, A1, A2, S1, S2)를 지우거나 덮어쓰지 않는다. 고칠 때는 해당 보드만 바꾸고 무엇을 바꿨는지 알린다.
@@ -80,6 +88,9 @@
 
 ## 6. 작업 방식
 
+- 앱 소스는 `app/src/`(template.html, app.js, types.d.ts)에서 고친다. `app/index.html`과 `dist/`는 빌드 결과라 직접 고치지 않는다. app.js는 `// @ts-check`로 타입 검사를 받는다.
 - Git은 GitHub Desktop에 들어 있는 것을 쓴다: `%LOCALAPPDATA%\GitHubDesktop\app-<버전>\resources\app\git\cmd\git.exe`. 커밋 계정 wishbunnydev.
+- 올리기: origin은 `kkomjiedu/hanip`(공개). main에 푸시하면 GitHub Actions(`.github/workflows/pages.yml`)가 빌드해 https://kkomjiedu.github.io/hanip/ 에 배포한다. 예비 원격 `wishbunnydev`(비공개)는 패스키를 팀원이 갖고 있다. 푸시는 사용자가 GitHub Desktop에서 누른다.
+- 저장소가 공개이므로 개인정보, 키, 비공개로 둘 기획 자료는 커밋하지 않는다.
 - `notion-windows-installer.exe` 같은 설치 파일은 커밋하지 않는다.
 - 외부에 올리는 일(저장소 공개, 배포, 공개 링크)은 사용자에게 먼저 묻는다.

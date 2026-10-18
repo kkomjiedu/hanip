@@ -9,6 +9,13 @@
 | `recipes/hanip_recipe_corrections.json` | 원본 위에 덧씌우는 수정 규칙 | 예, 근거와 함께 |
 | `recipes/hanip_recipes_reviewed.json` | **앱이 읽는 검수본** (원본 + 수정 규칙 + 자동 주의) | 스크립트로만 다시 생성 |
 | `validation_report.json` | 개수·중복·검사 결과 | 스크립트로만 다시 생성 |
+| `recipes/hanip_recipe_method_drafts.json` | 레시피별 토핑식·혼합식 조리법 초안 (검수 전 비공개) | 예, 수치 없이 |
+| `recipes/hanip_recipe_methods.json` | 230개 레시피의 조리법 구조 (recipeId, stage, toppingMethod, mixedMethod, cookingTime 등) | 스크립트로만 다시 생성 |
+| `guides/hanip_sources.json` | 출처 목록 (기관, 연도, URL, 확인일, 원문 확인 여부, 주요 내용) | 예, 원문 확인 후 |
+| `guides/hanip_weaning_guide.json` | 이유식 시작 가이드, 단계별 안내, Q&A, 방식 비교, 첫 30일 규칙 | 예, 출처와 함께 |
+| `allergens/hanip_allergen_policy.json` | 알레르기 식품 도입 정책, 위험도 질문, 상태 5단계, 반복 제공 | 예, 출처와 함께 |
+| `ingredients/hanip_storage_guide.json` | 우리집 냉장고 보관법과 냉장 기간 (출처 표에 있는 품목만) | 예, 출처와 함께 |
+| `schemas/*.schema.json` | 위 파일들의 JSON 스키마 (빌드 때 검사) | 예 |
 
 다시 만들기: `node scripts/build-data.mjs`
 
