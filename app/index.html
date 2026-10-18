@@ -785,27 +785,26 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
   const rq = { q: '', cat: 'all', onlyFit: true };
   SCREENS.recipes = () => {
     const kid = currentKid();
-    const q = rq.q.trim();
-    let list = RECIPES.filter((r) => (rq.cat === 'all' || r.category === rq.cat) && (!q || r.title.includes(q) || r.main_ingredients.some((i) => i.includes(q))));
-    if (rq.onlyFit) list = list.filter((r) => !unfitReason(r, kid));
     const firstBite = rq.cat === 'all' || rq.cat.startsWith('첫한입');
+    // 검색어가 바뀌면 이 부분만 다시 그린다. 입력 칸을 다시 만들면 한글 조합이 끊긴다
+    const resultsHtml = () => {
+      const q = rq.q.trim();
+      let list = RECIPES.filter((r) => (rq.cat === 'all' || r.category === rq.cat) && (!q || r.title.includes(q) || r.main_ingredients.some((i) => i.includes(q))));
+      if (rq.onlyFit) list = list.filter((r) => !unfitReason(r, kid));
+      return `<div class="row" style="justify-content:space-between"><span class="muted">${list.length}개 · 모두 검수 전</span><button type="button" class="btn ghost small" data-go="family">온 가족 레시피</button></div>
+        <div class="rlist">${list.slice(0, 80).map((r) => recipeItem(r, kid)).join('') || `<div class="empty"><img src="assets/mushroom.svg" alt="">조건에 맞는 레시피가 없어요.</div>`}</div>
+        ${list.length > 80 ? `<div class="muted" style="text-align:center">처음 80개만 보여요. 검색이나 대상으로 좁혀 보세요.</div>` : ''}`;
+    };
     return {
       title: '레시피',
       html: `${firstBite ? `<div class="quick"><button type="button" style="background:var(--butter)" data-go="guide"><img src="assets/bowl.svg" alt="">이유식 처음이라면?</button><button type="button" style="background:var(--mist)" data-go="methods"><img src="assets/cat-first.svg" alt="">어떤 방식으로 만들까요?</button></div>` : ''}
-        <input class="search" id="rsearch" type="search" placeholder="레시피나 재료 이름" aria-label="레시피 검색" value="${esc(rq.q)}">
+        <input class="search" id="rsearch" type="search" placeholder="레시피나 재료 이름" aria-label="레시피 검색" autocomplete="off" autocorrect="off" spellcheck="false" value="${esc(rq.q)}">
         <div class="chips" role="group" aria-label="대상">${[['all', '전체'], ...CATS.map((c) => [c.key, c.label])].map(([k, l]) => `<button type="button" class="chip" aria-pressed="${rq.cat === k}" data-h="${on(() => { rq.cat = k; render(); })}">${esc(l)}</button>`).join('')}</div>
         <label class="toggle"><input type="checkbox" id="onlyFit" ${rq.onlyFit ? 'checked' : ''}> ${esc(kid.name)}가 먹을 수 있는 것만 <span class="muted">(${monthsOld(kid.birth)}개월${avoidSet(kid).size ? ', ' + [...avoidSet(kid)].map(allergenLabel).join('·') + ' 제외' : ''})</span></label>
-        <div class="row" style="justify-content:space-between"><span class="muted">${list.length}개 · 모두 검수 전</span><button type="button" class="btn ghost small" data-go="family">온 가족 레시피</button></div>
-        <div class="rlist">${list.slice(0, 80).map((r) => recipeItem(r, kid)).join('') || `<div class="empty"><img src="assets/mushroom.svg" alt="">조건에 맞는 레시피가 없어요.</div>`}</div>
-        ${list.length > 80 ? `<div class="muted" style="text-align:center">처음 80개만 보여요. 검색이나 대상으로 좁혀 보세요.</div>` : ''}`,
+        <div class="stack" id="rResults">${resultsHtml()}</div>`,
       after: () => {
         const s = $('#rsearch');
-        // 한글은 조합이 끝난 뒤에만 다시 그린다. 조합 중에 다시 그리면 자음·모음이 따로 들어간다
-        let composing = false;
-        const apply = () => { rq.q = s.value; const pos = s.selectionStart; render(); const n = $('#rsearch'); n.focus(); n.setSelectionRange(pos, pos); };
-        s.addEventListener('compositionstart', () => { composing = true; });
-        s.addEventListener('compositionend', () => { composing = false; apply(); });
-        s.addEventListener('input', (/** @type {InputEvent} */ e) => { if (!composing && !e.isComposing) apply(); });
+        s.addEventListener('input', () => { rq.q = s.value; $('#rResults').innerHTML = resultsHtml(); });
         $('#onlyFit').addEventListener('change', (/** @type {any} */ e) => { rq.onlyFit = e.target.checked; render(); });
       },
     };
