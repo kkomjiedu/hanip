@@ -167,6 +167,8 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
 .pref button b { font-family: var(--f-display); font-weight: 400; font-size: 17px; }
 .pref button[aria-pressed="true"] { border-color: var(--deep); background: var(--sage-tint); }
 .alert-item { display: flex; gap: 12px; align-items: flex-start; }
+.cats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.cats .ig { background: var(--white); border: 1.5px solid var(--line); }
 @media (prefers-reduced-motion: no-preference) { .ritem, .ig, .chip, .btn, .cal button { transition: transform .12s ease; } .ritem:active, .ig:active, .chip:active, .btn:active, .cal button:active { transform: scale(.98); } }
 </style>
 
@@ -456,7 +458,7 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
   /** @type {{ name: string, arg: string|null }[]} */
   const history = [];
   /** @type {Record<string, string>} */
-  const TAB_OF = { home: 'home', alerts: 'home', myfridge: 'ingredients', recipes: 'recipes', recipe: 'recipes', guide: 'recipes', readiness: 'recipes', stages: 'recipes', faq: 'recipes', methods: 'recipes', ingredients: 'ingredients', ingredient: 'ingredients', fridge: 'ingredients', family: 'recipes', allergy: 'kids', allergen: 'kids', risk: 'kids', situations: 'home', situation: 'home', kids: 'kids', kidEdit: 'kids', plan: 'plan' };
+  const TAB_OF = { home: 'home', alerts: 'home', today: 'home', myfridge: 'ingredients', recipes: 'recipes', recipe: 'recipes', guide: 'recipes', readiness: 'recipes', stages: 'recipes', faq: 'recipes', methods: 'recipes', ingredients: 'ingredients', ingredient: 'ingredients', fridge: 'ingredients', family: 'recipes', allergy: 'kids', allergen: 'kids', risk: 'kids', situations: 'home', situation: 'home', kids: 'kids', kidEdit: 'kids', plan: 'plan' };
   /** @param {string} name @param {string|null} [arg] @param {{ replace?: boolean }} [opt] */
   function go(name, arg = null, opt = {}) { if (!opt.replace) history.push(view); view = { name, arg }; render(); $('#screen').scrollTop = 0; $('#screen').focus({ preventScroll: true }); }
   function back() { view = history.pop() ?? { name: 'home', arg: null }; render(); }
@@ -529,27 +531,42 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
     const todayRecipe = p?.recipe ?? (fits.length ? fits[dayIdx % fits.length] : null);
     const pref = state.prefs.method;
     const prefMethod = pref === 'mixed' ? 'mixed' : 'topping';
+    const notStarted = m < 12 && !kid.started;
+    const lead = todayRecipe ? leadIngredient(todayRecipe) : '쌀';
+    const stageCat = m < 7 ? '첫한입_초기' : m < 9 ? '첫한입_중기' : m < 12 ? '첫한입_후기' : '첫한입_완료기';
+    const soon = fridgeSoon();
+    const usableFridge = state.fridge.filter((f) => useBy(f)?.tone !== 'over');
+    const fridgeCan = usableFridge.length ? fits.filter((r) => r.main_ingredients.every((i) => (i === '쌀' && state.today.riceAtHome) || usableFridge.some((f) => f.name === i))).length : 0;
+    /** @param {string} cat */
+    const toCat = (cat) => on(() => { rq.cat = cat; rq.q = ''; rq.onlyFit = true; tabGo('recipes'); });
+    const status = notStarted ? `${esc(kid.name)} · 이유식 시작 전` : kid.started && kid.startDate && m < 12 ? `이유식 ${daysSince(kid.startDate) + 1}일차` : esc(kid.name);
     return {
       html: `${kidBar()}
-        ${whatToEat(kid)}
-        ${a0 ? `<button type="button" class="banner ${a0.tone === 'warn' ? 'warn' : ''}" style="border:0;text-align:left" data-go="${a0.go?.[0] ?? 'alerts'}" ${a0.go?.[1] ? `data-arg="${esc(a0.go[1])}"` : ''}><span class="badge deep pill">${alerts.length > 1 ? `알림 ${alerts.length}개` : '알림'}</span><h2 style="padding-right:0">${esc(a0.title)}</h2><p style="padding-right:0">${esc(a0.body)}</p></button>` : ''}
-        <section class="stack" aria-label="오늘의 이유식">
-          <div class="row" style="justify-content:space-between"><div class="sec-title">${inPlan ? `오늘의 이유식 · ${day}일차` : `${esc(kid.name)}의 오늘 추천`}</div>${inPlan ? '<button type="button" class="btn ghost small" data-tab="plan">식단표</button>' : ''}</div>
-          ${p?.newIng ? `<div class="row"><span class="badge ${p.isNewDay ? 'warn' : 'butter'}">새 재료 ${esc(p.newIng)} · ${p.dayInBlock}/${kid.plan.interval}일째</span><span class="badge">${esc(methodLabel(pref))}으로 보기</span></div>` : ''}
-          ${todayRecipe ? recipeItem(todayRecipe, kid, '', prefMethod) : `<div class="card empty"><img src="assets/rice.svg" alt=""><div>${m < 12 && !kid.started ? '이유식을 시작하면 단계에 맞는 레시피를 보여 드려요.' : '조건에 맞는 레시피가 없어요.'}</div>${m < 12 && !kid.started ? '<button type="button" class="btn small" data-go="readiness">시작해도 될까요?</button>' : ''}</div>`}
-        </section>
-        <section class="stack"><div class="sec-title">무엇을 찾으세요?</div>
-        <div class="quick">
-          <button type="button" style="background:var(--butter)" data-go="guide"><img src="assets/bowl.svg" alt="">이유식 처음이라면?</button>
-          <button type="button" style="background:var(--mist)" data-go="family"><img src="assets/cat-family.svg" alt="">온 가족 레시피</button>
-          <button type="button" style="background:var(--rose)" data-go="allergy"><img src="assets/egg.svg" alt="">알레르기 식품</button>
-          <button type="button" style="background:var(--sage-tint)" data-go="situations"><img src="assets/pear.svg" alt="">이럴 땐 이렇게</button>
-          <button type="button" style="background:var(--white);border:1.5px solid var(--line)" data-go="myfridge"><img src="assets/fridge.svg" alt="">우리집 냉장고${fridgeSoon().length ? ` · 곧 ${fridgeSoon().length}개` : ''}</button>
-          <button type="button" style="background:var(--white);border:1.5px solid var(--line)" data-go="fridge"><img src="assets/broccoli.svg" alt="">재료로 레시피 찾기</button>
-        </div></section>`,
-      after: bindWhatToEat,
+        <h2 style="font-size:30px;padding-top:2px">오늘은 뭐 먹지?</h2>
+        <button type="button" class="ritem" style="min-height:64px;border-radius:20px" data-tab="plan"><span class="char" style="width:48px;height:48px;background:transparent"><img src="assets/bowl.svg" alt=""></span><span><span class="t">${status}</span><span class="muted">${esc(stageLabel(kid))} · 생후 ${m}개월</span></span>${ICON.chev}</button>
+        ${notStarted
+          ? `<section class="banner" style="min-height:188px" aria-label="이유식 시작"><img class="deco" src="assets/rice.svg" alt="" style="width:140px;top:12px;right:-8px;transform:none"><h2 style="font-size:26px;padding-right:110px">이유식,<br>시작해 볼까요?</h2><p style="padding-right:110px">준비 신호부터 함께 확인해요.</p><div><button type="button" class="btn small" data-go="guide">이유식 처음이라면?</button></div></section>`
+          : todayRecipe ? `<section class="banner" style="min-height:188px" aria-label="오늘의 첫한입">
+            <img class="deco" src="assets/${CHAR[lead] ?? 'bowl'}.svg" alt="" style="width:150px;top:6px;right:-10px;transform:none">
+            <span class="badge deep pill">${m < 12 ? '오늘의 첫한입' : `${esc(kid.name)}의 오늘 추천`}${inPlan ? ` · ${day}일차` : ''}</span>
+            <h2 style="font-size:24px;padding-right:120px">${esc(todayRecipe.title)}</h2>
+            <div class="row" style="padding-right:110px">${todayRecipe.main_ingredients.slice(0, 3).map((i) => `<span class="badge" style="background:var(--milk)">${esc(i)}</span>`).join('')}${p?.newIng ? `<span class="badge warn">새 재료 ${esc(p.newIng)} ${p.dayInBlock}/${kid.plan.interval}</span>` : ''}</div>
+            <div><button type="button" class="btn small" data-go="recipe" data-arg="${todayRecipe.id}|${prefMethod}">오늘 메뉴 보기</button></div>
+          </section>` : `<div class="card empty"><img src="assets/rice.svg" alt=""><div>조건에 맞는 레시피가 없어요.</div></div>`}
+        ${a0 ? `<button type="button" class="ritem" style="background:${a0.tone === 'warn' ? 'var(--warn-bg)' : 'var(--sage-tint)'};border:0" data-go="${a0.go?.[0] ?? 'alerts'}" ${a0.go?.[1] ? `data-arg="${esc(a0.go[1])}"` : ''}><span class="char" style="width:40px;height:40px;background:var(--white);border-radius:50%">${ICON.bell}</span><span><span class="t" style="font-size:15px">${esc(a0.title)}</span><span class="muted">${alerts.length > 1 ? `알림 ${alerts.length}개 · ` : ''}눌러서 보기</span></span>${ICON.chev}</button>` : ''}
+        <div class="cats" role="group" aria-label="카테고리">
+          <button type="button" class="ig card" style="padding:12px 4px;border-radius:22px" data-h="${toCat(stageCat)}"><img src="assets/cat-first.svg" alt="" style="width:56px;height:56px"><span style="font-family:var(--f-display);font-size:16px">첫한입</span><span class="muted" style="font-size:11.5px">이유식</span></button>
+          <button type="button" class="ig card" style="padding:12px 4px;border-radius:22px" data-h="${toCat('쑥쑥한입')}"><img src="assets/cat-grow.svg" alt="" style="width:56px;height:56px"><span style="font-family:var(--f-display);font-size:16px">쑥쑥한입</span><span class="muted" style="font-size:11.5px">유아식 · 반찬</span></button>
+          <button type="button" class="ig card" style="padding:12px 4px;border-radius:22px" data-h="${toCat('같이한입')}"><img src="assets/cat-family.svg" alt="" style="width:56px;height:56px"><span style="font-family:var(--f-display);font-size:16px">같이한입</span><span class="muted" style="font-size:11.5px">가족 식탁</span></button>
+        </div>
+        <button type="button" class="ritem" style="min-height:76px;border:0;border-radius:24px;background:var(--mist)" data-go="myfridge"><span class="char" style="width:54px;height:54px;background:transparent"><img src="assets/fridge.svg" alt=""></span><span><span class="t" style="font-size:18px">냉장고에 뭐 있지?</span><span style="font-size:12.5px;color:#3F5560">${soon.length ? `곧 써야 해요: ${soon.slice(0, 3).map((f) => esc(f.name)).join(', ')}` : state.fridge.length ? `재료 ${state.fridge.length}개 · 바로 만들 수 있는 레시피 ${fridgeCan}개` : '재료를 넣으면 보관법과 레시피를 알려 드려요'}</span></span>${ICON.chev}</button>
+        <div class="row" style="justify-content:center;gap:4px 14px;font-size:13.5px;padding-bottom:4px">
+          <a href="#" data-go="guide">이유식 처음이라면?</a><a href="#" data-go="allergy">알레르기 식품</a><a href="#" data-go="today">재료로 찾기</a><a href="#" data-go="family">온 가족 레시피</a><a href="#" data-go="situations">이럴 땐 이렇게</a>
+        </div>`,
     };
   };
+
+  SCREENS.today = () => ({ title: '재료로 찾기', html: `${kidBar()}${whatToEat(currentKid())}`, after: bindWhatToEat });
 
   // 오늘 뭐 먹지: 오늘 쓸 수 있는 재료로 추천
   const allIngredients = () => [...new Set([...GUIDE_ROWS.flatMap((g) => String(g['재료']).split('/')), ...RECIPES.flatMap((r) => r.main_ingredients)])].sort((a, b) => a.localeCompare(b, 'ko'));

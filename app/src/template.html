@@ -167,6 +167,8 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
 .pref button b { font-family: var(--f-display); font-weight: 400; font-size: 17px; }
 .pref button[aria-pressed="true"] { border-color: var(--deep); background: var(--sage-tint); }
 .alert-item { display: flex; gap: 12px; align-items: flex-start; }
+.cats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.cats .ig { background: var(--white); border: 1.5px solid var(--line); }
 @media (prefers-reduced-motion: no-preference) { .ritem, .ig, .chip, .btn, .cal button { transition: transform .12s ease; } .ritem:active, .ig:active, .chip:active, .btn:active, .cal button:active { transform: scale(.98); } }
 </style>
 
