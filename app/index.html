@@ -1,0 +1,654 @@
+<title>한입씩 프로토타입</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Gaegu:wght@300;400&family=Noto+Sans+KR:wght@400;500;600&display=swap">
+<style>
+/* Layout: 폰 한 화면 앱. 데스크톱에서는 가운데 430px 기둥, 하단 탭 고정. 브랜드가 밝은 한 가지 톤이라 라이트 단일 테마. */
+:root {
+  --milk: #FBF8F2; --butter: #F6EBD0; --sage: #9DBE92; --deep: #5F7A5C; --apricot: #E9A58C;
+  --rose: #EFCFCB; --mist: #CFDFE4; --ink: #4A443F; --soft: #6B6358; --line: #ECE5D8;
+  --sage-tint: #E4ECDF; --peach-tint: #F8E4DA; --oat: #F1ECE2; --white: #FFFFFF;
+  --warn-ink: #9A3F1C; --warn-bg: #F8E4DA; --ok-ink: #3F5C3C;
+  --f-display: 'Gowun Batang', 'Noto Serif KR', serif;
+  --f-body: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --f-hand: 'Gaegu', 'Gowun Dodum', sans-serif;
+  color-scheme: light;
+}
+html, body { height: 100%; }
+body { background: var(--oat); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+* { box-sizing: border-box; }
+button { font: inherit; color: inherit; cursor: pointer; }
+input, select { font: inherit; color: var(--ink); }
+button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible { outline: 2.5px solid var(--deep); outline-offset: 2px; }
+a { color: var(--deep); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; margin: 0; text-wrap: balance; line-height: 1.3; }
+
+.app { max-width: 430px; height: 100%; margin: 0 auto; background: var(--milk); display: flex; flex-direction: column; position: relative; box-shadow: 0 0 0 1px var(--line); }
+.top { flex: none; display: flex; align-items: center; gap: 8px; min-height: 56px; padding-left: max(12px, env(safe-area-inset-left, 0px)); padding-right: max(12px, env(safe-area-inset-right, 0px)); }
+.top h1 { font-size: 20px; flex: 1; text-align: center; }
+.top .logo { height: 28px; }
+.icon-btn { width: 44px; height: 44px; border: 0; background: none; border-radius: 50%; display: grid; place-items: center; flex: none; }
+.screen { flex: 1; min-height: 0; overflow-y: auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); padding-block: 4px 24px; display: flex; flex-direction: column; gap: 16px; }
+.tabs { flex: none; display: flex; border-top: 1.5px solid var(--line); background: var(--milk); padding-left: max(4px, env(safe-area-inset-left, 0px)); padding-right: max(4px, env(safe-area-inset-right, 0px)); }
+.tab { flex: 1; min-height: 60px; border: 0; background: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11.5px; font-weight: 500; color: var(--soft); }
+.tab[aria-current="page"] { color: var(--deep); }
+.tab svg { width: 24px; height: 24px; }
+
+.badge { display: inline-flex; align-items: center; gap: 4px; height: 24px; padding: 0 9px; border-radius: 12px; font-size: 12px; font-weight: 500; background: var(--oat); color: var(--ink); white-space: nowrap; }
+.badge.rose { background: var(--rose); } .badge.mist { background: var(--mist); } .badge.butter { background: var(--butter); }
+.badge.sage { background: var(--sage-tint); color: var(--ok-ink); } .badge.warn { background: var(--warn-bg); color: var(--warn-ink); }
+.badge.deep { background: var(--deep); color: var(--white); }
+.row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.muted { color: var(--soft); font-size: 13px; }
+.sec-title { font-family: var(--f-display); font-size: 19px; }
+.btn { min-height: 48px; border: 0; border-radius: 24px; padding: 0 20px; background: var(--deep); color: var(--white); font-weight: 500; font-size: 15.5px; }
+.btn.ghost { background: var(--white); color: var(--ink); border: 1.5px solid var(--line); }
+.btn.small { min-height: 40px; font-size: 14px; padding: 0 16px; }
+.btn.block { width: 100%; }
+.chip { min-height: 38px; padding: 0 14px; border-radius: 19px; border: 1.5px solid var(--line); background: var(--white); font-size: 14px; font-weight: 500; }
+.chip[aria-pressed="true"] { background: var(--deep); border-color: var(--deep); color: var(--white); }
+.chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chips .chip { flex: none; }
+.chips.wrap { flex-wrap: wrap; overflow: visible; }
+
+.card { border: 1.5px solid var(--line); border-radius: 20px; background: var(--white); padding: 14px; }
+.note { border-radius: 16px; padding: 12px 14px; font-size: 13.5px; line-height: 1.55; display: flex; gap: 10px; align-items: flex-start; }
+.note.warn { background: var(--warn-bg); color: #6E3A22; }
+.note.sage { background: var(--sage-tint); }
+.note.mist { background: var(--mist); }
+.note svg { flex: none; margin-top: 2px; }
+.example-bar { flex: none; background: var(--butter); font-size: 12.5px; padding-block: 7px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+.example-bar button { border: 0; background: none; color: var(--deep); font-weight: 600; font-size: 12.5px; min-height: 32px; text-decoration: underline; }
+
+.char { display: grid; place-items: center; border-radius: 16px; flex: none; }
+.char img { width: 78%; height: 78%; object-fit: contain; }
+.char .dot { width: 46%; height: 46%; border-radius: 50%; display: grid; place-items: center; font-family: var(--f-display); font-size: 15px; color: var(--ink); }
+
+.rlist { display: flex; flex-direction: column; gap: 8px; }
+.ritem { width: 100%; display: flex; align-items: center; gap: 12px; border: 1.5px solid var(--line); border-radius: 18px; background: var(--white); padding: 8px 12px 8px 8px; text-align: left; }
+.ritem .t { font-family: var(--f-display); font-size: 16.5px; display: block; line-height: 1.3; }
+.ritem .m { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
+.ritem > span:nth-child(2) { flex: 1; min-width: 0; }
+
+.kidbar { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+.kid { flex: none; min-height: 42px; padding: 0 14px 0 5px; border-radius: 21px; border: 1.5px solid var(--line); background: var(--white); display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 500; }
+.kid[aria-pressed="true"] { background: var(--deep); border-color: var(--deep); color: var(--white); }
+.kid .char { width: 32px; height: 32px; border-radius: 50%; background: var(--milk); }
+
+.banner { border-radius: 22px; background: var(--butter); padding: 16px; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 10px; }
+.banner .pill { align-self: flex-start; }
+.banner h2 { font-size: 20px; padding-right: 76px; }
+.banner p { margin: 0; font-size: 13.5px; padding-right: 76px; }
+.banner img.deco { position: absolute; right: -6px; top: 8px; width: 88px; transform: rotate(10deg); }
+
+.quick { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.quick button { border: 0; border-radius: 20px; padding: 14px 8px; display: flex; flex-direction: column; align-items: center; gap: 6px; font-weight: 500; font-size: 13.5px; }
+.quick img { width: 44px; height: 44px; }
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label, .field .lb { font-size: 14px; font-weight: 500; }
+.input { min-height: 48px; border: 1.5px solid var(--line); border-radius: 14px; background: var(--white); padding: 0 14px; width: 100%; font-size: 16px; }
+.seg { display: flex; gap: 8px; }
+.seg button { flex: 1; min-height: 46px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--white); font-weight: 500; }
+.seg button[aria-pressed="true"] { background: var(--deep); border-color: var(--deep); color: var(--white); }
+.stepper { display: flex; align-items: center; gap: 12px; }
+.stepper button { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--milk); font-size: 20px; }
+.stepper output { font-family: var(--f-display); font-size: 24px; min-width: 28px; text-align: center; }
+
+.hero { border-radius: 24px; background: var(--butter); position: relative; overflow: hidden; height: 220px; }
+.hero img { position: absolute; }
+.kv { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.kv > div { border-radius: 16px; padding: 11px 13px; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.kv b { font-size: 12.5px; }
+.kv span { font-size: 13.5px; line-height: 1.5; }
+.list { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+.src { font-size: 12px; color: var(--soft); display: flex; flex-wrap: wrap; gap: 4px 10px; }
+.src a { color: var(--soft); }
+.empty { text-align: center; padding: 28px 12px; color: var(--soft); display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.empty img { width: 72px; }
+details.card summary { cursor: pointer; font-weight: 500; min-height: 28px; }
+.hand { font-family: var(--f-hand); font-size: 20px; color: var(--deep); }
+.kidfit { display: flex; flex-direction: column; gap: 6px; }
+.kidfit > div { display: flex; gap: 8px; align-items: baseline; font-size: 14px; }
+.kidfit b { flex: none; min-width: 44px; }
+.search { min-height: 46px; border-radius: 23px; background: var(--oat); border: 0; padding: 0 16px; width: 100%; font-size: 15px; }
+.toggle { display: flex; align-items: center; gap: 10px; font-size: 14px; min-height: 40px; }
+.toggle input { width: 22px; height: 22px; accent-color: var(--deep); margin: 0; }
+.igrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 12px 6px; }
+.ig { border: 0; background: none; display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 500; padding: 0; }
+.ig .char { width: 60px; height: 60px; border-radius: 20px; background: var(--sage-tint); position: relative; }
+.ig[aria-pressed="true"] .char { background: var(--white); box-shadow: inset 0 0 0 2.5px var(--deep); }
+.status { font-size: 12px; font-weight: 500; }
+@media (prefers-reduced-motion: no-preference) { .ritem, .ig, .chip, .btn { transition: transform .12s ease; } .ritem:active, .ig:active, .chip:active, .btn:active { transform: scale(.98); } }
+</style>
+
+<div class="app" id="app">
+  <div class="example-bar" id="exampleBar" hidden>
+    <span>예시 가족으로 보고 있어요</span>
+    <button type="button" id="startOwn">우리 아이로 시작</button>
+  </div>
+  <header class="top" id="top"></header>
+  <main class="screen" id="screen" tabindex="-1"></main>
+  <nav class="tabs" id="tabs" aria-label="하단 메뉴"></nav>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const $ = (s, el = document) => el.querySelector(s);
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const TODAY = new Date();
+  const iso = (d) => d.toISOString().slice(0, 10);
+  const addMonths = (d, n) => { const x = new Date(d); x.setMonth(x.getMonth() + n); return x; };
+  const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+  const monthsOld = (birth) => {
+    const b = new Date(birth); let m = (TODAY.getFullYear() - b.getFullYear()) * 12 + (TODAY.getMonth() - b.getMonth());
+    if (TODAY.getDate() < b.getDate()) m -= 1; return Math.max(0, m);
+  };
+  const daysSince = (date) => Math.floor((TODAY - new Date(date)) / 86400000);
+
+  // ---------- 데이터 ----------
+  let RECIPES = [], GUIDE = [], RISKS = { items: [], sources: {} }, SITUATIONS = [];
+  const CATS = [
+    { key: '첫한입_초기', label: '초기', group: '첫한입', color: 'rose' },
+    { key: '첫한입_중기', label: '중기', group: '첫한입', color: 'rose' },
+    { key: '첫한입_후기', label: '후기', group: '첫한입', color: 'rose' },
+    { key: '첫한입_완료기', label: '완료기', group: '첫한입', color: 'rose' },
+    { key: '쑥쑥한입', label: '쑥쑥한입', group: '쑥쑥한입', color: 'mist' },
+    { key: '같이한입', label: '같이한입', group: '같이한입', color: 'butter' },
+  ];
+  const catOf = (k) => CATS.find((c) => c.key === k) ?? { label: k, color: '' };
+  const CHAR = { 쌀: 'rice', 당근: 'carrot', 브로콜리: 'broccoli', 애호박: 'zucchini', 고구마: 'sweet-potato', 단호박: 'kabocha', 배: 'pear', 버섯: 'mushroom', 달걀: 'egg', 메추리알: 'egg', 사과: 'apple' };
+  const TINTS = ['#F7E6E2', '#F6EBD0', '#E4ECDF', '#DCE8EC', '#F8E4DA', '#F1ECE2'];
+  const tintFor = (s) => TINTS[[...String(s)].reduce((a, c) => a + c.charCodeAt(0), 0) % TINTS.length];
+  function charHtml(ing, size = 52, bg) {
+    const file = CHAR[ing];
+    const inner = file ? `<img src="assets/${file}.svg" alt="">` : `<span class="dot" style="background:${tintFor(ing + 'x')}">${esc(String(ing).slice(0, 1))}</span>`;
+    return `<span class="char" style="width:${size}px;height:${size}px;background:${bg ?? tintFor(ing)}">${inner}</span>`;
+  }
+  const leadIngredient = (r) => r.main_ingredients.find((i) => CHAR[i] && i !== '쌀') ?? r.main_ingredients.find((i) => i !== '쌀') ?? r.main_ingredients[0] ?? '';
+  const srcLinks = (urls) => urls.map((u) => {
+    const s = Object.values(RISKS.sources).find((x) => x.url === u || x === u);
+    const title = s ? s.title.split('·')[0].trim() : u;
+    return /^https?:/.test(u) ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(title)}</a>` : `<span>${esc(title)}</span>`;
+  }).join('');
+  const srcKeys = (keys) => srcLinks(keys.map((k) => RISKS.sources[k]?.url ?? k));
+
+  // 알레르기 식품: 아래 문구는 docs/hanip_allergy_policy_draft.md의 기관 문장 범위 안에서만 쓴다.
+  const ALLERGENS = [
+    { key: '계란', label: '달걀', form: '흰자와 노른자가 단단해질 때까지 완전히 익혀서 줘요.', src: ['ASCIA', 'NHS_AVOID'] },
+    { key: '땅콩', label: '땅콩', form: '부드러운 땅콩버터, 곱게 간 땅콩, 땅콩가루처럼 나이에 맞는 형태로 줘요. 통땅콩과 땅콩 조각은 만 5세 전에는 주지 않아요.', src: ['ASCIA', 'NHS_AVOID'] },
+    { key: '우유', label: '우유', form: '요리에 넣거나 다른 음식에 섞어서 줘요. 12개월 전에는 우유를 주된 음료로 쓰지 않아요.', src: ['NHS_ALLERGY', 'KDCA_INFANT'] },
+    { key: '밀', label: '밀', form: '글루텐이 든 곡류를 익혀서 줘요.', src: ['NHS_ALLERGY'] },
+    { key: '대두', label: '콩(대두)', form: '익힌 콩 식품으로 줘요.', src: ['NHS_ALLERGY'] },
+    { key: '생선', label: '생선', form: '가시를 꼼꼼히 바르고 완전히 익혀서 줘요.', src: ['NHS_ALLERGY', 'HANIP_GUIDE'] },
+    { key: '갑각류', label: '새우·게', form: '날것이나 덜 익힌 것은 피하고 완전히 익혀서 줘요.', src: ['NHS_ALLERGY', 'NHS_AVOID'] },
+    { key: '참깨', label: '참깨', form: '으깨거나 곱게 갈아서 줘요.', src: ['NHS_ALLERGY', 'HANIP_GUIDE'] },
+  ];
+  const ALLERGY_CHOICES = ['계란', '우유', '밀', '땅콩', '대두', '생선', '갑각류', '참깨', '들깨'];
+  const allergenLabel = (k) => ALLERGENS.find((a) => a.key === k)?.label ?? k;
+  const REACTION_SIGNS = ['설사나 구토', '기침', '쌕쌕거림, 숨참', '목과 혀 가려움', '피부 가려움, 발진', '입술과 목 부기', '콧물, 코막힘', '눈 충혈, 가려움'];
+
+  // ---------- 상태 (이 브라우저에만 저장) ----------
+  const KEY = 'hanip-prototype-v1';
+  function exampleState() {
+    return {
+      example: true, adults: 2, selected: 'k1',
+      kids: [
+        { id: 'k1', name: '콩이', birth: iso(addDays(addMonths(TODAY, -6), -14)), started: true, startDate: iso(addDays(TODAY, -21)), allergies: [], tried: {} },
+        { id: 'k2', name: '별이', birth: iso(addMonths(TODAY, -28)), started: true, startDate: iso(addMonths(TODAY, -22)), allergies: ['계란'], tried: { 우유: iso(addDays(TODAY, -10)), 밀: iso(addDays(TODAY, -2)) } },
+      ],
+    };
+  }
+  function load() { try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && Array.isArray(s.kids) && s.kids.length) return s; } catch (e) {} return exampleState(); }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  let state = load();
+  const kidById = (id) => state.kids.find((k) => k.id === id);
+  const currentKid = () => kidById(state.selected) ?? state.kids[0];
+
+  // ---------- 규칙 ----------
+  function stageLabel(kid) {
+    const m = monthsOld(kid.birth);
+    if (m < 12 && !kid.started) return '이유식 시작 전';
+    if (m < 7) return '첫한입 · 초기'; if (m < 9) return '첫한입 · 중기'; if (m < 12) return '첫한입 · 후기';
+    if (m < 18) return '첫한입 · 완료기'; if (m < 24) return '쑥쑥한입 · 유아식'; if (m < 36) return '쑥쑥한입 · 작은아이';
+    if (m < 60) return '쑥쑥한입 · 큰아이'; return '같이한입';
+  }
+  const avoidSet = (kid) => new Set(kid.allergies);
+  const recipeAllergens = (r) => [...r.allergens, ...r.possible_allergens.map((p) => p.allergen)];
+  // 아이에게 맞는지: 이유 하나를 돌려준다 (null이면 먹을 수 있음)
+  function unfitReason(r, kid) {
+    const m = monthsOld(kid.birth);
+    if (m < 12 && !kid.started) return '아직 이유식 시작 전이에요';
+    if (r.min_months > m) return `${r.min_months}개월부터예요`;
+    const hit = recipeAllergens(r).filter((a) => avoidSet(kid).has(a));
+    if (hit.length) {
+      const sure = hit.filter((a) => r.allergens.includes(a));
+      return sure.length ? `${sure.map(allergenLabel).join('·')} 알레르기` : `${hit.map(allergenLabel).join('·')}가 들어갈 수 있어요`;
+    }
+    return null;
+  }
+  const firstTimeAllergens = (r, kid) => r.allergens.filter((a) => ALLERGENS.some((x) => x.key === a) && !kid.tried[a] && !avoidSet(kid).has(a));
+  const fitRecipes = (kid) => RECIPES.filter((r) => !unfitReason(r, kid));
+
+  function homeBanner(kid) {
+    const m = monthsOld(kid.birth);
+    const stale = Object.entries(kid.tried).filter(([, d]) => daysSince(d) >= 7);
+    if (stale.length) {
+      const [k, d] = stale.sort((a, b) => a[1].localeCompare(b[1]))[0];
+      return { pill: '계속 먹여요', title: `${allergenLabel(k)}를 ${daysSince(d)}일째 안 먹었어요`, body: '먹을 수 있게 된 알레르기 식품은 주 1회 이상 계속 주는 것이 좋아요.', action: { label: '오늘 먹였어요', run: () => { kid.tried[k] = iso(TODAY); save(); render(); } }, src: ['ASCIA', 'NHS_ALLERGY'], deco: 'egg' };
+    }
+    if (m < 12 && !kid.started) {
+      if (m < 4) return { pill: '아직 일러요', title: '이유식은 보통 6개월 무렵 시작해요', body: '아기가 준비된 모습을 보이면 시작하고, 4개월 전에는 시작하지 않아요.', src: ['ASCIA', 'KDCA_WEANING'], deco: 'rice' };
+      return { pill: '지금 해 볼 시기예요', title: '이유식을 시작할 준비가 됐나요?', body: '모유 수유 아기는 6개월 이후, 분유 아기는 4~6개월에 시작해요. 첫 이유식은 쌀 미음이 권장돼요.', action: { label: '시작했어요', run: () => { kid.started = true; kid.startDate = iso(TODAY); save(); render(); } }, src: ['KDCA_WEANING', 'ASCIA'], deco: 'rice' };
+    }
+    if (m >= 6) {
+      const next = ALLERGENS.find((a) => !kid.tried[a.key] && !avoidSet(kid).has(a.key));
+      if (next && m < 24) return { pill: '늦추지 않아요', title: `${next.label}도 시작해 볼까요?`, body: '알레르기를 걱정해 미리 늦추거나 제한하지 않아요. 한 번에 하나씩, 아주 적은 양부터.', action: { label: '처음 주는 법 보기', run: () => go('allergen', next.key) }, src: ['KDCA_INFANT', 'NHS_ALLERGY'], deco: 'egg' };
+    }
+    return null;
+  }
+
+  // ---------- 화면 이동 ----------
+  let view = { name: 'home', arg: null };
+  const history = [];
+  const TAB_OF = { home: 'home', recipes: 'recipes', recipe: 'recipes', ingredients: 'ingredients', ingredient: 'ingredients', fridge: 'ingredients', family: 'recipes', allergy: 'home', allergen: 'home', situations: 'home', situation: 'home', kids: 'kids', kidEdit: 'kids', plan: 'plan' };
+  function go(name, arg = null, { replace = false } = {}) { if (!replace) history.push(view); view = { name, arg }; render(); $('#screen').scrollTop = 0; $('#screen').focus({ preventScroll: true }); }
+  function back() { view = history.pop() ?? { name: 'home' }; render(); }
+  function tabGo(name) { history.length = 0; view = { name, arg: null }; render(); $('#screen').scrollTop = 0; }
+
+  const ICON = {
+    back: '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5L8 12L15 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    chev: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5L16 12L9 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    info: '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M12 7.5V13M12 16.2V16.4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
+    home: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11L12 4L20 11V20H14V14H10V20H4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>',
+    plan: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 10H20M9 3V7M15 3V7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+    ingredients: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6 10H18M9 6V8M9 13V16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+    recipes: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4H17A2 2 0 0 1 19 6V20H7A2 2 0 0 1 5 18Z M9 8H15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    kids: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 20C5 15.5 8 14 12 14C16 14 19 15.5 19 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  };
+  const TABS = [['home', '홈'], ['plan', '식단표'], ['ingredients', '재료'], ['recipes', '레시피'], ['kids', '우리 아이']];
+
+  function render() {
+    const onboarding = view.name === 'onboard';
+    $('#exampleBar').hidden = !state.example || onboarding;
+    $('#tabs').hidden = onboarding;
+    $('#tabs').innerHTML = TABS.map(([k, l]) => `<button type="button" class="tab" data-tab="${k}" ${TAB_OF[view.name] === k ? 'aria-current="page"' : ''}>${ICON[k]}${l}</button>`).join('');
+    for (const k of Object.keys(handlers)) delete handlers[k];
+    const screen = SCREENS[view.name] ?? SCREENS.home;
+    const out = screen(view.arg);
+    const isRoot = !history.length || TABS.some(([k]) => k === view.name);
+    $('#top').innerHTML = out.top ?? (isRoot && view.name === 'home'
+      ? `<img class="logo" src="assets/logo.svg" alt="한입씩"><span style="flex:1"></span>`
+      : `${history.length ? `<button type="button" class="icon-btn" data-act="back" aria-label="뒤로">${ICON.back}</button>` : '<span class="icon-btn"></span>'}<h1>${esc(out.title ?? '')}</h1><span class="icon-btn"></span>`);
+    $('#screen').innerHTML = out.html;
+    out.after?.();
+  }
+
+  // 이벤트는 위임으로 처리한다
+  const handlers = {};
+  let hid = 0;
+  const on = (fn) => { const k = 'h' + (++hid); handlers[k] = fn; return k; };
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-act],[data-tab],[data-go],[data-h]');
+    if (!t) return;
+    if (t.tagName === 'A') e.preventDefault();
+    if (t.dataset.tab) return tabGo(t.dataset.tab);
+    if (t.dataset.act === 'back') return back();
+    if (t.dataset.go) return go(t.dataset.go, t.dataset.arg ?? null);
+    if (t.dataset.h && handlers[t.dataset.h]) handlers[t.dataset.h](t, e);
+  });
+  $('#startOwn').addEventListener('click', () => { obDraft = newDraft(); obKids = []; obAdults = 2; go('onboard', 'intro'); });
+
+  // ---------- 공통 조각 ----------
+  function kidBar(onPick) {
+    return `<div class="kidbar" role="group" aria-label="아이 선택">${state.kids.map((k) => `<button type="button" class="kid" aria-pressed="${k.id === currentKid().id}" data-h="${on(() => { state.selected = k.id; save(); onPick ? onPick() : render(); })}">${charHtml(k.id === 'k2' || state.kids.indexOf(k) % 2 ? '당근' : '쌀', 32, 'var(--milk)')}${esc(k.name)} · ${monthsOld(k.birth)}개월</button>`).join('')}</div>`;
+  }
+  function recipeItem(r, kid, extra = '') {
+    const c = catOf(r.category);
+    const reason = kid ? unfitReason(r, kid) : null;
+    const first = kid && !reason ? firstTimeAllergens(r, kid) : [];
+    return `<button type="button" class="ritem" data-go="recipe" data-arg="${r.id}">${charHtml(leadIngredient(r), 52)}<span><span class="t">${esc(r.title)}</span><span class="m"><span class="badge ${c.color}">${esc(c.label)}</span><span class="badge">${r.min_months}개월+</span>${r.allergens.map((a) => `<span class="badge">${esc(allergenLabel(a))}</span>`).join('')}${reason ? `<span class="badge warn">${esc(reason)}</span>` : ''}${first.length ? `<span class="badge butter">처음 먹는 ${esc(first.map(allergenLabel).join('·'))}</span>` : ''}${extra}</span></span>${ICON.chev}</button>`;
+  }
+  const reviewNote = '<div class="note mist">' + ICON.info + '<span>모든 레시피는 <b>검수 전</b>이에요. 계량과 조리 단계는 준비 중이고, 이름·재료·알레르기·주의만 보여 줘요.</span></div>';
+
+  // ---------- 화면들 ----------
+  const SCREENS = {};
+
+  SCREENS.home = () => {
+    const kid = currentKid();
+    const m = monthsOld(kid.birth);
+    const b = homeBanner(kid);
+    const fits = fitRecipes(kid).filter((r) => r.category !== '같이한입' || m >= 60);
+    const dayIdx = Math.floor(TODAY / 86400000);
+    const today = fits.length ? fits[dayIdx % fits.length] : null;
+    let bannerHtml = '';
+    if (b) {
+      const k = b.action ? on(b.action.run) : null;
+      bannerHtml = `<section class="banner" aria-label="시기별 알림"><img class="deco" src="assets/${b.deco}.svg" alt=""><span class="badge deep pill">${esc(b.pill)}</span><h2>${esc(b.title)}</h2><p>${esc(b.body)}</p>${b.action ? `<div><button type="button" class="btn small" data-h="${k}">${esc(b.action.label)}</button></div>` : ''}<div class="src">${srcKeys(b.src)}</div></section>`;
+    }
+    const started = kid.started && kid.startDate ? `이유식 ${daysSince(kid.startDate) + 1}일차 · ` : '';
+    return {
+      html: `${kidBar()}
+        <div><h2 style="font-size:26px">오늘은 뭐 먹지?</h2><div class="muted">${esc(started + stageLabel(kid))}</div></div>
+        ${bannerHtml}
+        ${today ? `<section style="display:flex;flex-direction:column;gap:8px"><div class="sec-title">${esc(kid.name)}의 오늘 추천</div>${recipeItem(today, kid)}</section>`
+          : `<div class="card empty"><img src="assets/rice.svg" alt=""><div>${m < 6 && kid.started ? '카탈로그의 초기 레시피는 6개월 기준이라 아직 보여 드릴 레시피가 없어요.' : '이유식을 시작하면 단계에 맞는 레시피를 보여 드려요.'}</div></div>`}
+        <section style="display:flex;flex-direction:column;gap:10px"><div class="sec-title">무엇을 찾으세요?</div>
+        <div class="quick">
+          <button type="button" style="background:var(--mist)" data-go="family"><img src="assets/cat-family.svg" alt="">온 가족 레시피 찾기</button>
+          <button type="button" style="background:var(--rose)" data-go="allergy"><img src="assets/egg.svg" alt="">알레르기 식품 시작하기</button>
+          <button type="button" style="background:var(--sage-tint)" data-go="situations"><img src="assets/pear.svg" alt="">이럴 땐 이렇게</button>
+          <button type="button" style="background:var(--white);border:1.5px solid var(--line)" data-go="fridge"><img src="assets/fridge.svg" alt="">냉장고에 뭐 있지?</button>
+        </div></section>`,
+    };
+  };
+
+  SCREENS.plan = () => ({
+    title: '식단표',
+    html: `<div class="card empty"><img src="assets/bowl.svg" alt=""><h2 style="font-size:20px">식단표는 준비 중이에요</h2><div>날짜별 이유식 일정은 출처가 확인되고 전문가 감수를 마친 뒤에 열어요. 그 전까지는 홈의 오늘 추천과 레시피 탭을 써 주세요.</div><button type="button" class="btn small" data-tab="recipes">레시피 보러 가기</button></div>`,
+  });
+
+  // 레시피 목록
+  let rq = { q: '', cat: 'all', onlyFit: true };
+  SCREENS.recipes = () => {
+    const kid = currentKid();
+    const q = rq.q.trim();
+    let list = RECIPES.filter((r) => (rq.cat === 'all' || r.category === rq.cat) && (!q || r.title.includes(q) || r.main_ingredients.some((i) => i.includes(q))));
+    if (rq.onlyFit) list = list.filter((r) => !unfitReason(r, kid));
+    return {
+      title: '레시피',
+      html: `<input class="search" id="rsearch" type="search" placeholder="레시피나 재료 이름" aria-label="레시피 검색" value="${esc(rq.q)}">
+        <div class="chips" role="group" aria-label="대상">${[['all', '전체'], ...CATS.map((c) => [c.key, c.label])].map(([k, l]) => `<button type="button" class="chip" aria-pressed="${rq.cat === k}" data-h="${on(() => { rq.cat = k; render(); })}">${esc(l)}</button>`).join('')}</div>
+        <label class="toggle"><input type="checkbox" id="onlyFit" ${rq.onlyFit ? 'checked' : ''}> ${esc(kid.name)}가 먹을 수 있는 것만 <span class="muted">(${monthsOld(kid.birth)}개월${kid.allergies.length ? ', ' + kid.allergies.map(allergenLabel).join('·') + ' 제외' : ''})</span></label>
+        <div class="row" style="justify-content:space-between"><span class="muted">${list.length}개</span><button type="button" class="btn ghost small" data-go="family">온 가족 레시피 찾기</button></div>
+        <div class="rlist">${list.slice(0, 80).map((r) => recipeItem(r, kid)).join('') || `<div class="empty"><img src="assets/mushroom.svg" alt="">조건에 맞는 레시피가 없어요.</div>`}</div>
+        ${list.length > 80 ? `<div class="muted" style="text-align:center">처음 80개만 보여요. 검색이나 대상으로 좁혀 보세요.</div>` : ''}`,
+      after: () => {
+        const s = $('#rsearch');
+        s.addEventListener('input', () => { rq.q = s.value; const pos = s.selectionStart; render(); const n = $('#rsearch'); n.focus(); n.setSelectionRange(pos, pos); });
+        $('#onlyFit').addEventListener('change', (e) => { rq.onlyFit = e.target.checked; render(); });
+      },
+    };
+  };
+
+  // 레시피 상세
+  SCREENS.recipe = (id) => {
+    const r = RECIPES.find((x) => x.id === id);
+    if (!r) return { title: '레시피', html: '<div class="empty">레시피를 찾을 수 없어요.</div>' };
+    const c = catOf(r.category);
+    const lead = leadIngredient(r);
+    return {
+      title: '레시피',
+      html: `<div class="hero" style="background:${tintFor(lead)};height:170px;display:grid;place-items:center">${CHAR[lead] ? `<img src="assets/${CHAR[lead]}.svg" alt="" style="position:static;width:130px">` : charHtml(lead, 110, 'transparent')}</div>
+        <div><h2 style="font-size:26px">${esc(r.title)}</h2><div class="row" style="margin-top:8px"><span class="badge ${c.color}">${esc(c.group)}${c.group !== c.label ? ' · ' + esc(c.label) : ''}</span><span class="badge">${r.min_months}개월부터</span><span class="badge warn">검수 전</span><span class="muted">${esc(r.id)}</span></div></div>
+        <section class="card kidfit" aria-label="우리 아이가 먹을 수 있나요"><div class="sec-title" style="font-size:17px">우리 아이가 먹을 수 있나요?</div>
+          ${state.kids.map((k) => { const why = unfitReason(r, k); const first = why ? [] : firstTimeAllergens(r, k); return `<div><b>${esc(k.name)}</b><span class="status" style="color:${why ? 'var(--warn-ink)' : 'var(--ok-ink)'}">${why ? esc(why) : '먹을 수 있어요'}${first.length ? ` · 처음 먹는 ${esc(first.map(allergenLabel).join('·'))}: <a href="#" data-go="allergen" data-arg="${esc(first[0])}">처음 주는 법</a>` : ''}</span></div>`; }).join('')}
+          ${state.adults ? `<div><b>어른</b><span class="status" style="color:var(--ok-ink)">함께 먹을 수 있어요</span></div>` : ''}
+        </section>
+        <section style="display:flex;flex-direction:column;gap:8px"><div class="sec-title">재료</div><div class="row">${r.main_ingredients.map((i) => `<button type="button" class="badge" style="height:34px;border:0;padding:0 12px 0 4px;gap:6px" data-go="ingredient" data-arg="${esc(i)}">${charHtml(i, 26, 'var(--milk)')}${esc(i)}</button>`).join('')}</div><div class="muted">계량은 검수 후 추가돼요.</div></section>
+        <section style="display:flex;flex-direction:column;gap:8px"><div class="sec-title">알레르기</div>
+          ${r.allergens.length ? `<div class="row">${r.allergens.map((a) => `<span class="badge warn">${esc(allergenLabel(a))}</span>`).join('')}</div>` : '<div class="muted">제목 기준 알레르기 식품 없음</div>'}
+          ${r.possible_allergens.length ? `<div class="note warn">${ICON.info}<span><b>부재료로 들어갈 수 있어요</b>: ${r.possible_allergens.map((p) => esc(allergenLabel(p.allergen))).join(', ')}<br><span style="font-size:12.5px">${esc(r.possible_allergens[0].reason)}</span></span></div>` : ''}
+        </section>
+        ${r.cautions.length ? `<section style="display:flex;flex-direction:column;gap:8px"><div class="sec-title">이것만은 조심해요</div>${r.cautions.map((x) => `<div class="card" style="padding:12px 14px;display:flex;flex-direction:column;gap:6px"><span style="font-size:14px">${esc(x.text)}</span><div class="src">${srcLinks(x.sources)}</div></div>`).join('')}</section>` : ''}
+        <section style="display:flex;flex-direction:column;gap:8px"><div class="sec-title">만드는 법</div><div class="card empty" style="padding:18px"><img src="assets/bowl.svg" alt="" style="width:56px">단계별 사진과 설명은 레시피 검수 후 올라와요.</div></section>
+        ${r.corrections.length ? `<details class="card"><summary>원본 데이터에서 고친 점 ${r.corrections.length}개</summary><ul class="list" style="margin-top:8px">${r.corrections.map((x) => `<li>${esc(x.field)}: ${esc(JSON.stringify(x.before))} → ${esc(JSON.stringify(x.after))}<br><span class="muted">${esc(x.reason)}</span></li>`).join('')}</ul></details>` : ''}`,
+    };
+  };
+
+  // 재료
+  const guideNames = () => GUIDE.flatMap((g) => g['재료'].split('/').map((n) => ({ name: n, row: g })));
+  const allIngredients = () => [...new Set([...guideNames().map((x) => x.name), ...RECIPES.flatMap((r) => r.main_ingredients)])];
+  const risksFor = (name) => RISKS.items.filter((x) => x.match.includes(name));
+  SCREENS.ingredients = () => {
+    const names = guideNames().map((x) => x.name);
+    return {
+      title: '재료',
+      html: `<button type="button" class="ritem" style="background:var(--mist);border:0" data-go="fridge"><span class="char" style="width:52px;height:52px"><img src="assets/fridge.svg" alt=""></span><span><span class="t">냉장고에 뭐 있지?</span><span class="muted">집에 있는 재료로 레시피 찾기</span></span>${ICON.chev}</button>
+        <div class="sec-title">재료 사전 <span class="muted">${names.length}가지</span></div>
+        <div class="igrid">${names.map((n) => `<button type="button" class="ig" data-go="ingredient" data-arg="${esc(n)}">${charHtml(n, 60)}${esc(n)}</button>`).join('')}</div>
+        <div class="sec-title">주의가 필요한 재료 <span class="muted">${RISKS.items.length}가지</span></div>
+        <div class="rlist">${RISKS.items.map((x) => `<details class="card"><summary><span class="badge ${x.level === '금지' ? 'warn' : 'butter'}" style="margin-right:6px">${esc(x.level)}</span>${esc(x.name)}</summary><div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><span style="font-size:14px">${esc(x.description)}</span><span style="font-size:13.5px"><b>대신</b> ${esc(x.instead)}</span>${x.block_under_months ? `<span class="badge warn" style="align-self:flex-start">${x.block_under_months}개월 미만 레시피에 넣지 않아요</span>` : ''}<div class="src">${srcKeys(x.sources)}</div></div></details>`).join('')}</div>`,
+    };
+  };
+
+  let ingTab = null;
+  SCREENS.ingredient = (name) => {
+    const g = guideNames().find((x) => x.name === name)?.row;
+    const kid = currentKid();
+    const withIng = RECIPES.filter((r) => r.main_ingredients.includes(name));
+    const cats = CATS.filter((c) => withIng.some((r) => r.category === c.key));
+    if (!ingTab || !cats.some((c) => c.key === ingTab)) {
+      const m = monthsOld(kid.birth);
+      ingTab = (cats.filter((c) => withIng.some((r) => r.category === c.key && r.min_months <= m)).pop() ?? cats[0])?.key ?? null;
+    }
+    const tabList = withIng.filter((r) => r.category === ingTab);
+    const rs = risksFor(name);
+    return {
+      title: name,
+      html: `<div class="row" style="gap:14px;flex-wrap:nowrap">${charHtml(name, 84)}<div><h2 style="font-size:28px">${esc(name)}</h2><div class="muted">레시피 ${withIng.length}개${g ? '' : ' · 재료 사전에 아직 없음'}</div></div></div>
+        ${g ? `<div class="kv"><div style="background:var(--sage-tint)"><b>특징</b><span>${esc(g['특징'])}</span></div><div style="background:var(--mist)"><b>추천 조합</b><span>${esc(g['추천 조합'])}</span></div><div style="background:var(--peach-tint);grid-column:1/-1"><b style="color:var(--warn-ink)">주의 및 한계</b><span>${esc(g['주의 및 한계'])}</span></div></div><div class="src"><span>출처: 한입씩 식재료 가이드</span></div>` : ''}
+        ${rs.map((x) => `<div class="note warn">${ICON.info}<span><b>${esc(x.name)}</b><br>${esc(x.description)}<span class="src" style="margin-top:4px">${srcKeys(x.sources)}</span></span></div>`).join('')}
+        ${cats.length ? `<section style="display:flex;flex-direction:column;gap:10px"><div class="sec-title">누가 먹나요?</div>
+          <div class="chips" role="group" aria-label="대상">${cats.map((c) => `<button type="button" class="chip" aria-pressed="${c.key === ingTab}" data-h="${on(() => { ingTab = c.key; render(); })}">${esc(c.label)}</button>`).join('')}</div>
+          <div class="rlist">${tabList.map((r) => recipeItem(r, kid)).join('')}</div></section>` : '<div class="muted">이 재료가 들어간 레시피가 아직 없어요.</div>'}`,
+    };
+  };
+
+  // 냉장고
+  let fridgeSel = new Set(['소고기', '애호박', '쌀']);
+  SCREENS.fridge = () => {
+    const kid = currentKid();
+    const names = allIngredients().filter((n) => RECIPES.some((r) => r.main_ingredients.includes(n))).sort((a, b) => (CHAR[b] ? 1 : 0) - (CHAR[a] ? 1 : 0) || a.localeCompare(b, 'ko'));
+    const cands = RECIPES.filter((r) => !unfitReason(r, kid) && r.main_ingredients.some((i) => fridgeSel.has(i)));
+    const missing = (r) => r.main_ingredients.filter((i) => !fridgeSel.has(i));
+    const can = cands.filter((r) => !missing(r).length);
+    const almost = cands.filter((r) => missing(r).length === 1);
+    return {
+      title: '재료로 찾기',
+      html: `<h2 style="font-size:24px">냉장고에 뭐 있지?</h2>${kidBar()}
+        <div class="igrid">${names.map((n) => `<button type="button" class="ig" aria-pressed="${fridgeSel.has(n)}" data-h="${on(() => { fridgeSel.has(n) ? fridgeSel.delete(n) : fridgeSel.add(n); render(); })}">${charHtml(n, 60)}${esc(n)}</button>`).join('')}</div>
+        <div class="sec-title">${fridgeSel.size ? '이 재료로 만들 수 있어요' : '재료를 골라 주세요'} <span class="muted">${can.length}개</span></div>
+        <div class="rlist">${can.map((r) => recipeItem(r, kid)).join('') || (fridgeSel.size ? '<div class="muted">고른 재료만으로 되는 레시피가 없어요.</div>' : '')}</div>
+        ${almost.length ? `<div class="sec-title">하나만 더 있으면 돼요 <span class="muted">${almost.length}개</span></div><div class="rlist">${almost.slice(0, 20).map((r) => recipeItem(r, kid, `<span class="badge warn">${esc(missing(r)[0])}만 있으면</span>`)).join('')}</div>` : ''}`,
+    };
+  };
+
+  // 온 가족 레시피
+  let famSel = null;
+  SCREENS.family = () => {
+    famSel ??= new Set([...state.kids.map((k) => k.id), state.adults ? 'adults' : null].filter(Boolean));
+    const kids = state.kids.filter((k) => famSel.has(k.id));
+    const list = kids.length ? RECIPES.filter((r) => kids.every((k) => !unfitReason(r, k))) : RECIPES.filter((r) => r.category === '같이한입');
+    const excluded = [...new Set(kids.flatMap((k) => k.allergies))];
+    return {
+      title: '온 가족 레시피',
+      html: `<div class="sec-title">누가 같이 먹나요?</div>
+        <div class="chips wrap" role="group" aria-label="먹을 사람">${state.kids.map((k) => `<button type="button" class="chip" aria-pressed="${famSel.has(k.id)}" data-h="${on(() => { famSel.has(k.id) ? famSel.delete(k.id) : famSel.add(k.id); render(); })}">${esc(k.name)} · ${esc(stageLabel(k).split(' · ').pop())}</button>`).join('')}
+        ${state.adults ? `<button type="button" class="chip" aria-pressed="${famSel.has('adults')}" data-h="${on(() => { famSel.has('adults') ? famSel.delete('adults') : famSel.add('adults'); render(); })}">어른 ${state.adults}명</button>` : ''}</div>
+        <div class="row"><span class="muted">${kids.length ? `고른 아이 모두 먹을 수 있는 레시피 ${list.length}개` : `어른 레시피 ${list.length}개`}</span>${excluded.map((a) => `<span class="badge warn">${esc(allergenLabel(a))} 뺐어요</span>`).join('')}</div>
+        ${kids.length ? `<div class="note sage">${ICON.info}<span>가장 어린 아이의 개월 수와 모든 아이의 알레르기를 함께 따져서 골랐어요. 아이 몫을 덜어 낸 뒤 어른 몫에 간을 더하면 같은 냄비로 같이 먹을 수 있어요.</span></div>` : ''}
+        <div class="rlist">${list.slice(0, 60).map((r) => recipeItem(r, kids[0])).join('') || '<div class="empty"><img src="assets/apple.svg" alt="">함께 먹을 수 있는 레시피가 없어요. 아이를 한 명 빼 보세요.</div>'}</div>`,
+    };
+  };
+
+  // 알레르기 식품
+  SCREENS.allergy = () => {
+    const kid = currentKid();
+    const m = monthsOld(kid.birth);
+    return {
+      title: '알레르기 식품',
+      html: `${kidBar()}
+        <div class="note sage">${ICON.info}<span>알레르기를 걱정해 흔한 알레르기 식품을 미리 늦추거나 제한하지 않아요. 이유식에 적응하면 한 번에 하나씩, 아주 적은 양부터 시작해요.<span class="src" style="margin-top:4px">${srcKeys(['KDCA_INFANT', 'NHS_ALLERGY', 'ASCIA'])}</span></span></div>
+        ${m < 6 ? `<div class="muted">${esc(kid.name)}는 ${m}개월이에요. 알레르기 식품도 이유식에 적응한 뒤 다른 음식과 함께 시작해요.</div>` : ''}
+        <div class="rlist">${ALLERGENS.map((a) => {
+          const st = avoidSet(kid).has(a.key) ? ['warn', '피하기'] : kid.tried[a.key] ? ['sage', `먹어봤어요 · ${daysSince(kid.tried[a.key])}일 전`] : ['', '아직'];
+          return `<button type="button" class="ritem" data-go="allergen" data-arg="${a.key}">${charHtml(a.label, 44)}<span><span class="t">${esc(a.label)}</span><span class="m"><span class="badge ${st[0]}">${esc(st[1])}</span></span></span>${ICON.chev}</button>`;
+        }).join('')}</div>
+        <div class="note warn">${ICON.info}<span>이미 음식에 반응이 있었거나, 심한 아토피가 있거나, 달걀 알레르기가 있거나, 가족 중 알레르기가 심한 사람이 있으면 시작 전에 소아과와 먼저 상의해요.<span class="src" style="margin-top:4px">${srcKeys(['KDCA_INFANT', 'NHS_ALLERGY'])}</span></span></div>`,
+    };
+  };
+
+  SCREENS.allergen = (key) => {
+    const a = ALLERGENS.find((x) => x.key === key) ?? ALLERGENS[0];
+    const kid = currentKid();
+    const avoid = avoidSet(kid).has(a.key);
+    const tried = kid.tried[a.key];
+    const hTried = on(() => { kid.tried[a.key] = iso(TODAY); save(); render(); });
+    const hAvoid = on(() => { if (!kid.allergies.includes(a.key)) kid.allergies.push(a.key); delete kid.tried[a.key]; save(); render(); });
+    const hUnavoid = on(() => { kid.allergies = kid.allergies.filter((x) => x !== a.key); save(); render(); });
+    const recipes = RECIPES.filter((r) => r.allergens.includes(a.key) && !unfitReason(r, kid)).slice(0, 6);
+    return {
+      title: `${a.label} 시작하기`,
+      html: `${kidBar()}
+        <div class="row" style="gap:14px;flex-wrap:nowrap">${charHtml(a.label, 72)}<div><h2 style="font-size:24px">${esc(kid.name)} · ${esc(a.label)}</h2><span class="badge ${avoid ? 'warn' : tried ? 'sage' : ''}">${avoid ? '피하기로 했어요' : tried ? `먹어봤어요 · 마지막 ${daysSince(tried)}일 전` : '아직 안 먹어봤어요'}</span></div></div>
+        ${avoid ? `<div class="note warn">${ICON.info}<span>${esc(a.label)}는 ${esc(kid.name)}의 레시피에서 빼고 있어요. 다시 시도하기 전에는 소아과와 상의해요.</span></div><button type="button" class="btn ghost" data-h="${hUnavoid}">피하기 해제</button>` : `
+        <section class="card" style="display:flex;flex-direction:column;gap:10px"><div class="sec-title" style="font-size:17px">처음 줄 때</div>
+          <ul class="list"><li>컨디션이 좋은 날, 집에서 줘요.</li><li>새 알레르기 식품은 한 끼에 하나만, 아주 적은 양부터 줘요.</li><li>${esc(a.form)}</li></ul>
+          <div class="src">${srcKeys([...new Set(['NHS_ALLERGY', 'ASCIA', ...a.src])])}</div></section>
+        <section class="card" style="display:flex;flex-direction:column;gap:10px"><div class="sec-title" style="font-size:17px">며칠 지켜봐요</div>
+          <span style="font-size:14px">새 음식을 시작하면 며칠 동안 반응이 없는지 살펴요. 질병관리청은 3~7일, CDC는 3~5일 간격을 안내해요.</span>
+          <div class="row">${REACTION_SIGNS.map((s) => `<span class="badge">${esc(s)}</span>`).join('')}</div>
+          <div class="note warn" style="padding:10px 12px">${ICON.info}<span>숨쉬기 힘들어하거나 입술·목이 부으면 <b>바로 119</b>에 연락해요.</span></div>
+          <div class="src">${srcKeys(['KDCA_WEANING', 'NHS_ALLERGY'])}<a href="https://www.cdc.gov/infant-toddler-nutrition/foods-and-drinks/when-what-and-how-to-introduce-solid-foods.html" target="_blank" rel="noopener">CDC</a></div></section>
+        <section class="card" style="display:flex;flex-direction:column;gap:10px"><div class="sec-title" style="font-size:17px">괜찮았다면 계속</div>
+          <span style="font-size:14px">반응이 없으면 평소 식단에 넣고 주 1회 이상 계속 줘요. 7일이 지나면 홈에서 알려 드려요.</span>
+          <div class="src">${srcKeys(['ASCIA', 'NHS_ALLERGY'])}</div></section>
+        <div style="display:flex;flex-direction:column;gap:8px"><button type="button" class="btn block" data-h="${hTried}">${tried ? '오늘도 먹였어요' : '먹여 봤어요, 괜찮았어요'}</button><button type="button" class="btn ghost block" style="color:var(--warn-ink)" data-h="${hAvoid}">반응이 있었어요 · 피하기</button></div>`}
+        ${recipes.length && !avoid ? `<section style="display:flex;flex-direction:column;gap:8px"><div class="sec-title">${esc(a.label)}가 들어간 레시피</div><div class="rlist">${recipes.map((r) => recipeItem(r, kid)).join('')}</div></section>` : ''}
+        <div class="muted">이 안내는 소아과 전문의 감수 전이에요. 일차별 양이나 며칠 프로그램은 근거가 확인되기 전까지 제공하지 않아요.</div>`,
+    };
+  };
+
+  // 이럴 땐 이렇게
+  const SIT_CHAR = { 설사: 'apple', 변비: 'sweet-potato', 감기: 'pear', 열: 'rice', 이앓이: 'kabocha', 철분: 'broccoli' };
+  SCREENS.situations = () => ({
+    title: '이럴 땐 이렇게',
+    html: `<div><h2 style="font-size:24px">오늘 아이가 어때요?</h2><div class="hand">괜찮아요, 먹을 걸로 먼저 챙겨 봐요.</div></div>
+      <div class="note warn">${ICON.info}<span>이 메뉴는 <b>AI가 만든 초안</b>이고 출처 확인과 감수 전이에요. 실제 서비스 전에 내용이 바뀔 수 있어요.</span></div>
+      <div class="quick">${SITUATIONS.map((s, i) => `<button type="button" style="background:${TINTS[i % TINTS.length]};align-items:flex-start;text-align:left;padding:14px" data-go="situation" data-arg="${esc(s['상황태그'])}"><img src="assets/${SIT_CHAR[s['상황태그']] ?? 'rice'}.svg" alt=""><span style="font-family:var(--f-display);font-size:17px">${esc(s['상황이름'])}</span></button>`).join('')}</div>
+      <div class="note warn">${ICON.info}<span>탈수, 피 섞인 변, 고열, 3개월 미만 발열은 음식보다 병원이 먼저예요.</span></div>`,
+  });
+  SCREENS.situation = (tag) => {
+    const s = SITUATIONS.find((x) => x['상황태그'] === tag);
+    if (!s) return { title: '이럴 땐 이렇게', html: '' };
+    const kid = currentKid();
+    const recipes = RECIPES.filter((r) => s['좋은음식'].split(/[,\s]+/).some((w) => w && r.main_ingredients.some((i) => w.startsWith(i))) && !unfitReason(r, kid)).slice(0, 6);
+    return {
+      title: s['상황이름'],
+      html: `<div class="banner" style="background:var(--butter)"><img class="deco" src="assets/${SIT_CHAR[tag] ?? 'rice'}.svg" alt=""><h2>${esc(s['상황이름'])}</h2><p>${esc(s['설명'])}</p><span class="badge warn pill">감수 전 초안</span></div>
+        <section class="card" style="display:flex;flex-direction:column;gap:6px"><div class="sec-title" style="font-size:17px">도움이 되는 음식</div><span>${esc(s['좋은음식'])}</span></section>
+        <section class="card" style="display:flex;flex-direction:column;gap:6px"><div class="sec-title" style="font-size:17px">잠깐 줄여요</div><span>${esc(s['피할것'])}</span></section>
+        ${recipes.length ? `<section style="display:flex;flex-direction:column;gap:8px"><div class="sec-title">${esc(kid.name)}가 먹을 수 있는 메뉴</div><div class="rlist">${recipes.map((r) => recipeItem(r, kid)).join('')}</div></section>` : ''}
+        ${s['병원신호'] ? `<div class="note warn">${ICON.info}<span><b>병원에 가요</b> · ${esc(s['병원신호'])}</span></div>` : ''}`,
+    };
+  };
+
+  // 우리 아이
+  SCREENS.kids = () => ({
+    title: '우리 아이',
+    html: `<div class="rlist">${state.kids.map((k, i) => `<button type="button" class="ritem" data-go="kidEdit" data-arg="${k.id}">${charHtml(i % 2 ? '당근' : '쌀', 56)}<span><span class="t">${esc(k.name)}</span><span class="m"><span class="badge">${monthsOld(k.birth)}개월</span><span class="badge rose">${esc(stageLabel(k))}</span>${k.allergies.map((a) => `<span class="badge warn">${esc(allergenLabel(a))} 피하기</span>`).join('')}</span></span>${ICON.chev}</button>`).join('')}</div>
+      <button type="button" class="btn ghost block" data-h="${on(() => go('kidEdit', 'new'))}">+ 아이 추가하기</button>
+      <section class="card" style="display:flex;align-items:center;justify-content:space-between;gap:12px"><div><div class="sec-title" style="font-size:17px">함께 먹는 어른</div><div class="muted">온 가족 레시피에 쓰여요</div></div>
+        <div class="stepper"><button type="button" aria-label="어른 한 명 빼기" data-h="${on(() => { state.adults = Math.max(0, state.adults - 1); save(); render(); })}">−</button><output>${state.adults}</output><button type="button" aria-label="어른 한 명 더하기" data-h="${on(() => { state.adults += 1; save(); render(); })}">+</button></div></section>
+      <div class="note mist">${ICON.info}<span>프로토타입이라 아이 정보는 이 기기의 브라우저에만 저장돼요. 실제 앱에서는 카카오 로그인 후 계정에 저장돼요.</span></div>
+      <button type="button" class="btn ghost block" data-h="${on(() => { state = exampleState(); save(); famSel = null; tabGo('home'); })}">예시 가족으로 되돌리기</button>`,
+  });
+
+  // 아이 정보 입력 (온보딩과 수정에서 같이 쓴다)
+  function kidForm(k) {
+    const m = k.birth ? monthsOld(k.birth) : null;
+    return `<div class="field"><label for="kName">부르는 이름</label><input class="input" id="kName" value="${esc(k.name)}" autocomplete="off"></div>
+      <div class="field"><label for="kBirth">생년월일</label><input class="input" id="kBirth" type="date" max="${iso(TODAY)}" value="${esc(k.birth)}"><span class="muted" id="kStage">${m !== null ? `${m}개월 · ${esc(stageLabel(k))}` : ''}</span></div>
+      <div class="field"><span class="lb">이유식을 시작했나요?</span><div class="seg"><button type="button" id="kNo" aria-pressed="${!k.started}">아직이에요</button><button type="button" id="kYes" aria-pressed="${k.started}">시작했어요</button></div></div>
+      <div class="field" id="kStartWrap" ${k.started ? '' : 'hidden'}><label for="kStart">시작한 날</label><input class="input" id="kStart" type="date" max="${iso(TODAY)}" value="${esc(k.startDate ?? '')}"></div>
+      <div class="field"><span class="lb">알고 있는 알레르기 <span class="muted">(선택)</span></span><div class="chips wrap" id="kAll">${ALLERGY_CHOICES.map((a) => `<button type="button" class="chip" data-a="${a}" aria-pressed="${k.allergies.includes(a)}">${esc(allergenLabel(a))}</button>`).join('')}</div></div>`;
+  }
+  function bindKidForm(k) {
+    const upd = () => { const s = $('#kStage'); if (k.birth) s.textContent = `${monthsOld(k.birth)}개월 · ${stageLabel(k)}`; };
+    $('#kName').addEventListener('input', (e) => { k.name = e.target.value; });
+    $('#kBirth').addEventListener('change', (e) => { k.birth = e.target.value; upd(); });
+    $('#kStart').addEventListener('change', (e) => { k.startDate = e.target.value; });
+    $('#kNo').addEventListener('click', () => { k.started = false; $('#kNo').setAttribute('aria-pressed', 'true'); $('#kYes').setAttribute('aria-pressed', 'false'); $('#kStartWrap').hidden = true; upd(); });
+    $('#kYes').addEventListener('click', () => { k.started = true; k.startDate ||= iso(TODAY); $('#kStart').value = k.startDate; $('#kYes').setAttribute('aria-pressed', 'true'); $('#kNo').setAttribute('aria-pressed', 'false'); $('#kStartWrap').hidden = false; upd(); });
+    $('#kAll').addEventListener('click', (e) => { const b = e.target.closest('[data-a]'); if (!b) return; const a = b.dataset.a; k.allergies = k.allergies.includes(a) ? k.allergies.filter((x) => x !== a) : [...k.allergies, a]; b.setAttribute('aria-pressed', k.allergies.includes(a)); });
+  }
+  const kidValid = (k) => k.name.trim() && k.birth;
+
+  SCREENS.kidEdit = (id) => {
+    const isNew = id === 'new';
+    const orig = isNew ? null : kidById(id);
+    const k = isNew ? newDraft() : structuredClone(orig);
+    const hSave = on(() => {
+      if (!kidValid(k)) { $('#kErr').hidden = false; return; }
+      if (isNew) { state.kids.push(k); } else { Object.assign(orig, k); }
+      state.example = false; save(); back();
+    });
+    const hDel = on(() => { $('#kConfirm').hidden = false; });
+    const hDelYes = on(() => { state.kids = state.kids.filter((x) => x.id !== id); if (!state.kids.length) state = exampleState(); state.selected = state.kids[0].id; save(); back(); });
+    return {
+      title: isNew ? '아이 추가' : `${orig.name} 정보`,
+      html: `${kidForm(k)}<p class="muted" id="kErr" hidden style="color:var(--warn-ink)">이름과 생년월일을 넣어 주세요.</p>
+        <button type="button" class="btn block" data-h="${hSave}">저장</button>
+        ${isNew ? '' : `<button type="button" class="btn ghost block" style="color:var(--warn-ink)" data-h="${hDel}">이 아이 지우기</button><div class="note warn" id="kConfirm" hidden><span>${esc(orig.name)}의 정보와 기록을 지울까요? <button type="button" class="btn small" style="margin-top:8px;background:var(--warn-ink)" data-h="${hDelYes}">지우기</button></span></div>`}`,
+      after: () => bindKidForm(k),
+    };
+  };
+
+  // 온보딩: 시작 → 아이 정보 → 우리 집 아이들 → 식구 수 → 완료
+  let obDraft, obKids = [], obAdults = 2;
+  function newDraft() { return { id: 'k' + Date.now().toString(36), name: '', birth: '', started: false, startDate: '', allergies: [], tried: {} }; }
+  const dots = (n) => `<div class="row" style="justify-content:center;gap:6px" aria-label="3단계 중 ${n}단계">${[1, 2, 3].map((i) => `<span style="width:28px;height:6px;border-radius:3px;background:${i <= n ? 'var(--deep)' : 'var(--line)'}"></span>`).join('')}</div>`;
+  SCREENS.onboard = (step) => {
+    const topBack = `<button type="button" class="icon-btn" data-act="back" aria-label="뒤로">${ICON.back}</button>`;
+    if (step === 'intro') return {
+      top: `${topBack}<span style="flex:1"></span>`,
+      html: `<div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding-top:12px"><img src="assets/logo.svg" alt="한입씩" style="height:44px"><div class="hand">오늘도 맛있게 한입씩.</div></div>
+        <div class="hero"><img src="assets/carrot.svg" alt="" style="left:14px;top:20px;width:96px;transform:rotate(-10deg)"><img src="assets/rice.svg" alt="" style="left:50%;top:60px;width:110px;transform:translateX(-50%)"><img src="assets/broccoli.svg" alt="" style="right:14px;top:14px;width:92px;transform:rotate(8deg)"><img src="assets/egg.svg" alt="" style="left:30px;bottom:12px;width:76px"><img src="assets/kabocha.svg" alt="" style="right:26px;bottom:10px;width:86px"></div>
+        <div style="text-align:center;display:flex;flex-direction:column;gap:6px"><h2 style="font-size:27px">첫 숟가락부터<br>온 가족 식탁까지</h2><div class="muted" style="font-size:14.5px">재료 하나로 이유식, 아이 반찬, 어른 밥상까지</div></div>
+        <button type="button" class="btn block" style="background:#FEE500;color:rgba(0,0,0,.85);border-radius:12px" data-h="${on(() => go('onboard', 'kid'))}">카카오로 시작하기 (프로토타입은 바로 시작)</button>`,
+    };
+    if (step === 'kid') {
+      const k = obDraft;
+      return {
+        top: `${topBack}${dots(1)}<span class="icon-btn"></span>`,
+        html: `<h2 style="font-size:26px">아이를 소개해 주세요</h2>${kidForm(k)}<p class="muted" id="kErr" hidden style="color:var(--warn-ink)">이름과 생년월일을 넣어 주세요.</p>
+          <button type="button" class="btn block" data-h="${on(() => { if (!kidValid(k)) { $('#kErr').hidden = false; return; } obKids.push(k); obDraft = newDraft(); go('onboard', 'kids', { replace: true }); })}">${esc(k.name || '아이')} 추가하기</button>`,
+        after: () => { bindKidForm(k); $('#kName').addEventListener('input', () => { $('#screen .btn.block').textContent = `${k.name || '아이'} 추가하기`; }); },
+      };
+    }
+    if (step === 'kids') return {
+      top: `${topBack}${dots(2)}<span class="icon-btn"></span>`,
+      html: `<div><h2 style="font-size:26px">우리 집 아이들</h2><div class="muted">아이마다 맞는 단계로 따로 챙겨 드려요.</div></div>
+        <div class="rlist">${obKids.map((k, i) => `<div class="ritem" style="cursor:default">${charHtml(i % 2 ? '당근' : '쌀', 56)}<span><span class="t">${esc(k.name)}</span><span class="m"><span class="badge">${monthsOld(k.birth)}개월</span><span class="badge rose">${esc(stageLabel(k))}</span>${k.allergies.map((a) => `<span class="badge warn">${esc(allergenLabel(a))}</span>`).join('')}</span></span></div>`).join('')}</div>
+        <button type="button" class="btn ghost block" data-h="${on(() => go('onboard', 'kid'))}">+ 아이 더 추가하기</button>
+        <div class="note sage">${ICON.info}<span>알레르기가 있는 재료는 그 아이의 레시피에서 자동으로 빼 드려요.</span></div>
+        <button type="button" class="btn block" data-h="${on(() => go('onboard', 'family'))}">다음</button>`,
+    };
+    if (step === 'family') return {
+      top: `${topBack}${dots(3)}<span class="icon-btn"></span>`,
+      html: `<div><h2 style="font-size:26px">함께 먹는 어른은<br>몇 명인가요?</h2><div class="muted">온 가족 레시피에 쓰여요.</div></div>
+        <section class="card" style="display:flex;align-items:center;justify-content:space-between"><div class="sec-title" style="font-size:18px">어른</div><div class="stepper"><button type="button" aria-label="어른 한 명 빼기" data-h="${on(() => { obAdults = Math.max(0, obAdults - 1); render(); })}">−</button><output>${obAdults}</output><button type="button" aria-label="어른 한 명 더하기" data-h="${on(() => { obAdults += 1; render(); })}">+</button></div></section>
+        <section class="card" style="display:flex;align-items:center;justify-content:space-between;background:var(--milk)"><div class="sec-title" style="font-size:18px">아이</div><output style="font-family:var(--f-display);font-size:24px;padding-right:14px">${obKids.length}</output></section>
+        <button type="button" class="btn block" data-h="${on(() => { state = { example: false, adults: obAdults, selected: obKids[0].id, kids: obKids }; save(); famSel = null; go('onboard', 'done', { replace: true }); })}">다 됐어요</button>`,
+    };
+    return {
+      top: '<span class="icon-btn"></span><span style="flex:1"></span>',
+      html: `<div class="hero" style="height:200px"><img src="assets/apple.svg" alt="" style="left:24px;top:40px;width:80px;transform:rotate(-12deg)"><img src="assets/rice.svg" alt="" style="left:50%;top:50px;width:110px;transform:translateX(-50%)"><img src="assets/pear.svg" alt="" style="right:24px;top:30px;width:78px;transform:rotate(10deg)"></div>
+        <div class="hand">준비 끝!</div><h2 style="font-size:26px;margin-top:-8px">${esc(state.kids.map((k) => k.name).join('와 '))}의 한입,<br>오늘부터 시작해요</h2>
+        <button type="button" class="btn block" data-h="${on(() => tabGo('home'))}">홈으로 가기</button>`,
+    };
+  };
+
+  // ---------- 시작 ----------
+  function boot() {
+    $('#screen').innerHTML = '<div class="empty"><img src="assets/rice.svg" alt="">불러오는 중이에요</div>';
+    Promise.all(['recipes', 'ingredients', 'risks', 'situations'].map((n) => fetch(`data/${n}.json`).then((r) => { if (!r.ok) throw new Error(n); return r.json(); })))
+      .then(([rec, ing, risk, sit]) => { RECIPES = rec.recipes; GUIDE = ing.items; RISKS = risk; SITUATIONS = sit.items; render(); })
+      .catch((e) => { $('#screen').innerHTML = `<div class="empty"><img src="assets/mushroom.svg" alt="">데이터를 불러오지 못했어요 (${esc(e.message)}). 새로고침해 주세요.</div>`; });
+  }
+  boot();
+})();
+</script>

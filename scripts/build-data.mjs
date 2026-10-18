@@ -321,6 +321,18 @@ report.cross = {
   guide_names_not_used_in_recipes: guideNames.filter((n) => !reviewed.some((r) => r.main_ingredients.includes(n))),
 };
 
+// 프로토타입 앱(app/)이 읽는 데이터. 검수본만 내보낸다.
+const APP_DATA = join(ROOT, 'app', 'data');
+mkdirSync(APP_DATA, { recursive: true });
+writeJson(join(APP_DATA, 'recipes.json'), readJson(reviewedPath));
+writeJson(join(APP_DATA, 'ingredients.json'), readJson(ingJsonPath));
+writeJson(join(APP_DATA, 'risks.json'), risks);
+const [sitHeader, ...sitRows] = parseCsv(readFileSync(join(ROOT, 'content', 'situations.csv'), 'utf8').replace(/^﻿/, ''));
+writeJson(join(APP_DATA, 'situations.json'), {
+  status: 'AI 초안, 출처 검증·감수 전 (content/situations.csv)',
+  items: sitRows.map((r) => Object.fromEntries(sitHeader.map((h, i) => [h, r[i] ?? '']))),
+});
+
 mkdirSync(join(ROOT, 'docs'), { recursive: true });
 writeFileSync(join(ROOT, 'docs', 'hanip_risk_ingredients.md'), riskMarkdown(risks), 'utf8');
 writeJson(join(ROOT, 'data', 'validation_report.json'), { ...report, recipes_original_lint_errors: originalErrors });

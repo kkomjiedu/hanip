@@ -1,0 +1,446 @@
+{
+  "about": "영유아에게 금지하거나 주의해야 하는 재료 설명. 모든 항목은 아래 sources의 기관 문서나 사용자 식재료 가이드에 근거한다. 출처에 없는 월령·양은 넣지 않는다. 소아과 전문의 감수 전.",
+  "written_at": "2026-10-18",
+  "fields": {
+    "match": "레시피 재료(main_ingredients)와 정확히 같거나, 제목에 이 단어가 들어 있으면 해당",
+    "block_under_months": "이 월령 미만 대상 레시피에 들어 있으면 빌드 오류 (레시피에 넣을 수 없음)",
+    "caution_under_months": "이 월령 미만 대상 레시피에 recipe_caution을 자동으로 붙임"
+  },
+  "sources": {
+    "KDCA_INFANT": {
+      "title": "질병관리청 국가건강정보포털 · 식이영양(영유아)",
+      "url": "https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=5212"
+    },
+    "KDCA_WEANING": {
+      "title": "질병관리청 국가건강정보포털 · 이유기보충식(이유식)",
+      "url": "https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=5470"
+    },
+    "NHS_AVOID": {
+      "title": "NHS · Foods to avoid giving babies and young children",
+      "url": "https://www.nhs.uk/conditions/baby/weaning-and-feeding/foods-to-avoid-giving-babies-and-young-children/"
+    },
+    "NHS_ALLERGY": {
+      "title": "NHS Start for Life · Food allergies",
+      "url": "https://www.nhs.uk/start-for-life/baby/weaning/safe-weaning/food-allergies/"
+    },
+    "CDC_CHOKING": {
+      "title": "CDC · Choking Hazards (Infant and Toddler Nutrition)",
+      "url": "https://www.cdc.gov/infant-toddler-nutrition/foods-and-drinks/choking-hazards.html"
+    },
+    "ASCIA": {
+      "title": "ASCIA · Infant feeding and allergy prevention",
+      "url": "https://www.allergy.org.au/hp/papers/infant-feeding-and-allergy-prevention"
+    },
+    "HANIP_GUIDE": {
+      "title": "한입씩 식재료 가이드 30종 (사용자 제공)",
+      "url": "data/ingredients/hanip_ingredient_guide_30.csv"
+    }
+  },
+  "items": [
+    {
+      "id": "honey",
+      "name": "꿀",
+      "match": [
+        "꿀"
+      ],
+      "level": "금지",
+      "block_under_months": 12,
+      "caution_under_months": 60,
+      "description": "꿀에는 영아 보툴리누스증을 일으킬 수 있는 균이 있을 수 있어요. 1세 미만에게는 익힌 요리에 넣은 꿀도 주지 않아요. 1세가 지나도 4세 이하는 꿀·시럽 같은 단맛을 더한 음식은 피하는 것이 좋아요(충치).",
+      "instead": "단맛이 필요하면 잘 익은 과일을 으깨서 써요.",
+      "recipe_caution": "12개월 미만은 꿀 금지. 4세 이하는 꿀·시럽으로 단맛을 더하지 않아요.",
+      "sources": [
+        "KDCA_INFANT",
+        "NHS_AVOID",
+        "ASCIA"
+      ]
+    },
+    {
+      "id": "cow_milk_drink",
+      "name": "생우유 (음료로)",
+      "match": [
+        "생우유"
+      ],
+      "level": "주의",
+      "caution_under_months": 12,
+      "description": "12개월 전에는 생우유를 주된 음료로 쓰지 않아요. 요리에 넣거나 다른 음식에 섞는 것은 6개월 무렵부터 가능해요.",
+      "instead": "12개월 전 음료는 모유나 분유로 해요.",
+      "recipe_caution": "12개월 전에는 우유를 음료로 주지 말고 요리에만 넣어요.",
+      "sources": [
+        "KDCA_INFANT",
+        "NHS_ALLERGY"
+      ]
+    },
+    {
+      "id": "salt",
+      "name": "소금과 짠 양념 (간장, 된장, 고추장, 육수 큐브)",
+      "match": [
+        "소금",
+        "간장",
+        "된장",
+        "고추장",
+        "쌈장",
+        "육수 큐브",
+        "치킨스톡"
+      ],
+      "level": "금지",
+      "block_under_months": 12,
+      "description": "아기는 짜게 먹으면 신장에 좋지 않아요. 이유식에는 소금을 넣지 않고 육수 큐브·그레이비도 쓰지 않아요. 베이컨, 과자 같은 짠 가공식품도 피해요.",
+      "instead": "재료 자체의 맛이나 무염 육수를 써요. 가족 요리는 간 하기 전에 아기 몫을 덜어요.",
+      "recipe_caution": "12개월 미만은 소금·간장·된장을 넣지 않아요.",
+      "sources": [
+        "NHS_AVOID"
+      ]
+    },
+    {
+      "id": "sugar",
+      "name": "설탕, 시럽, 과일주스, 단 음료",
+      "match": [
+        "설탕",
+        "시럽",
+        "올리고당",
+        "물엿",
+        "주스",
+        "스무디"
+      ],
+      "level": "주의",
+      "caution_under_months": 60,
+      "description": "4세 이하는 설탕이나 감미료를 넣은 음식과 음료를 피해요(꿀, 시럽, 과일주스, 스무디 포함). 통과일은 괜찮아요. 이유기에는 설탕과 단 음료를 피하도록 안내해요.",
+      "instead": "통과일을 잘라 주거나 으깨서 써요.",
+      "recipe_caution": "4세 이하는 설탕·시럽·주스로 단맛을 더하지 않아요.",
+      "sources": [
+        "NHS_AVOID",
+        "KDCA_WEANING"
+      ]
+    },
+    {
+      "id": "caffeine",
+      "name": "커피, 차",
+      "match": [
+        "커피",
+        "녹차",
+        "홍차"
+      ],
+      "level": "금지",
+      "block_under_months": 12,
+      "description": "이유기 아기에게는 커피와 차를 주지 않아요.",
+      "instead": "물, 모유, 분유를 줘요.",
+      "recipe_caution": "아기에게 커피·차는 주지 않아요.",
+      "sources": [
+        "KDCA_WEANING"
+      ]
+    },
+    {
+      "id": "whole_nuts",
+      "name": "통견과, 통땅콩, 되직한 견과 버터",
+      "match": [
+        "땅콩",
+        "호두",
+        "아몬드",
+        "캐슈",
+        "잣",
+        "견과",
+        "땅콩버터"
+      ],
+      "level": "주의",
+      "caution_under_months": 60,
+      "description": "통견과와 통땅콩은 만 5세 미만에게 주지 않아요(질식). 곱게 갈거나 으깬 견과는 이유기부터 줄 수 있어요. 땅콩버터는 부드러운 것을 얇게 펴 바르거나 묽게 섞고, 숟가락으로 덩어리째 주지 않아요. 땅콩과 견과는 흔한 알레르기 식품이에요.",
+      "instead": "부드러운 땅콩버터나 땅콩가루를 죽·퓨레에 묽게 섞어요.",
+      "recipe_caution": "통땅콩·견과 조각은 만 5세 미만 금지. 곱게 간 가루나 부드러운 버터를 묽게 섞어 주세요.",
+      "sources": [
+        "NHS_AVOID",
+        "CDC_CHOKING",
+        "ASCIA",
+        "KDCA_WEANING",
+        "HANIP_GUIDE"
+      ]
+    },
+    {
+      "id": "round_foods",
+      "name": "둥근 과일·채소 (포도, 방울토마토, 체리, 블루베리)",
+      "match": [
+        "포도",
+        "방울토마토",
+        "체리",
+        "블루베리"
+      ],
+      "level": "주의",
+      "caution_under_months": 60,
+      "description": "자르지 않은 포도, 방울토마토, 체리, 베리류는 기도를 막을 수 있어요. 둥근 음식은 작게 잘라요.",
+      "instead": "4등분하거나 으깨서 줘요.",
+      "recipe_caution": "포도·방울토마토 같은 둥근 과일은 작게 잘라 주세요.",
+      "sources": [
+        "CDC_CHOKING",
+        "KDCA_WEANING"
+      ]
+    },
+    {
+      "id": "hard_raw_produce",
+      "name": "단단한 생채소·생과일 (당근, 사과)",
+      "match": [
+        "당근",
+        "사과"
+      ],
+      "level": "주의",
+      "caution_under_months": 60,
+      "description": "익히지 않은 당근이나 사과 조각처럼 단단한 생채소·과일은 질식 위험이 있어요.",
+      "instead": "부드럽게 익히거나 곱게 갈거나 아주 얇게 채 썰어요.",
+      "recipe_caution": "당근·사과는 익히거나 곱게 갈아 주세요. 단단한 생 조각은 주지 않아요.",
+      "sources": [
+        "CDC_CHOKING",
+        "KDCA_WEANING",
+        "HANIP_GUIDE"
+      ]
+    },
+    {
+      "id": "whole_beans_corn",
+      "name": "통콩, 통옥수수알",
+      "match": [
+        "완두콩",
+        "강낭콩",
+        "옥수수"
+      ],
+      "level": "주의",
+      "caution_under_months": 60,
+      "description": "통콩과 통옥수수알은 익혀도 질식 위험이 있어요.",
+      "instead": "으깨거나 갈아서 줘요.",
+      "recipe_caution": "콩·옥수수알은 통째로 주지 말고 으깨 주세요.",
+      "sources": [
+        "CDC_CHOKING"
+      ]
+    },
+    {
+      "id": "whole_seeds",
+      "name": "통깨, 들깨 통씨",
+      "match": [
+        "참깨",
+        "들깨"
+      ],
+      "level": "주의",
+      "caution_under_months": 60,
+      "description": "통씨앗은 질식 위험이 있어요. 참깨는 알레르기 식품이므로 곱게 간 형태를 고려해요.",
+      "instead": "곱게 간 깨나 깨 페이스트를 써요.",
+      "recipe_caution": "깨는 통씨 대신 곱게 갈아 넣어 주세요.",
+      "sources": [
+        "CDC_CHOKING",
+        "HANIP_GUIDE"
+      ]
+    },
+    {
+      "id": "sticky_foods",
+      "name": "떡처럼 작고 끈적한 음식",
+      "match": [
+        "떡"
+      ],
+      "level": "주의",
+      "caution_under_months": 60,
+      "description": "작고 끈적하거나 단단해서 씹고 삼키기 어려운 음식은 피해요. 떡은 이 기준을 적용한 예예요.",
+      "instead": "아이가 먹기 시작하면 아주 작게 잘라 앉아서 먹게 하고 곁에서 지켜봐요.",
+      "recipe_caution": "떡은 아주 작게 잘라 주고 먹는 동안 곁에서 지켜봐 주세요.",
+      "sources": [
+        "CDC_CHOKING"
+      ]
+    },
+    {
+      "id": "candy_jelly",
+      "name": "사탕, 젤리, 마시멜로, 껌, 생젤리 큐브",
+      "match": [
+        "사탕",
+        "젤리",
+        "마시멜로",
+        "껌"
+      ],
+      "level": "금지",
+      "block_under_months": 60,
+      "description": "둥글거나 단단한 사탕, 젤리, 캐러멜, 마시멜로, 껌은 질식 위험이 있어요. 굳히기 전 젤리 큐브도 질식 위험이에요.",
+      "instead": "과일을 간식으로 줘요.",
+      "recipe_caution": "사탕·젤리·마시멜로는 주지 않아요.",
+      "sources": [
+        "CDC_CHOKING",
+        "NHS_AVOID"
+      ]
+    },
+    {
+      "id": "processed_meat",
+      "name": "소시지, 햄, 베이컨",
+      "match": [
+        "소시지",
+        "핫도그",
+        "햄",
+        "베이컨"
+      ],
+      "level": "주의",
+      "caution_under_months": 60,
+      "description": "소시지·핫도그는 질식 위험이 있고, 베이컨 같은 가공육은 짜요.",
+      "instead": "직접 익힌 고기를 잘게 다져 써요.",
+      "recipe_caution": "가공육은 짜고 질식 위험이 있어요. 잘게 자르고 양을 줄여 주세요.",
+      "sources": [
+        "CDC_CHOKING",
+        "NHS_AVOID"
+      ]
+    },
+    {
+      "id": "meat_chunks",
+      "name": "고기 큰 덩어리",
+      "match": [
+        "소고기",
+        "닭고기"
+      ],
+      "level": "주의",
+      "caution_under_months": 60,
+      "description": "질기거나 큰 고기 덩어리는 질식 위험이 있어요. 고기는 충분히 익혀요.",
+      "instead": "곱게 갈거나 잘게 다지고 부드럽게 익혀요.",
+      "recipe_caution": "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+      "sources": [
+        "CDC_CHOKING",
+        "HANIP_GUIDE"
+      ]
+    },
+    {
+      "id": "cheese",
+      "name": "치즈 (큰 덩어리, 곰팡이 숙성 연성치즈, 비살균 치즈)",
+      "match": [
+        "치즈"
+      ],
+      "level": "주의",
+      "caution_under_months": 60,
+      "description": "큰 치즈 덩어리, 특히 스트링치즈는 질식 위험이 있어요. 브리·카망베르 같은 곰팡이 숙성 연성치즈, 푸른곰팡이 연성치즈, 비살균 치즈는 리스테리아 위험 때문에 주지 않아요. 치즈는 나트륨 함량을 확인해요. 우유 알레르기 식품이에요.",
+      "instead": "살균한 치즈를 작게 자르거나 녹여 써요.",
+      "recipe_caution": "살균 치즈를 작게 자르거나 녹여 쓰고, 나트륨을 확인해 주세요.",
+      "sources": [
+        "CDC_CHOKING",
+        "NHS_AVOID",
+        "HANIP_GUIDE"
+      ]
+    },
+    {
+      "id": "raw_egg",
+      "name": "날달걀, 반숙 달걀, 메추리알",
+      "match": [
+        "달걀",
+        "계란",
+        "메추리알"
+      ],
+      "level": "주의",
+      "caution_under_months": 60,
+      "description": "날달걀은 세균 오염 위험이 있어요. 영아에게는 흰자와 노른자가 모두 단단해질 때까지 익혀서 줘요. 메추리알 같은 다른 알도 완전히 익혀요. 달걀은 흔한 알레르기 식품이에요.",
+      "instead": "완숙으로 익히고, 메추리알처럼 둥근 것은 잘라 줘요.",
+      "recipe_caution": "달걀은 흰자와 노른자가 단단해질 때까지 완전히 익혀 주세요.",
+      "sources": [
+        "ASCIA",
+        "NHS_AVOID",
+        "HANIP_GUIDE"
+      ]
+    },
+    {
+      "id": "raw_shellfish",
+      "name": "날것이나 덜 익힌 조개·갑각류",
+      "match": [
+        "새우",
+        "게",
+        "조개",
+        "굴",
+        "홍합",
+        "바지락"
+      ],
+      "level": "주의",
+      "caution_under_months": 60,
+      "description": "날것이나 살짝 익힌 조개류는 식중독 위험이 있어 아기에게 주지 않아요. 새우·게는 갑각류 알레르기 식품이에요.",
+      "instead": "완전히 익혀서 곱게 다져요.",
+      "recipe_caution": "새우·조개는 완전히 익혀 주세요.",
+      "sources": [
+        "NHS_AVOID",
+        "NHS_ALLERGY",
+        "HANIP_GUIDE"
+      ]
+    },
+    {
+      "id": "high_mercury_fish",
+      "name": "상어, 황새치, 청새치",
+      "match": [
+        "상어",
+        "황새치",
+        "청새치"
+      ],
+      "level": "금지",
+      "block_under_months": 192,
+      "description": "수은이 신경계 발달에 영향을 줄 수 있어 16세 미만 아이에게는 주지 않아요.",
+      "instead": "연어, 대구 같은 다른 생선을 써요.",
+      "recipe_caution": "16세 미만에게는 주지 않아요.",
+      "sources": [
+        "NHS_AVOID"
+      ]
+    },
+    {
+      "id": "fish_bones",
+      "name": "생선 가시 (연어, 대구, 고등어, 북어 등)",
+      "match": [
+        "연어",
+        "대구",
+        "고등어",
+        "흰살생선",
+        "북어"
+      ],
+      "level": "주의",
+      "caution_under_months": 60,
+      "description": "생선 가시는 질식 위험이 있어요. 생선은 완전히 익혀요. 고등어는 중금속을 고려해 종류를 골라요. 생선은 알레르기 식품이에요.",
+      "instead": "가시를 꼼꼼히 발라 완전히 익혀요.",
+      "recipe_caution": "생선은 가시를 꼼꼼히 바르고 완전히 익혀 주세요.",
+      "sources": [
+        "CDC_CHOKING",
+        "HANIP_GUIDE"
+      ]
+    },
+    {
+      "id": "seaweed",
+      "name": "김, 미역 (요오드·나트륨)",
+      "match": [
+        "김",
+        "미역",
+        "미역줄기"
+      ],
+      "level": "주의",
+      "caution_under_months": 60,
+      "description": "김과 미역은 요오드와 나트륨을 너무 많이 먹지 않도록 주의해요. 조미김 대신 무염 김을 소량 써요.",
+      "instead": "무염 김을 잘게 부수거나, 미역은 소량을 부드럽게 익혀 잘게 썰어요.",
+      "recipe_caution": "김·미역은 무염으로 소량만, 잘게 잘라 주세요.",
+      "sources": [
+        "HANIP_GUIDE",
+        "CDC_CHOKING"
+      ]
+    },
+    {
+      "id": "tomato",
+      "name": "토마토",
+      "match": [
+        "토마토"
+      ],
+      "level": "주의",
+      "caution_under_months": 60,
+      "description": "방울토마토는 자르지 않으면 질식 위험이 있어요. 토마토는 산성이라 입 주변이 붉어질 수 있지만, 그것만으로 알레르기라고 단정하지 않아요.",
+      "instead": "껍질을 벗겨 익히거나 작게 잘라요.",
+      "recipe_caution": "방울토마토는 잘라 주세요. 입 주변이 붉어지는 것만으로 알레르기라고 단정하지 않아요.",
+      "sources": [
+        "CDC_CHOKING",
+        "HANIP_GUIDE"
+      ]
+    },
+    {
+      "id": "rice_drink",
+      "name": "쌀음료 (라이스 밀크)",
+      "match": [
+        "쌀음료",
+        "라이스밀크",
+        "라이스 밀크"
+      ],
+      "level": "금지",
+      "block_under_months": 60,
+      "description": "5세 미만 아이에게는 모유·분유나 (1세 이후) 우유 대신 쌀음료를 주지 않아요. 비소가 많을 수 있어요.",
+      "instead": "모유, 분유, 1세 이후 우유를 줘요.",
+      "recipe_caution": "5세 미만은 쌀음료를 우유 대신 주지 않아요.",
+      "sources": [
+        "NHS_AVOID"
+      ]
+    }
+  ]
+}
