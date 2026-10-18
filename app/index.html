@@ -776,6 +776,17 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
     const method = tab === 'topping' ? meta?.toppingMethod : meta?.mixedMethod;
     const c = catOf(r.category);
     const lead = leadIngredient(r);
+    // 우리집 냉장고 기준: 있는 재료, 추가로 필요한 재료 (최대 보관 기간이 지난 재료는 따로 표시)
+    const inFridge = (/** @type {string} */ i) => state.fridge.filter((f) => f.name === i);
+    const haveOk = r.main_ingredients.filter((i) => (i === '쌀' && state.today.riceAtHome) || inFridge(i).some((f) => useBy(f)?.tone !== 'over'));
+    const haveOver = r.main_ingredients.filter((i) => !haveOk.includes(i) && inFridge(i).length);
+    const need = r.main_ingredients.filter((i) => !haveOk.includes(i) && !haveOver.includes(i));
+    const fridgeHtml = `<section class="card stack" aria-label="우리집 냉장고 기준"><div class="row" style="justify-content:space-between"><div class="sec-title" style="font-size:17px">우리집 냉장고 기준</div><a href="#" data-go="myfridge" style="font-size:13px">냉장고 보기</a></div>
+      ${need.length ? `<div><b style="font-size:13.5px;color:var(--warn-ink)">추가로 필요해요 ${need.length}가지</b><div class="row" style="margin-top:6px">${need.map((i) => `<span class="badge warn">${esc(i)}</span>`).join('')}</div></div>` : '<div style="font-size:14px;color:var(--ok-ink);font-weight:500">냉장고 재료로 바로 만들 수 있어요</div>'}
+      ${haveOk.length ? `<div><b style="font-size:13.5px">냉장고에 있어요</b><div class="row" style="margin-top:6px">${haveOk.map((i) => `<span class="badge sage">${esc(i)}</span>`).join('')}</div></div>` : ''}
+      ${haveOver.length ? `<div class="muted">${haveOver.map(esc).join(', ')}: 냉장고에 있지만 최대 보관 기간이 지났어요. 상태를 확인해 주세요.</div>` : ''}
+      ${r.main_ingredients.includes('쌀') && !state.today.riceAtHome ? '' : r.main_ingredients.includes('쌀') ? '<div class="muted">쌀·밥은 집에 있는 것으로 셌어요.</div>' : ''}
+    </section>`;
     return {
       title: '레시피',
       html: `<div class="hero" style="background:${tintFor(lead)};height:160px;display:grid;place-items:center">${CHAR[lead] ? `<img src="assets/${CHAR[lead]}.svg" alt="" style="position:static;width:124px">` : charHtml(lead, 110, 'transparent')}</div>
@@ -785,6 +796,7 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
           ${state.adults ? `<div><b>어른</b><span class="status" style="color:var(--ok-ink)">함께 먹을 수 있어요</span></div>` : ''}
         </section>
         <section class="stack"><div class="sec-title">재료</div><div class="row">${r.main_ingredients.map((i) => `<button type="button" class="badge" style="min-height:34px;border:0;padding:0 12px 0 4px;gap:6px" data-go="ingredient" data-arg="${esc(i)}">${charHtml(i, 26, 'var(--milk)')}${esc(i)}</button>`).join('')}</div><div class="muted">계량은 전문가 검수 후 추가돼요.</div></section>
+        ${fridgeHtml}
         <section class="stack"><div class="sec-title">알레르기</div>
           ${r.allergens.length ? `<div class="row">${r.allergens.map((a) => `<span class="badge warn">${esc(allergenLabel(a))}</span>`).join('')}</div>` : '<div class="muted">제목 기준 알레르기 식품 없음</div>'}
           ${r.possible_allergens.length ? `<div class="note warn">${ICON.info}<span><b>부재료로 들어갈 수 있어요</b>: ${r.possible_allergens.map((p) => esc(allergenLabel(p.allergen))).join(', ')}<br><span style="font-size:12.5px">${esc(r.possible_allergens[0].reason)}</span></span></div>` : ''}
