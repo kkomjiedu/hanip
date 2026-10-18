@@ -74,7 +74,7 @@
   /** @param {string} ing @param {number} [size] @param {string} [bg] */
   function charHtml(ing, size = 52, bg) {
     const file = CHAR[ing];
-    const inner = file ? `<img src="assets/${file}.svg" alt="">` : `<span class="dot" style="background:${tintFor(ing + 'x')}">${esc(String(ing).slice(0, 1))}</span>`;
+    const inner = file ? `<img src="assets/${file}.svg" alt="">` : `<span class="dot" style="background:${tintFor(ing + 'x')};font-size:${Math.max(11, Math.round(size * 0.34))}px" aria-hidden="true">${esc(String(ing).slice(0, 1))}</span>`;
     return `<span class="char" style="width:${size}px;height:${size}px;background:${bg ?? tintFor(ing)}">${inner}</span>`;
   }
   /** @param {Recipe} r */
