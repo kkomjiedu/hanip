@@ -1,0 +1,1249 @@
+{
+  "generated_at": "2026-10-18T14:29:29.138Z",
+  "ingredients": {
+    "file_csv": "data/ingredients/hanip_ingredient_guide_30.csv",
+    "file_json": "data/ingredients/hanip_ingredient_guide_30.json",
+    "columns": [
+      "재료",
+      "특징",
+      "추천 조합",
+      "주의 및 한계"
+    ],
+    "actual_count": 30,
+    "expected": 30,
+    "count_ok": true,
+    "rows_with_wrong_column_count": [],
+    "duplicate_names": [],
+    "empty_cells": [],
+    "compound_names": [
+      "우유/요거트",
+      "김/미역"
+    ],
+    "json_round_trip_identical": true
+  },
+  "recipes_original": {
+    "file": "data/recipes/hanip_recipe_catalog_230.json",
+    "declared_total": 230,
+    "actual_count": 230,
+    "count_ok": true,
+    "missing_id_numbers": [],
+    "duplicate_titles": [
+      {
+        "title": "연어 감자전",
+        "items": [
+          "HN-113 첫한입_완료기",
+          "HN-133 쑥쑥한입"
+        ]
+      },
+      {
+        "title": "소고기 미역국",
+        "items": [
+          "HN-121 첫한입_완료기",
+          "HN-145 쑥쑥한입",
+          "HN-182 같이한입"
+        ]
+      },
+      {
+        "title": "소고기뭇국",
+        "items": [
+          "HN-141 쑥쑥한입",
+          "HN-181 같이한입"
+        ]
+      },
+      {
+        "title": "두부 달걀국",
+        "items": [
+          "HN-143 쑥쑥한입",
+          "HN-184 같이한입"
+        ]
+      }
+    ],
+    "review_status": {
+      "기획안_영양안전조리검증필요": 230
+    },
+    "lint_error_count": 185,
+    "lint_by_code": {
+      "INGREDIENT_NOT_IN_TITLE": 27,
+      "POSSIBLE_ALLERGEN_MISSING": 91,
+      "TITLE_INGREDIENT_MISSING": 5,
+      "ALLERGEN_MISSING": 7,
+      "NULL_MIN_MONTHS": 50,
+      "EMPTY_INGREDIENTS": 2,
+      "BLOCKED_INGREDIENT": 3
+    }
+  },
+  "recipes_reviewed": {
+    "file": "data/recipes/hanip_recipes_reviewed.json",
+    "count": 230,
+    "changed_recipes": 106,
+    "with_possible_allergens": 52,
+    "with_cautions": 144,
+    "with_review_flags": 52,
+    "min_months_by_category": {
+      "첫한입_초기": [
+        6
+      ],
+      "첫한입_중기": [
+        7
+      ],
+      "첫한입_후기": [
+        9
+      ],
+      "첫한입_완료기": [
+        12
+      ],
+      "쑥쑥한입": [
+        12
+      ],
+      "같이한입": [
+        60
+      ]
+    },
+    "lint_errors": []
+  },
+  "cross": {
+    "recipe_ingredients_not_in_guide": [
+      "가지",
+      "고구마줄기",
+      "들깨",
+      "렌틸",
+      "메추리알",
+      "무",
+      "미역줄기",
+      "배추",
+      "북어",
+      "비트",
+      "숙주",
+      "아스파라거스",
+      "양배추",
+      "양파",
+      "연근",
+      "오이",
+      "완두콩",
+      "카레",
+      "콜리플라워",
+      "콩나물",
+      "퀴노아",
+      "파스타",
+      "흰살생선"
+    ],
+    "guide_names_not_used_in_recipes": [
+      "밀",
+      "우유",
+      "아보카도",
+      "딸기"
+    ]
+  },
+  "recipes_original_lint_errors": [
+    {
+      "id": "HN-002",
+      "title": "오트밀 미음",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '밀' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-027",
+      "title": "오트밀 배 퓨레",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '밀' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-028",
+      "title": "오트밀 사과 퓨레",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '밀' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-039",
+      "title": "닭고기 양배추 죽",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '배추' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-039",
+      "title": "닭고기 양배추 죽",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '배' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-049",
+      "title": "오트밀 바나나 죽",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '밀' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-050",
+      "title": "오트밀 사과 죽",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '밀' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-064",
+      "title": "소고기 배추 진밥",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '배' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-071",
+      "title": "소고기 양배추 진밥",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '배추' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-071",
+      "title": "소고기 양배추 진밥",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '배' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-076",
+      "title": "닭고기 오트밀 진밥",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '밀' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-086",
+      "title": "소고기 버섯 리소토",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'리소토' 요리인데 '우유' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-087",
+      "title": "닭고기 단호박 리소토",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'리소토' 요리인데 '우유' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-088",
+      "title": "새우 브로콜리 리소토",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'리소토' 요리인데 '우유' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-089",
+      "title": "토마토 두부 리소토",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'리소토' 요리인데 '우유' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-091",
+      "title": "닭고기 양배추 수프",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '배추' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-091",
+      "title": "닭고기 양배추 수프",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '배' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-100",
+      "title": "소고기 감자 완자",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-100",
+      "title": "소고기 감자 완자",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-101",
+      "title": "닭고기 두부 완자",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-101",
+      "title": "닭고기 두부 완자",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-102",
+      "title": "대구 브로콜리 완자",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-102",
+      "title": "대구 브로콜리 완자",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-103",
+      "title": "두부 채소 완자",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-103",
+      "title": "두부 채소 완자",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-104",
+      "title": "소고기 단호박 완자",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-104",
+      "title": "소고기 단호박 완자",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-110",
+      "title": "감자 애호박전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-110",
+      "title": "감자 애호박전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-111",
+      "title": "두부 당근전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-111",
+      "title": "두부 당근전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-112",
+      "title": "닭고기 브로콜리전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-112",
+      "title": "닭고기 브로콜리전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-113",
+      "title": "연어 감자전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-113",
+      "title": "연어 감자전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-114",
+      "title": "고구마 오트밀전",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '밀' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-114",
+      "title": "고구마 오트밀전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-115",
+      "title": "소고기 배추국",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '배' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-130",
+      "title": "버섯 감자 그라탱",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'그라탱' 요리인데 '우유' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-130",
+      "title": "버섯 감자 그라탱",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'그라탱' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-131",
+      "title": "소고기 두부 동그랑땡",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-131",
+      "title": "소고기 두부 동그랑땡",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-132",
+      "title": "닭고기 채소 동그랑땡",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-132",
+      "title": "닭고기 채소 동그랑땡",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-133",
+      "title": "연어 감자전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-133",
+      "title": "연어 감자전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-134",
+      "title": "대구 두부전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-134",
+      "title": "대구 두부전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-135",
+      "title": "감자 당근전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-135",
+      "title": "감자 당근전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-136",
+      "title": "애호박 달걀전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-137",
+      "title": "브로콜리 치즈전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-137",
+      "title": "브로콜리 치즈전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-138",
+      "title": "단호박 오트밀전",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '밀' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-138",
+      "title": "단호박 오트밀전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-139",
+      "title": "두부 시금치전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-139",
+      "title": "두부 시금치전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-140",
+      "title": "버섯 달걀전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-141",
+      "title": "소고기뭇국",
+      "code": "TITLE_INGREDIENT_MISSING",
+      "msg": "'무'가 재료에 없음"
+    },
+    {
+      "id": "HN-156",
+      "title": "소고기 토마토리소토",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'리소토' 요리인데 '우유' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-157",
+      "title": "닭고기 단호박리소토",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'리소토' 요리인데 '우유' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-158",
+      "title": "새우 채소리소토",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'리소토' 요리인데 '우유' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-161",
+      "title": "간장 없는 두부조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-162",
+      "title": "부드러운 감자조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '대두' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-162",
+      "title": "부드러운 감자조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-167",
+      "title": "시금치 참깨무침",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '무' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-168",
+      "title": "브로콜리 두부무침",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '무' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-173",
+      "title": "연어 크림파스타",
+      "code": "ALLERGEN_MISSING",
+      "msg": "'크림' 요리인데 '우유' 표시 없음"
+    },
+    {
+      "id": "HN-176",
+      "title": "바나나 오트밀팬케이크",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '밀' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-176",
+      "title": "바나나 오트밀팬케이크",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'팬케이크|머핀' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-176",
+      "title": "바나나 오트밀팬케이크",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'팬케이크|머핀' 요리인데 '우유' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-177",
+      "title": "사과 고구마팬케이크",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'팬케이크|머핀' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-177",
+      "title": "사과 고구마팬케이크",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'팬케이크|머핀' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-177",
+      "title": "사과 고구마팬케이크",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'팬케이크|머핀' 요리인데 '우유' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-179",
+      "title": "단호박 치즈머핀",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'팬케이크|머핀' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-179",
+      "title": "단호박 치즈머핀",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'팬케이크|머핀' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-181",
+      "title": "소고기뭇국",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-181",
+      "title": "소고기뭇국",
+      "code": "TITLE_INGREDIENT_MISSING",
+      "msg": "'무'가 재료에 없음"
+    },
+    {
+      "id": "HN-182",
+      "title": "소고기 미역국",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-183",
+      "title": "닭곰탕",
+      "code": "EMPTY_INGREDIENTS",
+      "msg": "재료가 비어 있음"
+    },
+    {
+      "id": "HN-183",
+      "title": "닭곰탕",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-183",
+      "title": "닭곰탕",
+      "code": "TITLE_INGREDIENT_MISSING",
+      "msg": "'닭고기'가 재료에 없음"
+    },
+    {
+      "id": "HN-184",
+      "title": "두부 달걀국",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-185",
+      "title": "애호박 된장국",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-185",
+      "title": "애호박 된장국",
+      "code": "ALLERGEN_MISSING",
+      "msg": "'된장' 요리인데 '대두' 표시 없음"
+    },
+    {
+      "id": "HN-185",
+      "title": "애호박 된장국",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'된장' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-185",
+      "title": "애호박 된장국",
+      "code": "BLOCKED_INGREDIENT",
+      "msg": "소금과 짠 양념 (간장, 된장, 고추장, 육수 큐브): 12개월 미만 대상에 넣을 수 없음"
+    },
+    {
+      "id": "HN-186",
+      "title": "버섯 들깨탕",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-187",
+      "title": "시금치 된장국",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-187",
+      "title": "시금치 된장국",
+      "code": "ALLERGEN_MISSING",
+      "msg": "'된장' 요리인데 '대두' 표시 없음"
+    },
+    {
+      "id": "HN-187",
+      "title": "시금치 된장국",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'된장' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-187",
+      "title": "시금치 된장국",
+      "code": "BLOCKED_INGREDIENT",
+      "msg": "소금과 짠 양념 (간장, 된장, 고추장, 육수 큐브): 12개월 미만 대상에 넣을 수 없음"
+    },
+    {
+      "id": "HN-188",
+      "title": "감자 양파국",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-189",
+      "title": "북엇국",
+      "code": "EMPTY_INGREDIENTS",
+      "msg": "재료가 비어 있음"
+    },
+    {
+      "id": "HN-189",
+      "title": "북엇국",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-189",
+      "title": "북엇국",
+      "code": "TITLE_INGREDIENT_MISSING",
+      "msg": "'북어'가 재료에 없음"
+    },
+    {
+      "id": "HN-189",
+      "title": "북엇국",
+      "code": "ALLERGEN_MISSING",
+      "msg": "'북엇국|북어' 요리인데 '생선' 표시 없음"
+    },
+    {
+      "id": "HN-189",
+      "title": "북엇국",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'북엇국|북어' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-190",
+      "title": "토마토 달걀탕",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-191",
+      "title": "두부조림",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-191",
+      "title": "두부조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-192",
+      "title": "감자조림",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-192",
+      "title": "감자조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '대두' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-192",
+      "title": "감자조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-193",
+      "title": "연근조림",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-193",
+      "title": "연근조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '대두' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-193",
+      "title": "연근조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-194",
+      "title": "메추리알 장조림",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-194",
+      "title": "메추리알 장조림",
+      "code": "ALLERGEN_MISSING",
+      "msg": "'간장|장조림' 요리인데 '대두' 표시 없음"
+    },
+    {
+      "id": "HN-194",
+      "title": "메추리알 장조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'간장|장조림' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-194",
+      "title": "메추리알 장조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '대두' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-194",
+      "title": "메추리알 장조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-195",
+      "title": "소고기 장조림",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-195",
+      "title": "소고기 장조림",
+      "code": "ALLERGEN_MISSING",
+      "msg": "'간장|장조림' 요리인데 '대두' 표시 없음"
+    },
+    {
+      "id": "HN-195",
+      "title": "소고기 장조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'간장|장조림' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-195",
+      "title": "소고기 장조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '대두' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-195",
+      "title": "소고기 장조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-196",
+      "title": "버섯 간장조림",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-196",
+      "title": "버섯 간장조림",
+      "code": "ALLERGEN_MISSING",
+      "msg": "'간장|장조림' 요리인데 '대두' 표시 없음"
+    },
+    {
+      "id": "HN-196",
+      "title": "버섯 간장조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'간장|장조림' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-196",
+      "title": "버섯 간장조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '대두' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-196",
+      "title": "버섯 간장조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-196",
+      "title": "버섯 간장조림",
+      "code": "BLOCKED_INGREDIENT",
+      "msg": "소금과 짠 양념 (간장, 된장, 고추장, 육수 큐브): 12개월 미만 대상에 넣을 수 없음"
+    },
+    {
+      "id": "HN-197",
+      "title": "가지볶음",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-198",
+      "title": "애호박볶음",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-199",
+      "title": "당근 버섯볶음",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-200",
+      "title": "양배추 볶음",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-200",
+      "title": "양배추 볶음",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '배추' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-200",
+      "title": "양배추 볶음",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '배' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-201",
+      "title": "닭고기 채소볶음",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-202",
+      "title": "소고기 숙주볶음",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-203",
+      "title": "브로콜리 새우볶음",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-204",
+      "title": "두부 버섯볶음",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-205",
+      "title": "시금치 나물",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-206",
+      "title": "콩나물 무침",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-206",
+      "title": "콩나물 무침",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '무' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-207",
+      "title": "오이 무침",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-207",
+      "title": "오이 무침",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '무' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-208",
+      "title": "미역줄기 볶음",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-208",
+      "title": "미역줄기 볶음",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '미역' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-209",
+      "title": "고구마 줄기볶음",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-209",
+      "title": "고구마 줄기볶음",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '고구마' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-209",
+      "title": "고구마 줄기볶음",
+      "code": "TITLE_INGREDIENT_MISSING",
+      "msg": "'고구마줄기'가 재료에 없음"
+    },
+    {
+      "id": "HN-210",
+      "title": "브로콜리 참깨무침",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-210",
+      "title": "브로콜리 참깨무침",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '무' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-211",
+      "title": "애호박전",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-211",
+      "title": "애호박전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-211",
+      "title": "애호박전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-212",
+      "title": "감자전",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-212",
+      "title": "감자전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-212",
+      "title": "감자전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-213",
+      "title": "두부전",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-213",
+      "title": "두부전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-213",
+      "title": "두부전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-214",
+      "title": "버섯전",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-214",
+      "title": "버섯전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-214",
+      "title": "버섯전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-215",
+      "title": "연어전",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-215",
+      "title": "연어전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-215",
+      "title": "연어전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-216",
+      "title": "소고기 채소전",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-216",
+      "title": "소고기 채소전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-216",
+      "title": "소고기 채소전",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'전$|전\\s|동그랑땡|완자' 요리인데 '계란' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-217",
+      "title": "김치 없는 달걀말이",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-217",
+      "title": "김치 없는 달걀말이",
+      "code": "INGREDIENT_NOT_IN_TITLE",
+      "msg": "제목에 없는 재료 '김' (다른 단어의 일부를 잘못 뽑았을 가능성)"
+    },
+    {
+      "id": "HN-218",
+      "title": "시금치 달걀말이",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-219",
+      "title": "두부 달걀찜",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-220",
+      "title": "버섯 달걀찜",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-221",
+      "title": "소고기 야채비빔밥",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-222",
+      "title": "닭고기 버섯덮밥",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-223",
+      "title": "두부 채소덮밥",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-224",
+      "title": "연어 구이 정식",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-225",
+      "title": "대구 무조림",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-225",
+      "title": "대구 무조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '대두' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-225",
+      "title": "대구 무조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-226",
+      "title": "고등어 무조림",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-226",
+      "title": "고등어 무조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '대두' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-226",
+      "title": "고등어 무조림",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'조림' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-227",
+      "title": "닭고기 토마토스튜",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-228",
+      "title": "소고기 채소카레",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-228",
+      "title": "소고기 채소카레",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'카레' 요리인데 '밀' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-228",
+      "title": "소고기 채소카레",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'카레' 요리인데 '우유' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-229",
+      "title": "버섯 리소토",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    },
+    {
+      "id": "HN-229",
+      "title": "버섯 리소토",
+      "code": "POSSIBLE_ALLERGEN_MISSING",
+      "msg": "'리소토' 요리인데 '우유' 가능성 표시 없음"
+    },
+    {
+      "id": "HN-230",
+      "title": "새우 토마토파스타",
+      "code": "NULL_MIN_MONTHS",
+      "msg": "min_months가 비어 있음 (0개월로 오인될 위험)"
+    }
+  ]
+}
