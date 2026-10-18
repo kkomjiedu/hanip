@@ -1,0 +1,19 @@
+# 의존성, 빌드 결과
+node_modules/
+dist/
+build/
+.next/
+.vercel/
+
+# 비밀 값 (Supabase 키, 카카오 키)
+.env
+.env.*
+!.env.example
+
+# 엑셀이 여는 동안 만드는 임시 파일
+~$*
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
