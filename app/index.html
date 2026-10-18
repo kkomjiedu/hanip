@@ -214,6 +214,8 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
   const todayIso = iso(TODAY);
   /** @param {string} date */
   const daysSince = (date) => daysBetween(date, todayIso);
+  /** 한글 등 입력기가 글자를 조합하는 중인지 (조합 중 Enter는 글자 확정용이라 무시) @param {KeyboardEvent} e */
+  const imeBusy = (e) => e.isComposing || e.keyCode === 229;
   /** @param {string} birth */
   const monthsOld = (birth) => {
     const b = parse(birth); let m = (TODAY.getFullYear() - b.getFullYear()) * 12 + (TODAY.getMonth() - b.getMonth());
@@ -569,6 +571,7 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
   SCREENS.today = () => ({ title: '재료로 찾기', html: `${kidBar()}${whatToEat(currentKid())}`, after: bindWhatToEat });
 
   // 오늘 뭐 먹지: 오늘 쓸 수 있는 재료로 추천
+  let todayDraft = '';
   const allIngredients = () => [...new Set([...GUIDE_ROWS.flatMap((g) => String(g['재료']).split('/')), ...RECIPES.flatMap((r) => r.main_ingredients)])].sort((a, b) => a.localeCompare(b, 'ko'));
   /** @param {Kid} kid */
   function whatToEat(kid) {
@@ -583,7 +586,7 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
     return `<section class="card stack" aria-label="오늘 뭐 먹지" style="background:var(--white)">
       <h2 style="font-size:24px">오늘은 뭐 먹지?</h2>
       <div class="muted">오늘 쓸 수 있는 재료를 넣으면 ${t.family ? '온 가족이' : esc(kid.name) + '가'} 먹을 수 있는 레시피를 찾아 드려요.</div>
-      <div class="row" style="flex-wrap:nowrap"><input class="input" id="todayInput" list="ingList" placeholder="예: 소고기, 애호박" aria-label="오늘 쓸 재료" autocomplete="off"><button type="button" class="btn small" id="todayAdd" style="flex:none">넣기</button></div>
+      <div class="row" style="flex-wrap:nowrap"><input class="input" id="todayInput" list="ingList" placeholder="예: 소고기, 애호박" aria-label="오늘 쓸 재료" autocomplete="off" value="${esc(todayDraft)}"><button type="button" class="btn small" id="todayAdd" style="flex:none">넣기</button></div>
       <datalist id="ingList">${allIngredients().map((n) => `<option value="${esc(n)}"></option>`).join('')}</datalist>
       ${t.items.length ? `<div class="row">${t.items.map((i) => `<span class="tag-x">${esc(i)}<button type="button" aria-label="${esc(i)} 빼기" data-h="${on(() => { t.items = t.items.filter((x) => x !== i); save(); render(); })}">${ICON.x}</button></span>`).join('')}</div>` : ''}
       ${state.fridge.length ? `<button type="button" class="btn ghost small" style="align-self:flex-start" data-h="${on(() => { t.items = [...new Set([...t.items, ...state.fridge.map((f) => f.name)])]; save(); render(); })}">우리집 냉장고 재료 불러오기 (${state.fridge.length})</button>` : ''}
@@ -601,10 +604,12 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
       const names = String(input.value).split(/[,，\s]+/).map((s) => s.trim()).filter(Boolean);
       if (!names.length) return;
       state.today.items = [...new Set([...state.today.items, ...names])];
+      todayDraft = '';
       save(); render(); $('#todayInput')?.focus();
     };
+    input.addEventListener('input', () => { todayDraft = input.value; });
     $('#todayAdd').addEventListener('click', add);
-    input.addEventListener('keydown', (/** @type {KeyboardEvent} */ e) => { if (e.key === 'Enter') { e.preventDefault(); add(); } });
+    input.addEventListener('keydown', (/** @type {KeyboardEvent} */ e) => { if (e.key === 'Enter' && !imeBusy(e)) { e.preventDefault(); add(); } });
     $('#riceHome').addEventListener('change', (/** @type {any} */ e) => { state.today.riceAtHome = e.target.checked; save(); render(); });
     $('#familyMode')?.addEventListener('change', (/** @type {any} */ e) => { state.today.family = e.target.checked; save(); render(); });
   }
@@ -774,7 +779,12 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
         ${list.length > 80 ? `<div class="muted" style="text-align:center">처음 80개만 보여요. 검색이나 대상으로 좁혀 보세요.</div>` : ''}`,
       after: () => {
         const s = $('#rsearch');
-        s.addEventListener('input', () => { rq.q = s.value; const pos = s.selectionStart; render(); const n = $('#rsearch'); n.focus(); n.setSelectionRange(pos, pos); });
+        // 한글은 조합이 끝난 뒤에만 다시 그린다. 조합 중에 다시 그리면 자음·모음이 따로 들어간다
+        let composing = false;
+        const apply = () => { rq.q = s.value; const pos = s.selectionStart; render(); const n = $('#rsearch'); n.focus(); n.setSelectionRange(pos, pos); };
+        s.addEventListener('compositionstart', () => { composing = true; });
+        s.addEventListener('compositionend', () => { composing = false; apply(); });
+        s.addEventListener('input', (/** @type {InputEvent} */ e) => { if (!composing && !e.isComposing) apply(); });
         $('#onlyFit').addEventListener('change', (/** @type {any} */ e) => { rq.onlyFit = e.target.checked; render(); });
       },
     };
@@ -912,6 +922,7 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
   const fridgeSoon = () => state.fridge.filter((f) => { const u = useBy(f); return u && u.tone !== 'ok'; });
   /** @type {'today'|'ago'|'date'} */ let boughtMode = 'today';
   let boughtAgo = 1;
+  let fridgeDraft = '';
   let boughtDate = todayIso;
   SCREENS.myfridge = () => {
     const sorted = [...state.fridge].sort((a, b) => {
@@ -954,7 +965,7 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
       title: '우리집 냉장고',
       html: `<div><h2 style="font-size:24px">우리집 냉장고에는?</h2><div class="muted">재료와 산 날을 넣으면 보관법과 언제까지 쓰면 좋은지, 그 재료로 만들 수 있는 레시피를 알려 드려요.</div></div>
         <section class="card stack" aria-label="재료 넣기">
-          <div class="field"><label for="fName">재료</label><input class="input" id="fName" list="fIngList" placeholder="예: 소고기" autocomplete="off"><datalist id="fIngList">${[...new Set([...allIngredients(), ...STORAGE.groups.flatMap((g) => g.match)])].sort((a, b) => a.localeCompare(b, 'ko')).map((n) => `<option value="${esc(n)}"></option>`).join('')}</datalist></div>
+          <div class="field"><label for="fName">재료</label><input class="input" id="fName" list="fIngList" placeholder="예: 소고기" autocomplete="off" value="${esc(fridgeDraft)}"><datalist id="fIngList">${[...new Set([...allIngredients(), ...STORAGE.groups.flatMap((g) => g.match)])].sort((a, b) => a.localeCompare(b, 'ko')).map((n) => `<option value="${esc(n)}"></option>`).join('')}</datalist></div>
           <div class="field"><span class="lb">언제 샀어요?</span>
             <div class="seg" role="group" aria-label="산 날"><button type="button" id="bToday" aria-pressed="${boughtMode === 'today'}">오늘</button><button type="button" id="bAgo" aria-pressed="${boughtMode === 'ago'}">며칠 전</button><button type="button" id="bDate" aria-pressed="${boughtMode === 'date'}">달력</button></div>
             <div class="row" id="bAgoWrap" ${boughtMode === 'ago' ? '' : 'hidden'}><div class="amount"><input id="bAgoN" type="number" min="0" max="365" inputmode="numeric" value="${boughtAgo}" aria-label="며칠 전"></div><span>일 전</span></div>
@@ -993,10 +1004,13 @@ details.fold { border-top: 1.5px solid var(--line); padding-top: 8px; }
           if (!names.length) { $('#fErr').hidden = false; return; }
           const bought = preview();
           for (const n of names) state.fridge.push({ id: 'f' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), name: n, bought });
+          fridgeDraft = '';
           save(); render(); $('#fName')?.focus();
         };
         $('#fAdd').addEventListener('click', add);
-        $('#fName').addEventListener('keydown', (/** @type {KeyboardEvent} */ e) => { if (e.key === 'Enter') { e.preventDefault(); add(); } });
+        $('#fName').addEventListener('keydown', (/** @type {KeyboardEvent} */ e) => { if (e.key === 'Enter' && !imeBusy(e)) { e.preventDefault(); add(); } });
+        // 산 날 방식을 바꿔 화면을 다시 그려도 쓰던 재료 이름이 남게
+        $('#fName').addEventListener('input', (/** @type {any} */ e) => { fridgeDraft = e.target.value; });
       },
     };
   };
