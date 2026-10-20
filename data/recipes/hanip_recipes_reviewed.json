@@ -4,12 +4,12 @@
   "source_sha256": "2e8e523f1137a609f8cbf5cdb36d1580e9a983c87259ba53b6d3fb72fdc8d31f",
   "corrections_file": "data/recipes/hanip_recipe_corrections.json",
   "risk_file": "data/ingredients/hanip_risk_ingredients.json",
-  "total": 230,
+  "total": 234,
   "recipes": [
     {
       "id": "HN-001",
       "category": "첫한입_초기",
-      "title": "쌀 미음",
+      "title": "쌀죽",
       "main_ingredients": [
         "쌀"
       ],
@@ -20,12 +20,19 @@
       "possible_allergens": [],
       "cautions": [],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "쌀 미음",
+          "after": "쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-002",
       "category": "첫한입_초기",
-      "title": "오트밀 미음",
+      "title": "오트밀 쌀죽",
       "main_ingredients": [
         "쌀",
         "오트밀"
@@ -40,6 +47,12 @@
       "cautions": [],
       "review_flags": [],
       "corrections": [
+        {
+          "field": "title",
+          "before": "오트밀 미음",
+          "after": "오트밀 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        },
         {
           "field": "main_ingredients",
           "before": [
@@ -58,7 +71,7 @@
     {
       "id": "HN-003",
       "category": "첫한입_초기",
-      "title": "소고기 쌀미음",
+      "title": "소고기 쌀죽",
       "main_ingredients": [
         "소고기",
         "쌀"
@@ -79,12 +92,19 @@
         }
       ],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "소고기 쌀미음",
+          "after": "소고기 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-004",
       "category": "첫한입_초기",
-      "title": "닭고기 쌀미음",
+      "title": "닭고기 쌀죽",
       "main_ingredients": [
         "닭고기",
         "쌀"
@@ -105,12 +125,19 @@
         }
       ],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "닭고기 쌀미음",
+          "after": "닭고기 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-005",
       "category": "첫한입_초기",
-      "title": "애호박 미음",
+      "title": "애호박 쌀죽",
       "main_ingredients": [
         "쌀",
         "애호박"
@@ -122,12 +149,19 @@
       "possible_allergens": [],
       "cautions": [],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "애호박 미음",
+          "after": "애호박 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-006",
       "category": "첫한입_초기",
-      "title": "당근 미음",
+      "title": "당근 쌀죽",
       "main_ingredients": [
         "쌀",
         "당근"
@@ -149,12 +183,19 @@
         }
       ],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "당근 미음",
+          "after": "당근 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-007",
       "category": "첫한입_초기",
-      "title": "브로콜리 미음",
+      "title": "브로콜리 쌀죽",
       "main_ingredients": [
         "쌀",
         "브로콜리"
@@ -166,12 +207,19 @@
       "possible_allergens": [],
       "cautions": [],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "브로콜리 미음",
+          "after": "브로콜리 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-008",
       "category": "첫한입_초기",
-      "title": "단호박 미음",
+      "title": "단호박 쌀죽",
       "main_ingredients": [
         "쌀",
         "단호박"
@@ -183,12 +231,19 @@
       "possible_allergens": [],
       "cautions": [],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "단호박 미음",
+          "after": "단호박 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-009",
       "category": "첫한입_초기",
-      "title": "고구마 미음",
+      "title": "고구마 쌀죽",
       "main_ingredients": [
         "쌀",
         "고구마"
@@ -200,12 +255,19 @@
       "possible_allergens": [],
       "cautions": [],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "고구마 미음",
+          "after": "고구마 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-010",
       "category": "첫한입_초기",
-      "title": "감자 미음",
+      "title": "감자 쌀죽",
       "main_ingredients": [
         "쌀",
         "감자"
@@ -217,12 +279,19 @@
       "possible_allergens": [],
       "cautions": [],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "감자 미음",
+          "after": "감자 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-011",
       "category": "첫한입_초기",
-      "title": "콜리플라워 미음",
+      "title": "콜리플라워 쌀죽",
       "main_ingredients": [
         "쌀",
         "콜리플라워"
@@ -234,7 +303,14 @@
       "possible_allergens": [],
       "cautions": [],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "콜리플라워 미음",
+          "after": "콜리플라워 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-012",
@@ -359,7 +435,7 @@
     {
       "id": "HN-017",
       "category": "첫한입_초기",
-      "title": "소고기 애호박 미음",
+      "title": "소고기 애호박 쌀죽",
       "main_ingredients": [
         "쌀",
         "소고기",
@@ -381,12 +457,19 @@
         }
       ],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "소고기 애호박 미음",
+          "after": "소고기 애호박 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-018",
       "category": "첫한입_초기",
-      "title": "소고기 브로콜리 미음",
+      "title": "소고기 브로콜리 쌀죽",
       "main_ingredients": [
         "쌀",
         "소고기",
@@ -408,12 +491,19 @@
         }
       ],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "소고기 브로콜리 미음",
+          "after": "소고기 브로콜리 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-019",
       "category": "첫한입_초기",
-      "title": "소고기 당근 미음",
+      "title": "소고기 당근 쌀죽",
       "main_ingredients": [
         "쌀",
         "소고기",
@@ -444,12 +534,19 @@
         }
       ],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "소고기 당근 미음",
+          "after": "소고기 당근 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-020",
       "category": "첫한입_초기",
-      "title": "소고기 단호박 미음",
+      "title": "소고기 단호박 쌀죽",
       "main_ingredients": [
         "쌀",
         "소고기",
@@ -471,12 +568,19 @@
         }
       ],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "소고기 단호박 미음",
+          "after": "소고기 단호박 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-021",
       "category": "첫한입_초기",
-      "title": "소고기 감자 미음",
+      "title": "소고기 감자 쌀죽",
       "main_ingredients": [
         "쌀",
         "소고기",
@@ -498,12 +602,19 @@
         }
       ],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "소고기 감자 미음",
+          "after": "소고기 감자 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-022",
       "category": "첫한입_초기",
-      "title": "닭고기 애호박 미음",
+      "title": "닭고기 애호박 쌀죽",
       "main_ingredients": [
         "쌀",
         "닭고기",
@@ -525,12 +636,19 @@
         }
       ],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "닭고기 애호박 미음",
+          "after": "닭고기 애호박 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-023",
       "category": "첫한입_초기",
-      "title": "닭고기 당근 미음",
+      "title": "닭고기 당근 쌀죽",
       "main_ingredients": [
         "쌀",
         "닭고기",
@@ -561,12 +679,19 @@
         }
       ],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "닭고기 당근 미음",
+          "after": "닭고기 당근 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-024",
       "category": "첫한입_초기",
-      "title": "닭고기 고구마 미음",
+      "title": "닭고기 고구마 쌀죽",
       "main_ingredients": [
         "쌀",
         "닭고기",
@@ -588,12 +713,19 @@
         }
       ],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "닭고기 고구마 미음",
+          "after": "닭고기 고구마 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-025",
       "category": "첫한입_초기",
-      "title": "두부 브로콜리 미음",
+      "title": "두부 브로콜리 쌀죽",
       "main_ingredients": [
         "쌀",
         "브로콜리",
@@ -608,12 +740,19 @@
       "possible_allergens": [],
       "cautions": [],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "두부 브로콜리 미음",
+          "after": "두부 브로콜리 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-026",
       "category": "첫한입_초기",
-      "title": "두부 단호박 미음",
+      "title": "두부 단호박 쌀죽",
       "main_ingredients": [
         "쌀",
         "단호박",
@@ -628,7 +767,14 @@
       "possible_allergens": [],
       "cautions": [],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "두부 단호박 미음",
+          "after": "두부 단호박 쌀죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-027",
@@ -709,7 +855,7 @@
     {
       "id": "HN-029",
       "category": "첫한입_초기",
-      "title": "쌀 애호박 미음",
+      "title": "쌀 애호박 죽",
       "main_ingredients": [
         "애호박",
         "쌀"
@@ -721,12 +867,19 @@
       "possible_allergens": [],
       "cautions": [],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "쌀 애호박 미음",
+          "after": "쌀 애호박 죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-030",
       "category": "첫한입_초기",
-      "title": "쌀 단호박 미음",
+      "title": "쌀 단호박 죽",
       "main_ingredients": [
         "단호박",
         "쌀"
@@ -738,7 +891,14 @@
       "possible_allergens": [],
       "cautions": [],
       "review_flags": [],
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "before": "쌀 단호박 미음",
+          "after": "쌀 단호박 죽",
+          "reason": "하정훈(삐뽀삐뽀 119 이유식 저자): 첫 이유식은 묽은 미음보다 질감 있는 죽으로 시작 (베이비뉴스 2022-06-29, 유튜브 #416). 사용자 요청으로 초기 레시피 이름을 죽으로 바꿈 (2026-10-20)"
+        }
+      ]
     },
     {
       "id": "HN-031",
@@ -8012,6 +8172,108 @@
           "reason": "사용자 결정: 같이한입은 60개월 이상"
         }
       ]
+    },
+    {
+      "id": "HN-231",
+      "category": "첫한입_초기",
+      "title": "청경채 쌀죽",
+      "main_ingredients": [
+        "쌀",
+        "청경채"
+      ],
+      "allergens": [],
+      "review_status": "AI추가_영양안전조리검증필요",
+      "min_months": 6,
+      "note": "삐뽀삐뽀 119 이유식 정리 자료에서 초기 잎채소 예로 든 청경채",
+      "added": "삐뽀삐뽀 119 이유식 순서(쌀 → 고기 → 잎채소 → 노란 채소)에 필요한데 원본에 없던 초기 레시피. 사용자 요청으로 AI가 추가 (2026-10-20). 이름·재료만 있고 계량·조리법은 검수 전",
+      "possible_allergens": [],
+      "cautions": [],
+      "review_flags": [],
+      "corrections": []
+    },
+    {
+      "id": "HN-232",
+      "category": "첫한입_초기",
+      "title": "소고기 청경채 쌀죽",
+      "main_ingredients": [
+        "쌀",
+        "소고기",
+        "청경채"
+      ],
+      "allergens": [],
+      "review_status": "AI추가_영양안전조리검증필요",
+      "min_months": 6,
+      "note": "한 끼에 곡류·고기·채소를 함께 (삐뽀삐뽀 119 이유식)",
+      "added": "삐뽀삐뽀 119 이유식 순서(쌀 → 고기 → 잎채소 → 노란 채소)에 필요한데 원본에 없던 초기 레시피. 사용자 요청으로 AI가 추가 (2026-10-20). 이름·재료만 있고 계량·조리법은 검수 전",
+      "possible_allergens": [],
+      "cautions": [
+        {
+          "risk_id": "meat_chunks",
+          "text": "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+          "sources": [
+            "https://www.cdc.gov/infant-toddler-nutrition/foods-and-drinks/choking-hazards.html",
+            "data/ingredients/hanip_ingredient_guide_30.csv"
+          ]
+        }
+      ],
+      "review_flags": [],
+      "corrections": []
+    },
+    {
+      "id": "HN-233",
+      "category": "첫한입_초기",
+      "title": "소고기 고구마 쌀죽",
+      "main_ingredients": [
+        "쌀",
+        "소고기",
+        "고구마"
+      ],
+      "allergens": [],
+      "review_status": "AI추가_영양안전조리검증필요",
+      "min_months": 6,
+      "note": "한 끼에 곡류·고기·채소를 함께 (삐뽀삐뽀 119 이유식)",
+      "added": "삐뽀삐뽀 119 이유식 순서(쌀 → 고기 → 잎채소 → 노란 채소)에 필요한데 원본에 없던 초기 레시피. 사용자 요청으로 AI가 추가 (2026-10-20). 이름·재료만 있고 계량·조리법은 검수 전",
+      "possible_allergens": [],
+      "cautions": [
+        {
+          "risk_id": "meat_chunks",
+          "text": "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+          "sources": [
+            "https://www.cdc.gov/infant-toddler-nutrition/foods-and-drinks/choking-hazards.html",
+            "data/ingredients/hanip_ingredient_guide_30.csv"
+          ]
+        }
+      ],
+      "review_flags": [],
+      "corrections": []
+    },
+    {
+      "id": "HN-234",
+      "category": "첫한입_초기",
+      "title": "소고기 콜리플라워 쌀죽",
+      "main_ingredients": [
+        "쌀",
+        "소고기",
+        "콜리플라워"
+      ],
+      "allergens": [],
+      "review_status": "AI추가_영양안전조리검증필요",
+      "min_months": 6,
+      "note": "한 끼에 곡류·고기·채소를 함께 (삐뽀삐뽀 119 이유식)",
+      "added": "삐뽀삐뽀 119 이유식 순서(쌀 → 고기 → 잎채소 → 노란 채소)에 필요한데 원본에 없던 초기 레시피. 사용자 요청으로 AI가 추가 (2026-10-20). 이름·재료만 있고 계량·조리법은 검수 전",
+      "possible_allergens": [],
+      "cautions": [
+        {
+          "risk_id": "meat_chunks",
+          "text": "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요.",
+          "sources": [
+            "https://www.cdc.gov/infant-toddler-nutrition/foods-and-drinks/choking-hazards.html",
+            "data/ingredients/hanip_ingredient_guide_30.csv"
+          ]
+        }
+      ],
+      "review_flags": [],
+      "corrections": []
     }
   ]
 }

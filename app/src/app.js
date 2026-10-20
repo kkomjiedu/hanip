@@ -111,12 +111,14 @@
   const KEY = 'hanip-prototype-v2';
   /** @returns {Kid['risk']} */
   const emptyRisk = () => ({ eczema: null, foodAllergy: null, reaction: null, medicalPlan: null });
+  // 데이터(GUIDE)보다 상태를 먼저 읽으므로 기본 간격을 여기 둔다. guide first30.defaultInterval과 같게 유지
+  const DEFAULT_INTERVAL = 3;
   /** @param {Partial<Kid>} k @returns {Kid} */
   function kidDefaults(k) {
     return {
       id: k.id ?? 'k' + Date.now().toString(36), name: k.name ?? '', birth: k.birth ?? '', started: k.started ?? false, startDate: k.startDate ?? '',
       allergies: k.allergies ?? [], risk: k.risk ?? emptyRisk(), allergen: k.allergen ?? {}, foods: k.foods ?? {}, suspectedFoods: k.suspectedFoods ?? {},
-      plan: k.plan ?? { interval: 3, offset: 0, pausedAt: null, records: {} },
+      plan: k.plan ?? { interval: DEFAULT_INTERVAL, offset: 0, pausedAt: null, records: {} },
     };
   }
   /** @returns {AppState} */
@@ -129,7 +131,7 @@
       id: 'k1', name: '콩이', birth: iso(addDays(addMonths(TODAY, -6), -14)), started: true, startDate: start1,
       risk: { eczema: false, foodAllergy: false, reaction: false, medicalPlan: false },
       allergen: { 계란: { status: 'introducing', first: iso(addDays(TODAY, -3)), last: iso(addDays(TODAY, -3)), log: [{ date: iso(addDays(TODAY, -3)), ok: true }] } },
-      plan: { interval: 3, offset: 0, pausedAt: null, records },
+      plan: { interval: DEFAULT_INTERVAL, offset: 0, pausedAt: null, records },
     });
     const k2 = kidDefaults({
       id: 'k2', name: '별이', birth: iso(addMonths(TODAY, -28)), started: true, startDate: iso(addMonths(TODAY, -22)), allergies: ['계란'],
@@ -242,7 +244,8 @@
     const m = monthsOld(kid.birth);
     const cands = RECIPES.filter((r) => r.category === '첫한입_초기' && r.min_months <= Math.max(m, 6) && r.main_ingredients.includes(newIng)
       && r.main_ingredients.every((i) => known.includes(i)) && !unfitReason(r, { ...kid, birth: kid.birth, started: true }))
-      .sort((a, b) => a.main_ingredients.length - b.main_ingredients.length);
+      // 고기를 시작한 뒤에는 곡류·고기·채소가 함께 든 레시피를 먼저 (삐뽀삐뽀 119 이유식)
+      .sort((a, b) => b.main_ingredients.length - a.main_ingredients.length);
     const dayInBlock = ((day - 1) % n) + 1;
     const recipe = cands.length ? cands[(dayInBlock - 1) % cands.length] : null;
     return { day, block, newIng, isNewDay: dayInBlock === 1, dayInBlock, known, recipe };

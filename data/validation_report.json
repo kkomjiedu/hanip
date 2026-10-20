@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T16:10:36.318Z",
+  "generated_at": "2026-10-20T03:01:55.307Z",
   "ingredients": {
     "file_csv": "data/ingredients/hanip_ingredient_guide_30.csv",
     "file_json": "data/ingredients/hanip_ingredient_guide_30.json",
@@ -74,10 +74,11 @@
   },
   "recipes_reviewed": {
     "file": "data/recipes/hanip_recipes_reviewed.json",
-    "count": 230,
-    "changed_recipes": 106,
+    "count": 234,
+    "added_recipes": 4,
+    "changed_recipes": 128,
     "with_possible_allergens": 52,
-    "with_cautions": 144,
+    "with_cautions": 147,
     "with_review_flags": 52,
     "min_months_by_category": {
       "첫한입_초기": [
@@ -120,6 +121,7 @@
       "연근",
       "오이",
       "완두콩",
+      "청경채",
       "카레",
       "콜리플라워",
       "콩나물",
@@ -136,7 +138,7 @@
   },
   "content": {
     "errors": [],
-    "methods_total": 230,
+    "methods_total": 234,
     "methods_with_drafts": 1,
     "methods_expert_reviewed": 0
   },

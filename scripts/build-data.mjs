@@ -155,6 +155,12 @@ function applyCorrections(recipes, corrections, risks) {
     r.cautions = [];
     r.review_flags = [];
 
+    const newTitle = corrections.title_fixes?.items?.[r.id];
+    if (newTitle) {
+      log.push({ field: 'title', before: r.title, after: newTitle, reason: corrections.title_fixes.reason });
+      r.title = newTitle;
+    }
+
     const cat = corrections.category_min_months[r.category];
     if (cat && r.min_months !== cat.min_months) {
       log.push({ field: 'min_months', before: r.min_months, after: cat.min_months, reason: cat.reason });
@@ -271,10 +277,14 @@ const recipeDest = copyOriginal(SRC_RECIPES, DIR_RECIPES);
 const catalog = readJson(SRC_RECIPES);
 const corrections = readJson(CORRECTIONS);
 const risks = readJson(RISKS);
+// 원본에 없던 레시피. 원본 ID와 겹치면 멈춘다
+const added = (corrections.added_recipes?.items ?? []).map((a) => ({ ...a, added: corrections.added_recipes.reason }));
+for (const a of added) if (catalog.recipes.some((r) => r.id === a.id)) throw new Error(`추가 레시피 ${a.id}가 원본 ID와 겹침`);
 const guideNames = items.flatMap((it) => it[nameKey].split('/'));
 VOCAB = uniq([
   ...guideNames,
   ...catalog.recipes.flatMap((r) => r.main_ingredients),
+  ...added.flatMap((r) => r.main_ingredients),
   ...corrections.ingredient_fixes.flatMap((f) => [...(f.add ?? []), ...Object.values(f.replace ?? {})]),
   ...CONTAINER_WORDS,
 ]);
@@ -294,7 +304,7 @@ const originalErrors = lint(catalog.recipes, { corrections, risks });
 report.recipes_original.lint_error_count = originalErrors.length;
 report.recipes_original.lint_by_code = Object.fromEntries(Object.entries(byKey(originalErrors, 'code')).map(([k, g]) => [k, g.length]));
 
-const reviewed = applyCorrections(catalog.recipes, corrections, risks);
+const reviewed = applyCorrections([...catalog.recipes, ...added], corrections, risks);
 const reviewedErrors = lint(reviewed, { corrections, risks });
 const reviewedPath = join(DIR_RECIPES, 'hanip_recipes_reviewed.json');
 writeJson(reviewedPath, {
@@ -309,6 +319,7 @@ writeJson(reviewedPath, {
 report.recipes_reviewed = {
   file: rel(reviewedPath),
   count: reviewed.length,
+  added_recipes: added.length,
   changed_recipes: reviewed.filter((r) => r.corrections.length).length,
   with_possible_allergens: reviewed.filter((r) => r.possible_allergens.length).length,
   with_cautions: reviewed.filter((r) => r.cautions.length).length,

@@ -1,6 +1,6 @@
 {
   "about": "레시피별 토핑식·혼합식 조리법. 계량·조리 시간·보관 기간은 검증 전이라 비어 있다(null). pending_review는 앱에 노출하지 않는다. 자동 생성: scripts/build-data.mjs",
-  "total": 230,
+  "total": 234,
   "items": [
     {
       "recipeId": "HN-001",
@@ -7030,6 +7030,123 @@
       "textureGuide": null,
       "storageGuide": null,
       "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-231",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "청경채"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-232",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "청경채"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-233",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "고구마"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
+      "reviewStatus": "pending_review",
+      "sourceReferences": []
+    },
+    {
+      "recipeId": "HN-234",
+      "category": "첫한입_초기",
+      "stage": "early",
+      "ingredients": [
+        "쌀",
+        "소고기",
+        "콜리플라워"
+      ],
+      "allergenTags": {
+        "confirmed": [],
+        "possible": []
+      },
+      "toppingMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "mixedMethod": {
+        "status": "pending_review",
+        "steps": []
+      },
+      "cookingTime": null,
+      "textureGuide": null,
+      "storageGuide": null,
+      "safetyNotes": [
+        "고기는 완전히 익히고 아이가 씹기 쉽게 잘게 다져 주세요."
+      ],
       "reviewStatus": "pending_review",
       "sourceReferences": []
     }
